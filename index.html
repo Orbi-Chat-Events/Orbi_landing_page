@@ -83,33 +83,42 @@
               data-logo-white="assets/orbi-logo-white.png"
             />
           </a>
-          <nav class="site-nav desktop-nav" aria-label="Primary">
-            <a href="#why">Why Orbi?</a>
-            <a href="#features">Features</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">Contact us</a>
+          <nav class="site-nav desktop-nav" aria-label="Primary" data-i18n-attr="aria-label:nav.primary">
+            <a href="#why" data-i18n="nav.why">Why Orbi?</a>
+            <a href="#features" data-i18n="nav.features">Features</a>
+            <a href="#faq" data-i18n="nav.faq">FAQ</a>
+            <a href="#contact" data-i18n="nav.contact">Contact us</a>
           </nav>
-          <a class="cta-pill desktop-cta" href="#top">Join Orbi</a>
+          <div class="language-switcher desktop-language" aria-label="Language" data-i18n-attr="aria-label:language.label">
+            <button class="language-option is-active" type="button" data-language-option="en">EN</button>
+            <button class="language-option" type="button" data-language-option="da">DA</button>
+          </div>
+          <a class="cta-pill desktop-cta" href="#top" data-i18n="nav.join">Join Orbi</a>
           <button
             class="menu-toggle"
             type="button"
             aria-expanded="false"
             aria-controls="mobile-menu"
             aria-label="Open menu"
+            data-i18n-attr="aria-label:menu.open"
           >
             <span></span>
             <span></span>
             <span></span>
           </button>
           <div class="mobile-menu" id="mobile-menu">
-            <nav class="mobile-nav" aria-label="Mobile Primary">
-              <a href="#why" data-menu-close>Why Orbi?</a>
-              <a href="#features" data-menu-close>Features</a>
-              <a href="#faq" data-menu-close>FAQ</a>
-              <a href="#contact" data-menu-close>Contact us</a>
+            <nav class="mobile-nav" aria-label="Mobile Primary" data-i18n-attr="aria-label:nav.mobilePrimary">
+              <a href="#why" data-menu-close data-i18n="nav.why">Why Orbi?</a>
+              <a href="#features" data-menu-close data-i18n="nav.features">Features</a>
+              <a href="#faq" data-menu-close data-i18n="nav.faq">FAQ</a>
+              <a href="#contact" data-menu-close data-i18n="nav.contact">Contact us</a>
             </nav>
+            <div class="language-switcher mobile-language" aria-label="Language" data-i18n-attr="aria-label:language.label">
+              <button class="language-option is-active" type="button" data-language-option="en">EN</button>
+              <button class="language-option" type="button" data-language-option="da">DA</button>
+            </div>
             <a class="cta-pill mobile-cta" href="#top" data-menu-close
-              >Join Orbi</a
+              data-i18n="nav.join">Join Orbi</a
             >
           </div>
         </div>
@@ -118,23 +127,23 @@
       <main>
         <section class="hero section" id="top">
           <div class="hero-copy" data-reveal>
-            <p class="eyebrow">Orbi - Chat & Events</p>
-            <h1>Practical Media,<br />Not Social</h1>
-            <p class="hero-text">
+            <p class="eyebrow" data-i18n="hero.eyebrow">Orbi - Chat & Events</p>
+            <h1 data-i18n-html="hero.title">Practical Media,<br />Not Social</h1>
+            <p class="hero-text" data-i18n="hero.text">
               A place to talk, plan, and connect — everything you need, without distractions.
             </p>
-            <p class="hero-subtext">
+            <p class="hero-subtext" data-i18n-html="hero.body1">
               Orbi sits in the <span class="highlight">space between</span> 
               traditional <span class="highlight">chat apps</span> and <span class="highlight">social media</span>. 
               It gives you the familiar chat experience, while adding practical 
               tools like <span class="highlight">events</span> and <span class="highlight">birthdays</span>, with more on the way.
             </p>
-            <p class="hero-subtext">
+            <p class="hero-subtext" data-i18n-html="hero.body2">
               Our mission is to offer <span class="highlight">practical communication</span>
               tools that <span class="highlight">respect your attention</span>
               and keep your data safe.
             </p>
-            <p class="hero-subtext">
+            <p class="hero-subtext" data-i18n-html="hero.body3">
               Built by a small <span class="highlight">Danish startup</span> creating a calmer,
               privacy-first <span class="highlight">European alternative</span>.
             </p>
@@ -148,6 +157,7 @@
                 <img
                   src="assets/app-store-badge.png"
                   alt="Download on the App Store"
+                  data-i18n-attr="alt:store.appStoreAlt"
                 />
               </a>
               <a
@@ -159,6 +169,7 @@
                 <img
                   src="assets/google-play-badge.png"
                   alt="Get it on Google Play"
+                  data-i18n-attr="alt:store.googlePlayAlt"
                 />
               </a>
             </div>
@@ -266,9 +277,9 @@
 
         <section class="section principles" id="why">
           <div class="section-heading" data-reveal>
-            <p class="eyebrow">Why Orbi?</p>
-            <h2>Let's keep communication simple</h2>
-            <p>
+            <p class="eyebrow" data-i18n="principles.eyebrow">Why Orbi?</p>
+            <h2 data-i18n="principles.title">Let's keep communication simple</h2>
+            <p data-i18n="principles.text">
               Orbi is built around a few core principles:
             </p>
           </div>
@@ -276,8 +287,8 @@
           <div class="principle-grid">
             <article class="principle-card" data-reveal>
               <div class="principle-icon">01</div>
-              <h3>Ad-free & private</h3>
-              <p>
+              <h3 data-i18n="principles.privateTitle">Ad-free & private</h3>
+              <p data-i18n-html="principles.privateText">
                 Orbi uses as little personal data as possible and avoids
                 ad-driven product choices, tracking, and targeting.<br><br>
                 An ad-free experience, with end-to-end encrypted messaging.
@@ -286,8 +297,8 @@
 
             <article class="principle-card" data-reveal>
               <div class="principle-icon">02</div>
-              <h3>Independent European tech</h3>
-              <p>
+              <h3 data-i18n="principles.europeTitle">Independent European tech</h3>
+              <p data-i18n="principles.europeText">
                 Choosing Orbi means supporting a small Danish startup building communication 
                 tools rooted in European values, privacy standards, and digital independence.
               </p>
@@ -295,8 +306,8 @@
 
             <article class="principle-card" data-reveal>
               <div class="principle-icon">03</div>
-              <h3>Not another attention platform</h3>
-              <p>
+              <h3 data-i18n="principles.attentionTitle">Not another attention platform</h3>
+              <p data-i18n="principles.attentionText">
                 Orbi is not built to maximize screen time. No algorithmic feeds, no endless 
                 scrolling, and no design patterns made to compete for your attention.
               </p>
@@ -308,8 +319,8 @@
         <section class="section feature-band" id="features">
           <div class="feature-frame" data-reveal>
             <div class="feature-topline">
-              <p class="eyebrow eyebrow-light">Features</p>
-              <h2>Feature explained</h2>
+              <p class="eyebrow eyebrow-light" data-i18n="features.eyebrow">Features</p>
+              <h2 data-i18n="features.title">Feature explained</h2>
             </div>
 
             <div class="feature-carousel" aria-roledescription="carousel">
@@ -318,6 +329,7 @@
                 type="button"
                 data-carousel-prev
                 aria-label="Show previous feature"
+                data-i18n-attr="aria-label:carousel.prev"
               >
                 ‹
               </button>
@@ -345,26 +357,26 @@
                             />
                           </figure>
                           <div class="floating-card messaging-chip messaging-chip-top">
-                            End-to-end encryption
+                            <span data-i18n="features.messagingChipTop">End-to-end encryption</span>
                           </div>
                           <div class="floating-card messaging-chip messaging-chip-bottom">
-                            Danish/European alternative
+                            <span data-i18n="features.messagingChipBottom">Danish/European alternative</span>
                           </div>
                         </div>
                       </div>
                       <div class="feature-copy">
-                        <h3>Chat like you're used to</h3>
+                        <h3 data-i18n="features.messagingTitle">Chat like you're used to</h3>
                         
                         <div class="feature-callout">
-                          <strong>Effortless Messaging</strong>
-                          <span>
+                          <strong data-i18n="features.messagingCallout1Title">Effortless Messaging</strong>
+                          <span data-i18n="features.messagingCallout1Text">
                            Send encrypted one-to-one and group messages with reactions, 
                            pins, voice messages, photos, files, and more.
                           </span>
                         </div>
                         <div class="feature-callout">
-                          <strong>Dedicated Event Chats</strong>
-                          <span>
+                          <strong data-i18n="features.messagingCallout2Title">Dedicated Event Chats</strong>
+                          <span data-i18n="features.messagingCallout2Text">
                             Create group chats for your events to keep
                             conversations, photos, and updates in one place.
                           </span>
@@ -394,33 +406,33 @@
                             />
                           </figure>
                           <div class="floating-card events-chip top-chip glance-chip">
-                            Everything at a glance
+                            <span data-i18n="features.eventsChipTop">Everything at a glance</span>
                           </div>
                           <div class="floating-card events-chip bottom-chip">
-                            See who's attending
+                            <span data-i18n="features.eventsChipBottom">See who's attending</span>
                           </div>
                         </div>
                       </div>
                       <div class="feature-copy">
-                        <h3>Your event hub</h3>
+                        <h3 data-i18n="features.eventsTitle">Your event hub</h3>
                         <ul class="feature-points">
                           <li>
-                            <strong>Remind guests to respond</strong>
-                            <span>
+                            <strong data-i18n="features.eventsPoint1Title">Remind guests to respond</strong>
+                            <span data-i18n="features.eventsPoint1Text">
                               Never wonder who's coming. Send gentle reminders
                               to guests who haven't responded yet.
                             </span>
                           </li>
                           <li>
-                            <strong>Invite groups &amp; reuse guest lists</strong>
-                            <span>
+                            <strong data-i18n="features.eventsPoint2Title">Invite groups &amp; reuse guest lists</strong>
+                            <span data-i18n="features.eventsPoint2Text">
                               Quickly invite entire chat groups or reuse guest
                               lists from past events to save time.
                             </span>
                           </li>
                           <li>
-                            <strong>Auto-sync with your device calendar</strong>
-                            <span>
+                            <strong data-i18n="features.eventsPoint3Title">Auto-sync with your device calendar</strong>
+                            <span data-i18n="features.eventsPoint3Text">
                               Keep your schedule organized by automatically
                               syncing events to your device's calendar.
                             </span>
@@ -443,18 +455,18 @@
                             />
                           </figure>
                           <div class="floating-card birthday-chip birthday-chip-top">
-                            🎂 Today&apos;s birthdays
+                            <span data-i18n="features.birthdayChipTop">🎂 Today&apos;s birthdays</span>
                           </div>
                           <div class="floating-card birthday-chip birthday-chip-bottom">
-                            🎉 Friendly reminders
+                            <span data-i18n="features.birthdayChipBottom">🎉 Friendly reminders</span>
                           </div>
                           <div class="birthday-burst birthday-burst-left">🎈</div>
                           <div class="birthday-burst birthday-burst-right">✨</div>
                         </div>
                       </div>
                       <div class="feature-copy">
-                        <h3>Never miss a birthday</h3>
-                        <p class="feature-callout">
+                        <h3 data-i18n="features.birthdayTitle">Never miss a birthday</h3>
+                        <p class="feature-callout" data-i18n="features.birthdayText">
                           See who is celebrating right on your profile page and
                           get a gentle reminder when it&apos;s time to reach out.
                           Orbi keeps birthdays visible, personal, and easy to
@@ -477,16 +489,16 @@
                             />
                           </figure>
                           <div class="floating-card tags-chip tags-chip-top">
-                            Filter chats
+                            <span data-i18n="features.tagsChipTop">Filter chats</span>
                           </div>
                           <div class="floating-card tags-chip tags-chip-bottom">
-                            Create your own
+                            <span data-i18n="features.tagsChipBottom">Create your own</span>
                           </div>
                         </div>
                       </div>
                       <div class="feature-copy">
-                        <h3>Find the right chats faster</h3>
-                        <p class="feature-callout">
+                        <h3 data-i18n="features.tagsTitle">Find the right chats faster</h3>
+                        <p class="feature-callout" data-i18n="features.tagsText">
                           Create tags for work, clubs, teams, friend groups, and everything in between. 
                           Filter the chats page by what matters right now, so conversations stay easy to find.
                         </p>
@@ -507,16 +519,16 @@
                             />
                           </figure>
                           <div class="floating-card backup-chip backup-chip-top">
-                            6-digit PIN
+                            <span data-i18n="features.backupChipTop">6-digit PIN</span>
                           </div>
                           <div class="floating-card backup-chip backup-chip-bottom">
-                            Restore safely
+                            <span data-i18n="features.backupChipBottom">Restore safely</span>
                           </div>
                         </div>
                       </div>
                       <div class="feature-copy">
-                        <h3>Recover encrypted chats</h3>
-                        <p class="feature-callout">
+                        <h3 data-i18n="features.backupTitle">Recover encrypted chats</h3>
+                        <p class="feature-callout" data-i18n="features.backupText">
                           If you lose your phone, log out, or switch to a new
                           device, your backup PIN helps you restore your
                           account and access encrypted chats.
@@ -546,16 +558,16 @@
                             />
                           </figure>
                           <div class="floating-card friends-chip friends-chip-top">
-                            Add friends first
+                            <span data-i18n="features.friendsChipTop">Add friends first</span>
                           </div>
                           <div class="floating-card friends-chip friends-chip-bottom">
-                            No stranger DMs
+                            <span data-i18n="features.friendsChipBottom">No stranger DMs</span>
                           </div>
                         </div>
                       </div>
                       <div class="feature-copy">
-                        <h3>Friend-based connections</h3>
-                        <p class="feature-callout">
+                        <h3 data-i18n="features.friendsTitle">Friend-based connections</h3>
+                        <p class="feature-callout" data-i18n="features.friendsText">
                           People can&apos;t contact you directly unless you&apos;re
                           friends. Send or accept a request first, then message
                           safely with people you choose to connect with.
@@ -585,16 +597,16 @@
                             />
                           </figure>
                           <div class="floating-card appearance-chip appearance-chip-top">
-                            Light mode
+                            <span data-i18n="features.appearanceChipTop">Light mode</span>
                           </div>
                           <div class="floating-card appearance-chip appearance-chip-bottom">
-                            Dark mode
+                            <span data-i18n="features.appearanceChipBottom">Dark mode</span>
                           </div>
                         </div>
                       </div>
                       <div class="feature-copy">
-                        <h3>Light or dark, your choice</h3>
-                        <p class="feature-callout">
+                        <h3 data-i18n="features.appearanceTitle">Light or dark, your choice</h3>
+                        <p class="feature-callout" data-i18n="features.appearanceText">
                           Switch between light and dark mode whenever you like.
                           Orbi keeps chats, events, and comments readable in
                           whichever look feels best.
@@ -611,32 +623,33 @@
                 type="button"
                 data-carousel-next
                 aria-label="Show next feature"
+                data-i18n-attr="aria-label:carousel.next"
               >
                 ›
               </button>
             </div>
 
-            <div class="carousel-dots" aria-label="Feature navigation">
+            <div class="carousel-dots" aria-label="Feature navigation" data-i18n-attr="aria-label:carousel.navigation">
               <button class="dot is-active" type="button" data-carousel-dot="0">
-                <span class="sr-only">Feature 1</span>
+                <span class="sr-only" data-i18n="carousel.feature1">Feature 1</span>
               </button>
               <button class="dot" type="button" data-carousel-dot="1">
-                <span class="sr-only">Feature 2</span>
+                <span class="sr-only" data-i18n="carousel.feature2">Feature 2</span>
               </button>
               <button class="dot" type="button" data-carousel-dot="2">
-                <span class="sr-only">Feature 3</span>
+                <span class="sr-only" data-i18n="carousel.feature3">Feature 3</span>
               </button>
               <button class="dot" type="button" data-carousel-dot="3">
-                <span class="sr-only">Feature 4</span>
+                <span class="sr-only" data-i18n="carousel.feature4">Feature 4</span>
               </button>
               <button class="dot" type="button" data-carousel-dot="4">
-                <span class="sr-only">Feature 5</span>
+                <span class="sr-only" data-i18n="carousel.feature5">Feature 5</span>
               </button>
               <button class="dot" type="button" data-carousel-dot="5">
-                <span class="sr-only">Feature 6</span>
+                <span class="sr-only" data-i18n="carousel.feature6">Feature 6</span>
               </button>
               <button class="dot" type="button" data-carousel-dot="6">
-                <span class="sr-only">Feature 7</span>
+                <span class="sr-only" data-i18n="carousel.feature7">Feature 7</span>
               </button>
             </div>
           </div>
@@ -645,14 +658,14 @@
         <section class="section faq-band" id="faq">
           <div class="faq-wrap">
             <div class="section-heading section-heading-center" data-reveal>
-              <p class="eyebrow eyebrow-light">FAQ</p>
-              <h2>Frequently asked questions</h2>
+              <p class="eyebrow eyebrow-light" data-i18n="faq.eyebrow">FAQ</p>
+              <h2 data-i18n="faq.title">Frequently asked questions</h2>
             </div>
 
             <div class="faq-list">
               <details class="faq-item" open>
-                <summary>What is Orbi?</summary>
-                <p>
+                <summary data-i18n="faq.whatQuestion">What is Orbi?</summary>
+                <p data-i18n="faq.whatAnswer">
                   Orbi is a private chat and event app built for staying in
                   touch without the clutter. You can message friends, plan
                   events, share updates, and keep the practical parts of your
@@ -661,8 +674,8 @@
               </details>
 
               <details class="faq-item">
-                <summary>How is Orbi different from other chat apps?</summary>
-                <p>
+                <summary data-i18n="faq.chatQuestion">How is Orbi different from other chat apps?</summary>
+                <p data-i18n="faq.chatAnswer">
                   Orbi is not just a chat app. It is a European, Danish-built communication 
                   platform with practical tools like events and birthdays already included, and more practical communication tools 
                   coming in the future.
@@ -670,8 +683,8 @@
               </details>
 
               <details class="faq-item">
-                <summary>How is Orbi different from social media?</summary>
-                <p>
+                <summary data-i18n="faq.socialQuestion">How is Orbi different from social media?</summary>
+                <p data-i18n="faq.socialAnswer">
                   Orbi is not built around feeds, followers, algorithms, or endless scrolling. 
                   It is made for direct communication: talking with people you choose, 
                   planning things together, and staying connected without distractions.
@@ -679,8 +692,8 @@
               </details>
 
               <details class="faq-item">
-                <summary>Who can message me on Orbi?</summary>
-                <p>
+                <summary data-i18n="faq.messagesQuestion">Who can message me on Orbi?</summary>
+                <p data-i18n="faq.messagesAnswer">
                   You decide who can reach you. Only people you connect with can
                   message you directly. If you are added to a group chat, people
                   in that group can message you there.
@@ -688,13 +701,13 @@
               </details>
 
               <details class="faq-item">
-                <summary>Is Orbi free to use?</summary>
-                <p>Yes. Orbi is completely free to use.</p>
+                <summary data-i18n="faq.freeQuestion">Is Orbi free to use?</summary>
+                <p data-i18n="faq.freeAnswer">Yes. Orbi is completely free to use.</p>
               </details>
 
               <details class="faq-item">
-                <summary>Is Orbi private?</summary>
-                <p>
+                <summary data-i18n="faq.privateQuestion">Is Orbi private?</summary>
+                <p data-i18n="faq.privateAnswer">
                   Orbi uses as little personal data as possible, does not depend
                   on ads, and does not use your personal data for advertising or
                   targeting. Your data is used to run and improve the app, not
@@ -703,16 +716,16 @@
               </details>
 
               <details class="faq-item">
-                <summary>Does Orbi use end-to-end encryption?</summary>
-                <p>
+                <summary data-i18n="faq.encryptionQuestion">Does Orbi use end-to-end encryption?</summary>
+                <p data-i18n="faq.encryptionAnswer">
                   Yes. Orbi supports end-to-end encrypted chats when encryption
                   is enabled during chat creation.
                 </p>
               </details>
 
               <details class="faq-item">
-                <summary>How do events work in Orbi?</summary>
-                <p>
+                <summary data-i18n="faq.eventsQuestion">How do events work in Orbi?</summary>
+                <p data-i18n="faq.eventsAnswer">
                   Events give plans their own place outside messy chat threads.
                   You can create an event, invite friends, add details like time
                   and location, track who is going, and keep event updates easy
@@ -721,8 +734,8 @@
               </details>
 
               <details class="faq-item">
-                <summary>Can I invite people who are not on Orbi yet?</summary>
-                <p>
+                <summary data-i18n="faq.invitesQuestion">Can I invite people who are not on Orbi yet?</summary>
+                <p data-i18n="faq.invitesAnswer">
                   Yes. You can invite people to events by SMS, even if they are
                   not on Orbi yet. This makes it easier to plan with everyone,
                   not only people already using the app.
@@ -730,16 +743,16 @@
               </details>
 
               <details class="faq-item">
-                <summary>What happens if I lose access to my account?</summary>
-                <p>
+                <summary data-i18n="faq.accessQuestion">What happens if I lose access to my account?</summary>
+                <p data-i18n="faq.accessAnswer">
                   Orbi uses a 6-digit Backup PIN to help you restore access to
                   your account and encrypted chats on a new device.
                 </p>
               </details>
 
               <details class="faq-item">
-                <summary>Who is behind Orbi?</summary>
-                <p>
+                <summary data-i18n="faq.behindQuestion">Who is behind Orbi?</summary>
+                <p data-i18n="faq.behindAnswer">
                   Orbi is built by a small Danish startup. Our core backend is hosted in Frankfurt, Germany.
                 </p>
               </details>
@@ -756,20 +769,20 @@
                 alt="Orbi"
               />
               <div class="footer-links">
-                <a href="terms/">Terms of service</a>
-                <a href="privacy/">Privacy policy</a>
-                <a href="support/">Get support</a>
+                <a href="terms/" data-i18n="footer.terms">Terms of service</a>
+                <a href="privacy/" data-i18n="footer.privacy">Privacy policy</a>
+                <a href="support/" data-i18n="footer.support">Get support</a>
               </div>
             </div>
 
             <div class="contact-card">
               <a class="cta-pill cta-pill-solid" href="mailto:hello@orbichat.io"
-                >Contact us</a
+                data-i18n="footer.contactButton">Contact us</a
               >
               <a class="contact-email" href="mailto:hello@orbichat.io"
                 >hello@orbichat.io</a
               >
-              <p>
+              <p data-i18n="footer.text">
                 A small startup from Denmark building a calmer way to chat and
                 plan together.
               </p>
