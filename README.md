@@ -23,4 +23,8 @@ Notes before deployment:
 
 - Update the canonical URLs and sitemap if the final domain is not `https://orbichat.io/`.
 - If you later host the app itself on a subdomain like `app.orbichat.io`, update the "Join Orbi" CTA to point there.
+- To enable the secure support form, set the Cloudflare Turnstile site key in
+  `support/index.html` (`orbi-turnstile-site-key`) and configure the matching
+  `TURNSTILE_SECRET_KEY` Nhost secret. The form never writes directly to
+  Hasura or Storage.
 - This project can be deployed as plain static hosting on Netlify, Vercel, Cloudflare Pages, GitHub Pages, or similar.

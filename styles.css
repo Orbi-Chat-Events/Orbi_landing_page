@@ -1570,6 +1570,83 @@ a {
   margin-top: 2rem;
 }
 
+.support-report-card {
+  margin: 2rem 0 2.5rem;
+  padding: clamp(1.4rem, 4vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.support-report-card h2 {
+  margin-top: 0.35rem;
+}
+
+.support-report-form,
+.support-report-form label {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.support-report-form {
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.support-report-form label {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.support-report-form select,
+.support-report-form textarea,
+.support-report-form input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.support-report-form textarea {
+  resize: vertical;
+}
+
+.support-report-submit {
+  justify-self: start;
+  border: 0;
+  cursor: pointer;
+}
+
+.support-report-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.support-report-status {
+  min-height: 1.5rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.support-report-status[data-state="success"] {
+  color: #216a49;
+}
+
+.support-report-status[data-state="error"] {
+  color: #9a3528;
+}
+
+.support-report-trap {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
 .support-section h2 {
   margin-top: 0;
   margin-bottom: 1rem;
