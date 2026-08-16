@@ -75,47 +75,59 @@
             <a href="mailto:hello@orbichat.io">hello@orbichat.io</a>.
           </p>
 
-          <section class="support-report-card" aria-labelledby="report-title">
-            <p class="eyebrow">Report a problem</p>
-            <h2 id="report-title">Tell us what went wrong</h2>
-            <p>
-              Reports are sent privately to Orbi support. Please do not include
-              passwords, backup PINs, verification codes, or other secrets.
-            </p>
-            <form class="support-report-form" data-support-report novalidate>
-              <label>
-                Type of problem
-                <select name="issue" required>
-                  <option value="">Choose a category</option>
-                  <option value="tech">Technical issue</option>
-                  <option value="safety">Safety or privacy</option>
-                  <option value="content">Content</option>
-                  <option value="user">Another user</option>
-                  <option value="other">Something else</option>
-                </select>
-              </label>
-              <label>
-                What happened?
-                <textarea
-                  name="description"
-                  minlength="10"
-                  maxlength="2000"
-                  rows="6"
-                  required
-                  placeholder="Describe the problem without including private security information."
-                ></textarea>
-              </label>
-              <label class="support-report-trap" aria-hidden="true">
-                Leave this field empty
-                <input name="website" tabindex="-1" autocomplete="off" />
-              </label>
-              <div data-turnstile-container></div>
-              <button class="cta-pill support-report-submit" type="submit">
-                Send report
-              </button>
-              <p class="support-report-status" data-support-report-status role="status"></p>
-            </form>
-          </section>
+          <details class="support-report-card" data-support-report-disclosure>
+            <summary class="support-report-summary">
+              <span>
+                <span class="eyebrow">Support</span>
+                <strong>Report a problem</strong>
+              </span>
+              <span class="support-report-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="support-report-content">
+              <h2 id="report-title">Tell us what went wrong</h2>
+              <p>
+                Reports are sent privately to Orbi support. Please do not include
+                passwords, backup PINs, verification codes, or other secrets.
+              </p>
+              <form class="support-report-form" data-support-report novalidate>
+                <label>
+                  Type of problem
+                  <select name="issue" required>
+                    <option value="">Choose a category</option>
+                    <option value="tech">Technical issue</option>
+                    <option value="safety">Safety or privacy</option>
+                    <option value="content">Content</option>
+                    <option value="user">Another user</option>
+                    <option value="other">Something else</option>
+                  </select>
+                </label>
+                <label>
+                  What happened?
+                  <textarea
+                    name="description"
+                    minlength="10"
+                    maxlength="2000"
+                    rows="6"
+                    required
+                    placeholder="Describe the problem without including private security information."
+                  ></textarea>
+                </label>
+                <label class="support-report-trap" aria-hidden="true">
+                  Leave this field empty
+                  <input name="website" tabindex="-1" autocomplete="off" />
+                </label>
+                <div data-turnstile-container></div>
+                <button class="cta-pill support-report-submit" type="submit">
+                  Send report
+                </button>
+                <p
+                  class="support-report-status"
+                  data-support-report-status
+                  role="status"
+                ></p>
+              </form>
+            </div>
+          </details>
 
           <div class="support-sections">
             <section class="support-section">

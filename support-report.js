@@ -11,8 +11,10 @@
   const status = form.querySelector("[data-support-report-status]");
   const submit = form.querySelector('button[type="submit"]');
   const turnstileContainer = form.querySelector("[data-turnstile-container]");
+  const disclosure = form.closest("[data-support-report-disclosure]");
   let captchaToken = "";
   let turnstileWidgetId = null;
+  let turnstileStarted = false;
 
   const setStatus = (message, state = "") => {
     status.textContent = message;
@@ -51,6 +53,8 @@
   };
 
   const loadTurnstile = () => {
+    if (turnstileStarted) return;
+    turnstileStarted = true;
     if (!siteKey || !turnstileContainer) {
       submit.disabled = true;
       setStatus(
@@ -130,5 +134,11 @@
     }
   });
 
-  loadTurnstile();
+  if (!disclosure || disclosure.open) {
+    loadTurnstile();
+  } else {
+    disclosure.addEventListener("toggle", () => {
+      if (disclosure.open) loadTurnstile();
+    });
+  }
 })();
