@@ -539,19 +539,9 @@ a {
   border-radius: 1.85rem;
 }
 
-.feature-band,
-.faq-band,
-.contact-band {
-  content-visibility: auto;
-}
-
 .feature-band {
+  content-visibility: auto;
   contain-intrinsic-size: 1120px;
-}
-
-.faq-band,
-.contact-band {
-  contain-intrinsic-size: 700px;
 }
 
 .glow {
@@ -695,6 +685,16 @@ a {
 
 .contact-band {
   background: var(--brand-orange);
+  min-height: calc(100svh - 5.5rem);
+  display: grid;
+  align-items: center;
+}
+
+#why,
+#features,
+#faq,
+#contact {
+  scroll-margin-top: 5.5rem;
 }
 
 .feature-frame,
@@ -1650,9 +1650,11 @@ a {
 .support-report-form {
   gap: 1rem;
   margin-top: 1.25rem;
+  min-width: 0;
 }
 
 .support-report-form label {
+  min-width: 0;
   color: var(--ink);
   font-weight: 700;
 }
@@ -1661,6 +1663,8 @@ a {
 .support-report-form textarea,
 .support-report-form input {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   padding: 0.9rem 1rem;
   border: 1px solid var(--line);
   border-radius: 1rem;
@@ -1671,6 +1675,13 @@ a {
 
 .support-report-form textarea {
   resize: vertical;
+}
+
+[data-turnstile-container] {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .support-report-submit {
@@ -1931,6 +1942,50 @@ a {
 }
 
 @media (max-width: 760px) {
+  .legal-main {
+    width: 100%;
+    padding: 1rem 0.5rem 3rem;
+    overflow-x: clip;
+  }
+
+  .legal-sheet {
+    min-width: 0;
+    padding: 1.4rem 0.9rem;
+    border-radius: 1.5rem;
+  }
+
+  .legal-sheet h1 {
+    font-size: clamp(2.1rem, 11vw, 3rem);
+    overflow-wrap: anywhere;
+  }
+
+  .legal-sheet p,
+  .legal-sheet li,
+  .legal-sheet a {
+    overflow-wrap: anywhere;
+  }
+
+  .support-report-card {
+    min-width: 0;
+    margin: 1.5rem 0 2rem;
+    border-radius: 1.25rem;
+  }
+
+  .support-report-summary {
+    min-width: 0;
+    padding: 1.1rem;
+  }
+
+  .support-report-content {
+    min-width: 0;
+    padding: 0 1.1rem 1.1rem;
+  }
+
+  .support-report-card h2 {
+    margin-top: 1.2rem;
+    font-size: clamp(1.35rem, 7vw, 1.55rem);
+  }
+
   .site-header {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -2139,6 +2194,26 @@ a {
 }
 
 @media (max-width: 360px) {
+  .legal-main {
+    padding-right: 0.35rem;
+    padding-left: 0.35rem;
+  }
+
+  .legal-sheet {
+    padding-right: 0.7rem;
+    padding-left: 0.7rem;
+  }
+
+  .support-report-summary {
+    padding: 0.9rem;
+  }
+
+  .support-report-content {
+    padding-right: 0.9rem;
+    padding-bottom: 0.9rem;
+    padding-left: 0.9rem;
+  }
+
   .screenshot-stack-visual,
   .birthday-visual,
   .tags-visual,

@@ -66,6 +66,7 @@
     window.onOrbiTurnstileReady = () => {
       turnstileWidgetId = window.turnstile.render(turnstileContainer, {
         sitekey: siteKey,
+        size: turnstileContainer.clientWidth < 300 ? "compact" : "flexible",
         callback: (token) => {
           captchaToken = token;
           submit.disabled = false;
