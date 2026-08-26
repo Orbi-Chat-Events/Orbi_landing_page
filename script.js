@@ -42,6 +42,8 @@ const translations = {
     store: {
       appStoreAlt: "Download on the App Store",
       googlePlayAlt: "Get it on Google Play",
+      betaLabel: "Beta version",
+      betaText: "Orbi is still being tested and improved.",
     },
     principles: {
       eyebrow: "Why Orbi?",
@@ -203,6 +205,8 @@ const translations = {
     store: {
       appStoreAlt: "Hent i App Store",
       googlePlayAlt: "Hent den på Google Play",
+      betaLabel: "Betaversion",
+      betaText: "Orbi bliver stadig testet og forbedret.",
     },
     principles: {
       eyebrow: "Hvorfor Orbi?",

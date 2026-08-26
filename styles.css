@@ -426,15 +426,50 @@ a {
   max-width: 34rem;
 }
 
-.store-actions {
-  display: flex;
-  flex-wrap: wrap;
+.store-downloads {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 11.5rem;
+  align-items: center;
   gap: 1rem;
+  max-width: 40rem;
   margin-top: 2rem;
 }
 
-.store-actions[hidden] {
-  display: none !important;
+.store-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.beta-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.beta-note strong,
+.beta-note span {
+  display: block;
+}
+
+.beta-note strong {
+  margin-bottom: 0.1rem;
+  color: var(--ink);
+  font-size: 0.82rem;
+}
+
+.beta-note-dot {
+  flex: 0 0 auto;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: 0.28rem;
+  border-radius: 50%;
+  background: var(--brand-orange);
+  box-shadow: 0 0 0 0.25rem rgba(244, 161, 101, 0.16);
 }
 
 .store-badge {
@@ -447,7 +482,7 @@ a {
 }
 
 .official-store-badge {
-  width: 16rem;
+  width: 13rem;
 }
 
 .official-store-badge img {
@@ -1947,6 +1982,14 @@ a {
 }
 
 @media (max-width: 760px) {
+  .store-downloads {
+    grid-template-columns: 1fr;
+  }
+
+  .beta-note {
+    max-width: 18rem;
+  }
+
   .legal-main {
     width: 100%;
     padding: 1rem 0.9rem 3rem;
@@ -2126,7 +2169,7 @@ a {
   }
 
   .official-store-badge {
-    width: 14.4rem;
+    width: 13rem;
   }
 
   .official-store-badge img {
@@ -2240,7 +2283,7 @@ a {
     min-height: calc(100vh - 5.5rem);
   }
 
-  .store-actions {
+  .store-downloads {
     margin-top: 1.5rem;
   }
 }
