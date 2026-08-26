@@ -49,7 +49,7 @@ const translations = {
       text: "Orbi is built around a few core principles:",
       privateTitle: "Ad-free & private",
       privateText:
-        "Orbi uses as little personal data as possible and avoids ad-driven product choices, tracking, and targeting.<br><br>An ad-free experience, with end-to-end encrypted messaging.",
+        "Orbi uses as little personal data as possible and avoids ad-driven product choices, advertising tracking, and targeting.<br><br>An ad-free experience, with end-to-end encrypted messaging.",
       europeTitle: "Independent European tech",
       europeText:
         "Choosing Orbi means supporting a small Danish startup building communication tools rooted in European values, privacy standards, and digital independence.",
@@ -138,7 +138,7 @@ const translations = {
       freeAnswer: "Yes. Orbi is completely free to use.",
       privateQuestion: "Is Orbi private?",
       privateAnswer:
-        "Orbi uses as little personal data as possible, does not depend on ads, and does not use your personal data for advertising or targeting. Your data is used to run and improve the app, not to sell ads.",
+        "Orbi does not sell personal data, personally identifiable information, or access to individual profiles. We do not use your personal data for advertising or targeting. We may use and share privacy-protected aggregate statistics that do not identify individual users.",
       encryptionQuestion: "Does Orbi use end-to-end encryption?",
       encryptionAnswer:
         "Yes. Orbi supports end-to-end encrypted chats when encryption is enabled during chat creation.",
@@ -210,7 +210,7 @@ const translations = {
       text: "Orbi bygger på nogle få kerneprincipper:",
       privateTitle: "Reklamefri og privat",
       privateText:
-        "Orbi bruger så få personlige data som muligt og undgår annoncebaserede produktvalg, tracking og målretning.<br><br>En reklamefri oplevelse med ende-til-ende-krypterede beskeder.",
+        "Orbi bruger så få personlige data som muligt og undgår annoncebaserede produktvalg, annonceringssporing og målretning.<br><br>En reklamefri oplevelse med ende-til-ende-krypterede beskeder.",
       europeTitle: "Uafhængig europæisk teknologi",
       europeText:
         "Når du vælger Orbi, støtter du en lille dansk startup, der bygger kommunikationsværktøjer med afsæt i europæiske værdier, privatlivsstandarder og digital uafhængighed.",
@@ -299,7 +299,7 @@ const translations = {
       freeAnswer: "Ja. Orbi er helt gratis at bruge.",
       privateQuestion: "Er Orbi privat?",
       privateAnswer:
-        "Orbi bruger så få personlige data som muligt, er ikke afhængig af reklamer og bruger ikke dine personlige data til annoncering eller målretning. Dine data bruges til at drive og forbedre appen, ikke til at sælge annoncer.",
+        "Orbi sælger ikke persondata, personhenførbare oplysninger eller adgang til individuelle profiler. Vi bruger ikke dine persondata til annoncering eller målretning. Vi kan bruge og dele privatlivsbeskyttede, aggregerede statistikker, som ikke identificerer enkelte brugere.",
       encryptionQuestion: "Bruger Orbi ende-til-ende-kryptering?",
       encryptionAnswer:
         "Ja. Orbi understøtter ende-til-ende-krypterede chats, når kryptering er slået til ved oprettelsen af chatten.",
