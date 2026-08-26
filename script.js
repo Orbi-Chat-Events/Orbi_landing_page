@@ -193,7 +193,7 @@ const translations = {
     },
     hero: {
       eyebrow: "Orbi - Chat & Events",
-      title: "Praktisk medie,<br />ikke socialt",
+      title: "Practical Media,<br />Not Social",
       text: "Et sted at tale, planlægge og holde kontakt - alt det, du har brug for, uden distraktioner.",
       body1:
         'Orbi ligger i <span class="highlight">mellemrummet</span> mellem traditionelle <span class="highlight">chatapps</span> og <span class="highlight">sociale medier</span>. Du får den velkendte chatoplevelse, men med praktiske værktøjer som <span class="highlight">events</span> og <span class="highlight">fødselsdage</span>, og mere er på vej.',
@@ -214,7 +214,7 @@ const translations = {
       text: "Orbi bygger på nogle få kerneprincipper:",
       privateTitle: "Reklamefri og privat",
       privateText:
-        "Orbi bruger så få personlige data som muligt og undgår annoncebaserede produktvalg, annonceringssporing og målretning.<br><br>En reklamefri oplevelse med ende-til-ende-krypterede beskeder.",
+        "Orbi bruger så få personlige data som muligt og undgår annoncebaserede produktvalg, annonceringssporing og målretning.<br><br>En reklamefri oplevelse med end-to-end-krypterede beskeder.",
       europeTitle: "Uafhængig europæisk teknologi",
       europeText:
         "Når du vælger Orbi, støtter du en lille dansk startup, der bygger kommunikationsværktøjer med afsæt i europæiske værdier, privatlivsstandarder og digital uafhængighed.",
@@ -225,7 +225,7 @@ const translations = {
     features: {
       eyebrow: "Funktioner",
       title: "Funktioner forklaret",
-      messagingChipTop: "Ende-til-ende-kryptering",
+      messagingChipTop: "End-to-end-kryptering",
       messagingChipBottom: "Dansk/europæisk alternativ",
       messagingTitle: "Chat som du plejer",
       messagingCallout1Title: "Nem beskedudveksling",
@@ -304,9 +304,9 @@ const translations = {
       privateQuestion: "Er Orbi privat?",
       privateAnswer:
         "Orbi sælger ikke persondata, personhenførbare oplysninger eller adgang til individuelle profiler. Vi bruger ikke dine persondata til annoncering eller målretning. Vi kan bruge og dele privatlivsbeskyttede, aggregerede statistikker, som ikke identificerer enkelte brugere.",
-      encryptionQuestion: "Bruger Orbi ende-til-ende-kryptering?",
+      encryptionQuestion: "Bruger Orbi end-to-end-kryptering?",
       encryptionAnswer:
-        "Ja. Orbi understøtter ende-til-ende-krypterede chats, når kryptering er slået til ved oprettelsen af chatten.",
+        "Ja. Orbi understøtter end-to-end-krypterede chats, når kryptering er slået til ved oprettelsen af chatten.",
       eventsQuestion: "Hvordan fungerer events i Orbi?",
       eventsAnswer:
         "Events giver planer deres eget sted uden for rodede chattråde. Du kan oprette et event, invitere venner, tilføje detaljer som tid og sted, følge med i hvem der kommer og holde eventopdateringer nemme at finde.",
