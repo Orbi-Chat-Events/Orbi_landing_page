@@ -30,7 +30,7 @@ const translations = {
     },
     hero: {
       eyebrow: "Orbi - Chat & Events",
-      title: "Private chat &amp; events,<br />without the social media noise",
+      title: "Practical Media,<br />Not Social",
       text: "A place to talk, plan, and connect - everything you need, without distractions.",
       body1:
         'Orbi sits in the <span class="highlight">space between</span> traditional <span class="highlight">chat apps</span> and <span class="highlight">social media</span>. It gives you the familiar chat experience, while adding practical tools like <span class="highlight">events</span> and <span class="highlight">birthdays</span>, with more on the way.',
@@ -193,7 +193,7 @@ const translations = {
     },
     hero: {
       eyebrow: "Orbi - Chat & Events",
-      title: "Privat chat og events,<br />uden støj fra sociale medier",
+      title: "Practical Media,<br />Not Social",
       text: "Et sted at tale, planlægge og holde kontakt - alt det, du har brug for, uden distraktioner.",
       body1:
         'Orbi ligger i <span class="highlight">mellemrummet</span> mellem traditionelle <span class="highlight">chatapps</span> og <span class="highlight">sociale medier</span>. Du får den velkendte chatoplevelse, men med praktiske værktøjer som <span class="highlight">events</span> og <span class="highlight">fødselsdage</span>, og mere er på vej.',
