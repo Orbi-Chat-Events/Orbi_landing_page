@@ -2,14 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://orbichat.io/</loc>
+    <lastmod>2026-09-07</lastmod>
   </url>
   <url>
     <loc>https://orbichat.io/terms/</loc>
+    <lastmod>2026-09-07</lastmod>
   </url>
   <url>
     <loc>https://orbichat.io/privacy/</loc>
+    <lastmod>2026-09-07</lastmod>
   </url>
   <url>
     <loc>https://orbichat.io/support/</loc>
+    <lastmod>2026-09-07</lastmod>
   </url>
 </urlset>

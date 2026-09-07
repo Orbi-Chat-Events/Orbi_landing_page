@@ -28,3 +28,20 @@ Notes before deployment:
   `TURNSTILE_SECRET_KEY` Nhost secret. The form never writes directly to
   Hasura or Storage.
 - This project can be deployed as plain static hosting on Netlify, Vercel, Cloudflare Pages, GitHub Pages, or similar.
+
+## Google Search launch checklist
+
+Technical SEO files and metadata are already included in the site. After each
+production deployment:
+
+1. Add and verify the `https://orbichat.io/` domain property in Google Search
+   Console.
+2. Submit `https://orbichat.io/sitemap.xml` in the Sitemaps report.
+3. Inspect `https://orbichat.io/` with URL Inspection and request indexing after
+   important content changes.
+4. Check Page indexing, Core Web Vitals, and Enhancements reports for issues.
+5. Test the home page with Google's Rich Results Test after changing its JSON-LD.
+
+Search visibility is not immediate or guaranteed. Google must crawl the deployed
+site, and useful third-party links and genuinely helpful content remain important
+ranking signals.

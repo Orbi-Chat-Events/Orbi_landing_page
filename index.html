@@ -3,41 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Orbi | Practical Media, Not Social</title>
+    <title>Orbi: Private Chat &amp; Event Planning App</title>
     <meta
       name="description"
-      content="Orbi is a privacy-first chat and events app built for practical communication without feeds, distractions, or ad-driven product choices."
+      content="Orbi is a free, privacy-first chat and event planning app. Message friends, organize events, remember birthdays, and connect without feeds or ads."
     />
-    <meta
-      name="keywords"
-      content="Orbi, chat app, event app, privacy-first messaging, European messaging app, practical media"
-    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#24387b" />
+    <meta name="apple-itunes-app" content="app-id=6766225409" />
     <link rel="canonical" href="https://orbichat.io/" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="420x420" href="/assets/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Orbi | Practical Media, Not Social" />
+    <meta property="og:site_name" content="Orbi" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Orbi: Private Chat &amp; Event Planning App" />
     <meta
       property="og:description"
-      content="Message friends, plan events, and stay connected without feeds, distractions, or constant notifications."
+      content="Message friends, organize events, remember birthdays, and stay connected without feeds, ads, or distractions."
     />
     <meta property="og:url" content="https://orbichat.io/" />
     <meta property="og:image" content="https://orbichat.io/assets/orbi-share.png" />
-    <meta property="og:image:alt" content="Orbi app icon" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Orbi | Practical Media, Not Social" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="560" />
+    <meta property="og:image:height" content="560" />
+    <meta property="og:image:alt" content="Orbi chat and events app icon" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Orbi: Private Chat &amp; Event Planning App" />
     <meta
       name="twitter:description"
-      content="A calmer chat and events app focused on privacy, clarity, and practical communication."
+      content="A free, privacy-first app for messaging friends, planning events, and staying connected without social media noise."
     />
     <meta name="twitter:image" content="https://orbichat.io/assets/orbi-share.png" />
+    <meta name="twitter:image:alt" content="Orbi chat and events app icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Sora:wght@500;600;700;800&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -47,20 +51,47 @@
         "@graph": [
           {
             "@type": "Organization",
+            "@id": "https://orbichat.io/#organization",
             "name": "Orbi",
+            "alternateName": "Orbi Chat & Events",
             "url": "https://orbichat.io/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://orbichat.io/assets/favicon.png",
+              "width": 420,
+              "height": 420
+            },
             "email": "hello@orbichat.io"
           },
           {
-            "@type": "SoftwareApplication",
+            "@type": "WebSite",
+            "@id": "https://orbichat.io/#website",
+            "url": "https://orbichat.io/",
             "name": "Orbi",
+            "alternateName": "Orbi Chat & Events",
+            "inLanguage": "en",
+            "publisher": {
+              "@id": "https://orbichat.io/#organization"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://orbichat.io/#app",
+            "name": "Orbi",
+            "alternateName": "Orbi Chat & Events",
+            "url": "https://orbichat.io/",
             "applicationCategory": "CommunicationApplication",
             "operatingSystem": "iOS, Android",
-            "description": "A privacy-first chat and events app built for practical communication without feeds and distractions.",
+            "description": "A free, privacy-first chat and event planning app for messaging friends, organizing events, remembering birthdays, and staying connected without feeds or ads.",
+            "image": "https://orbichat.io/assets/orbi-share.png",
+            "isAccessibleForFree": true,
+            "author": {
+              "@id": "https://orbichat.io/#organization"
+            },
             "offers": {
               "@type": "Offer",
               "price": "0",
-              "priceCurrency": "USD"
+              "priceCurrency": "EUR"
             },
             "downloadUrl": [
               "https://apps.apple.com/us/app/orbi-chat-and-events/id6766225409",
@@ -127,8 +158,8 @@
       <main>
         <section class="hero section" id="top">
           <div class="hero-copy" data-reveal>
-            <p class="eyebrow" data-i18n="hero.eyebrow">Orbi - Chat & Events</p>
-            <h1 data-i18n-html="hero.title">Practical Media,<br />Not Social</h1>
+            <p class="eyebrow" data-i18n="hero.eyebrow">Orbi - Chat &amp; Events</p>
+            <h1 data-i18n-html="hero.title">Private chat &amp; events,<br />without the social media noise</h1>
             <p class="hero-text" data-i18n="hero.text">
               A place to talk, plan, and connect — everything you need, without distractions.
             </p>

@@ -4,13 +4,13 @@ const supportedLanguages = ["en", "da"];
 const translations = {
   en: {
     meta: {
-      title: "Orbi | Practical Media, Not Social",
+      title: "Orbi: Private Chat & Event Planning App",
       description:
-        "Orbi is a privacy-first chat and events app built for practical communication without feeds, distractions, or ad-driven product choices.",
+        "Orbi is a free, privacy-first chat and event planning app. Message friends, organize events, remember birthdays, and connect without feeds or ads.",
       ogDescription:
-        "Message friends, plan events, and stay connected without feeds, distractions, or constant notifications.",
+        "Message friends, organize events, remember birthdays, and stay connected without feeds, ads, or distractions.",
       twitterDescription:
-        "A calmer chat and events app focused on privacy, clarity, and practical communication.",
+        "A free, privacy-first app for messaging friends, planning events, and staying connected without social media noise.",
     },
     nav: {
       primary: "Primary",
@@ -30,7 +30,7 @@ const translations = {
     },
     hero: {
       eyebrow: "Orbi - Chat & Events",
-      title: "Practical Media,<br />Not Social",
+      title: "Private chat &amp; events,<br />without the social media noise",
       text: "A place to talk, plan, and connect - everything you need, without distractions.",
       body1:
         'Orbi sits in the <span class="highlight">space between</span> traditional <span class="highlight">chat apps</span> and <span class="highlight">social media</span>. It gives you the familiar chat experience, while adding practical tools like <span class="highlight">events</span> and <span class="highlight">birthdays</span>, with more on the way.',
@@ -167,13 +167,13 @@ const translations = {
   },
   da: {
     meta: {
-      title: "Orbi | Praktisk medie, ikke socialt",
+      title: "Orbi: Privat chat- og eventplanlægningsapp",
       description:
-        "Orbi er en privatlivsfokuseret chat- og eventapp skabt til praktisk kommunikation uden feeds, distraktioner eller annoncebaserede produktvalg.",
+        "Orbi er en gratis, privatlivsfokuseret chat- og eventapp. Skriv med venner, planlæg events, husk fødselsdage, og undgå feeds og reklamer.",
       ogDescription:
-        "Skriv med venner, planlæg events, og hold kontakten uden feeds, distraktioner eller konstante notifikationer.",
+        "Skriv med venner, planlæg events, husk fødselsdage, og hold kontakten uden feeds, reklamer eller distraktioner.",
       twitterDescription:
-        "En roligere chat- og eventapp med fokus på privatliv, overblik og praktisk kommunikation.",
+        "En gratis, privatlivsfokuseret app til beskeder, events og kontakt uden støjen fra sociale medier.",
     },
     nav: {
       primary: "Primær",
@@ -193,7 +193,7 @@ const translations = {
     },
     hero: {
       eyebrow: "Orbi - Chat & Events",
-      title: "Practical Media,<br />Not Social",
+      title: "Privat chat og events,<br />uden støj fra sociale medier",
       text: "Et sted at tale, planlægge og holde kontakt - alt det, du har brug for, uden distraktioner.",
       body1:
         'Orbi ligger i <span class="highlight">mellemrummet</span> mellem traditionelle <span class="highlight">chatapps</span> og <span class="highlight">sociale medier</span>. Du får den velkendte chatoplevelse, men med praktiske værktøjer som <span class="highlight">events</span> og <span class="highlight">fødselsdage</span>, og mere er på vej.',
