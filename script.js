@@ -143,7 +143,7 @@ const translations = {
         "Orbi does not sell personal data, personally identifiable information, or access to individual profiles. We do not use your personal data for advertising or targeting.",
       encryptionQuestion: "Does Orbi use end-to-end encryption?",
       encryptionAnswer:
-        "Yes. Orbi supports end-to-end encrypted chats when encryption is enabled during chat creation.",
+        "Yes. Orbi uses end-to-end encryption.",
       eventsQuestion: "How do events work in Orbi?",
       eventsAnswer:
         "Events give plans their own place outside messy chat threads. You can create an event, invite friends, add details like time and location, track who is going, and keep event updates easy to find.",
@@ -306,7 +306,7 @@ const translations = {
         "Orbi sælger ikke persondata, personhenførbare oplysninger eller adgang til individuelle profiler. Vi bruger ikke dine persondata til annoncering eller målretning.",
       encryptionQuestion: "Bruger Orbi end-to-end-kryptering?",
       encryptionAnswer:
-        "Ja. Orbi understøtter end-to-end-krypterede chats, når kryptering er slået til ved oprettelsen af chatten.",
+        "Ja. Orbi bruger end-to-end-kryptering.",
       eventsQuestion: "Hvordan fungerer events i Orbi?",
       eventsAnswer:
         "Events giver planer deres eget sted uden for rodede chattråde. Du kan oprette et event, invitere venner, tilføje detaljer som tid og sted, følge med i hvem der kommer og holde eventopdateringer nemme at finde.",
