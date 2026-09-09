@@ -4,7 +4,7 @@ const supportedLanguages = ["en", "da"];
 const translations = {
   en: {
     meta: {
-      title: "Orbi: Private Chat & Event Planning App",
+      title: "Orbi - Chat & Events: A place to talk, plan, and connect, without distractions",
       description:
         "Orbi is a free, privacy-first chat and event planning app. Message friends, organize events, remember birthdays, and connect without feeds or ads.",
       ogDescription:
@@ -140,7 +140,7 @@ const translations = {
       freeAnswer: "Yes. Orbi is completely free to use.",
       privateQuestion: "Is Orbi private?",
       privateAnswer:
-        "Orbi does not sell personal data, personally identifiable information, or access to individual profiles. We do not use your personal data for advertising or targeting. We may use and share privacy-protected aggregate statistics that do not identify individual users.",
+        "Orbi does not sell personal data, personally identifiable information, or access to individual profiles. We do not use your personal data for advertising or targeting.",
       encryptionQuestion: "Does Orbi use end-to-end encryption?",
       encryptionAnswer:
         "Yes. Orbi supports end-to-end encrypted chats when encryption is enabled during chat creation.",
@@ -167,7 +167,7 @@ const translations = {
   },
   da: {
     meta: {
-      title: "Orbi: Privat chat- og eventplanlægningsapp",
+      title: "Orbi - Chat & Events: Et sted at tale, planlægge og holde kontakt uden distraktioner",
       description:
         "Orbi er en gratis, privatlivsfokuseret chat- og eventapp. Skriv med venner, planlæg events, husk fødselsdage, og undgå feeds og reklamer.",
       ogDescription:
@@ -303,7 +303,7 @@ const translations = {
       freeAnswer: "Ja. Orbi er helt gratis at bruge.",
       privateQuestion: "Er Orbi privat?",
       privateAnswer:
-        "Orbi sælger ikke persondata, personhenførbare oplysninger eller adgang til individuelle profiler. Vi bruger ikke dine persondata til annoncering eller målretning. Vi kan bruge og dele privatlivsbeskyttede, aggregerede statistikker, som ikke identificerer enkelte brugere.",
+        "Orbi sælger ikke persondata, personhenførbare oplysninger eller adgang til individuelle profiler. Vi bruger ikke dine persondata til annoncering eller målretning.",
       encryptionQuestion: "Bruger Orbi end-to-end-kryptering?",
       encryptionAnswer:
         "Ja. Orbi understøtter end-to-end-krypterede chats, når kryptering er slået til ved oprettelsen af chatten.",
