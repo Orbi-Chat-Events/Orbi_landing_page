@@ -18,12 +18,6 @@
     <link rel="icon" type="image/png" href="../assets/favicon.png" />
     <link rel="shortcut icon" href="../assets/favicon.png" />
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Sora:wght@500;600;700;800&amp;display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body class="legal-body">
@@ -68,7 +62,7 @@
         <article class="legal-sheet" data-reveal>
           <p class="eyebrow">Privacy Policy</p>
           <h1>Privacy Policy</h1>
-          <p class="legal-lead">Last Updated: 25th of August 2026</p>
+          <p class="legal-lead">Last Updated: 17th of September 2026</p>
           <p>
             At Orbi, your privacy matters. This Privacy Policy explains what
             personal data we collect, how we use it, and your rights under the
@@ -192,22 +186,146 @@
           </section>
 
           <section>
-            <h2>8. Third-Party Services and Aggregate Recipients</h2>
+            <h2>8. Service Providers and International Transfers</h2>
             <p>
-              We use trusted third-party services, such as hosting and analytics,
-              that process data on our behalf. These providers are bound by data
-              processing agreements and GDPR standards.
+              Orbi is built in Denmark, and we choose European providers
+              wherever we can. Today, however, it is almost impossible to run a
+              modern mobile app entirely on European services. Push
+              notifications on iPhone and Android can only be delivered through
+              Apple and Google, the apps are distributed through their app
+              stores, and for some services, such as sending SMS codes or
+              connecting calls, reliable European alternatives are limited. We
+              want to be open about which providers we use, where they are
+              based, and what they receive.
             </p>
+            <p>
+              We use a small number of service providers to run Orbi and this
+              website. They process data on our behalf and only for the
+              purposes described below. We have data processing agreements with
+              them or rely on their standard data processing terms.
+            </p>
+            <p>
+              Chat messages, attachments, and audio calls are end-to-end
+              encrypted. This means the providers listed below, including our
+              hosting provider, cannot read their content. Event details and event
+              comments are not end-to-end encrypted. Providers can still see
+              limited technical information needed to deliver the service, such
+              as IP addresses, device tokens, phone numbers, and timing.
+            </p>
+
+            <h3>Hosting in the European Union</h3>
+            <ul>
+              <li>
+                <strong>Nhost (Sweden)</strong>: hosts our backend, including the
+                database, file storage, sign-in, and server functions. This data
+                is stored in Frankfurt, Germany, on infrastructure provided by
+                Amazon Web Services.
+              </li>
+            </ul>
+
+            <h3>Providers based in the United States (in the app)</h3>
+            <ul>
+              <li>
+                <strong>Google Firebase Cloud Messaging</strong>: delivers push
+                notifications. Receives your device's push token and the
+                notification. For encrypted chats, the message itself is never
+                included; the notification may include the sender's username,
+                profile photo link, and the group name. Other notifications may
+                include usernames (for example friend requests and incoming
+                calls), event titles and event comments, and the device type and
+                country for new sign-in alerts.
+              </li>
+              <li>
+                <strong>Google Firebase App Check</strong>: helps confirm that
+                requests come from a genuine copy of the Orbi app. Uses Apple
+                App Attest on iPhone and Google Play Integrity on Android, and
+                processes device attestation information.
+              </li>
+              <li>
+                <strong>Google Firebase Crashlytics</strong>: collects crash
+                reports so we can fix errors. Receives technical details such as
+                the error, device model, operating system, and app version. We
+                do not attach your name, phone number, or messages.
+              </li>
+              <li>
+                <strong>Google Maps Platform</strong>: shows maps for events and
+                shared locations, and suggests places when you pick a location.
+                When a map loads, Google receives your IP address and the area
+                shown. Place searches are sent through our servers.
+              </li>
+              <li>
+                <strong>GIPHY</strong>: provides the GIF search. Only when you
+                use it, GIPHY receives your search terms, IP address, and basic
+                device information.
+              </li>
+              <li>
+                <strong>Twilio</strong>: sends sign-in codes by SMS or voice call
+                and verifies phone number changes. Receives your phone number
+                and the verification code. We are working on replacing Twilio
+                with a European provider.
+              </li>
+              <li>
+                <strong>LiveKit</strong>: provides the servers that connect audio
+                calls. The servers are located in the United States. LiveKit
+                receives your IP address and technical call information, such as
+                who is in a call, timing, and connection quality. The call audio
+                is end-to-end encrypted, so LiveKit cannot listen to it. We are
+                working on replacing LiveKit with call servers located in the
+                European Union.
+              </li>
+              <li>
+                <strong>Apple</strong>: delivers notifications to iPhones through
+                Apple Push Notification service, including incoming call alerts,
+                and provides App Attest. Receives a device token and the same
+                notification content as described for Google above.
+              </li>
+            </ul>
+            <p>
+              To show which country a device signed in from, our own servers
+              look up the country of the device's IP address in a local copy of
+              an IP geolocation database. The IP address is not sent to any
+              other service, and only the country code is stored. IP geolocation
+              by <a href="https://db-ip.com">DB-IP</a>.
+            </p>
+
+            <h3>Providers used on this website</h3>
+            <ul>
+              <li>
+                <strong>GitHub Pages (GitHub, United States)</strong>: hosts
+                orbichat.io. Like any web host, it receives your IP address and
+                browser information when you visit.
+              </li>
+              <li>
+                <strong>Cloudflare Turnstile (United States)</strong>: protects
+                the support form against spam. It loads only when you open the
+                report form and processes your IP address and browser signals.
+              </li>
+            </ul>
+            <p>
+              This website does not use analytics, advertising cookies, or
+              externally hosted fonts. Links to the App Store and Google Play
+              take you to Apple's and Google's own sites, which have their own
+              privacy policies.
+            </p>
+
+            <h3>Transfers outside the EEA</h3>
+            <p>
+              When a provider processes personal data outside the European
+              Economic Area, we rely on the EU&ndash;US Data Privacy Framework
+              where the provider is certified, and otherwise on standard
+              contractual clauses approved by the European Commission. Companies
+              based in the United States may be subject to US laws that allow
+              authorities to request data, even when it is stored in the EU. You
+              can ask us for more information about these safeguards at
+              <a href="mailto:hello@orbichat.io">hello@orbichat.io</a>.
+            </p>
+
+            <h3>Aggregate statistics recipients</h3>
             <p>
               Organizers, partners, researchers, and business customers may
               receive the privacy-protected aggregate statistics described in
               section 4. They do not receive personal data or access to
               individual Orbi profiles through the statistics service.
-            </p>
-            <p>
-              Some providers may process data outside the European Economic Area (EEA). 
-              In such cases, we ensure appropriate safeguards are in place, 
-              such as standard contractual clauses approved by the European Commission.
             </p>
           </section>
 
@@ -248,7 +366,7 @@
             <h2>12. Changes to This Policy</h2>
             <p>
               We may update this Privacy Policy from time to time. We will notify
-              you of significant changes via the app or by email.
+              you of significant changes in the app or on this page.
             </p>
           </section>
 
