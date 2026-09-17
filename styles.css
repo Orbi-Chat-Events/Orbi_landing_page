@@ -1552,6 +1552,12 @@ a {
   color: rgba(255, 255, 255, 0.84);
 }
 
+.faq-item p a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr minmax(18rem, 24rem);

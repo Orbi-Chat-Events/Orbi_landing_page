@@ -135,15 +135,15 @@ const translations = {
         "Orbi is not built around feeds, followers, algorithms, or endless scrolling. It is made for direct communication: talking with people you choose, planning things together, and staying connected without distractions.",
       messagesQuestion: "Who can message me on Orbi?",
       messagesAnswer:
-        "You decide who can reach you. Only people you connect with can message you directly. If you are added to a group chat, people in that group can message you there.",
+        "You decide who can reach you. Friends can message you directly. Anyone else can only send you a message request: one short text message, without photos, files, or calls. You can accept the request to start chatting or delete it, and they cannot write again until you accept. If you are added to a group chat, people in that group can message you there.",
       freeQuestion: "Is Orbi free to use?",
       freeAnswer: "Yes. Orbi is completely free to use.",
       privateQuestion: "Is Orbi private?",
       privateAnswer:
-        "Orbi does not sell personal data, personally identifiable information, or access to individual profiles. We do not use your personal data for advertising or targeting.",
+        "Yes. Orbi does not sell personal data, personally identifiable information, or access to individual profiles. We do not use your personal data for advertising or targeting.",
       encryptionQuestion: "Does Orbi use end-to-end encryption?",
       encryptionAnswer:
-        "Yes. Orbi uses end-to-end encryption.",
+        'Yes. Messages and calls in Orbi chats are end-to-end encrypted, including photos, videos, voice messages, and files. <a href="privacy/#service-providers">Read more in our Privacy Policy</a>.',
       eventsQuestion: "How do events work in Orbi?",
       eventsAnswer:
         "Events give plans their own place outside messy chat threads. You can create an event, invite friends, add details like time and location, track who is going, and keep event updates easy to find.",
@@ -298,15 +298,15 @@ const translations = {
         "Orbi er ikke bygget omkring feeds, følgere, algoritmer eller endeløs scrolling. Appen er lavet til direkte kommunikation: at tale med de mennesker, du vælger, planlægge ting sammen og holde kontakt uden distraktioner.",
       messagesQuestion: "Hvem kan skrive til mig på Orbi?",
       messagesAnswer:
-        "Du bestemmer, hvem der kan få fat i dig. Kun personer, du forbinder dig med, kan skrive direkte til dig. Hvis du bliver tilføjet til en gruppechat, kan personer i den gruppe skrive til dig der.",
+        "Du bestemmer, hvem der kan få fat i dig. Dine venner kan skrive direkte til dig. Alle andre kan kun sende dig en beskedanmodning: én kort tekstbesked uden billeder, filer eller opkald. Du kan acceptere anmodningen og begynde at chatte eller slette den, og de kan ikke skrive igen, før du accepterer. Hvis du bliver tilføjet til en gruppechat, kan personer i den gruppe skrive til dig der.",
       freeQuestion: "Er Orbi gratis at bruge?",
       freeAnswer: "Ja. Orbi er helt gratis at bruge.",
       privateQuestion: "Er Orbi privat?",
       privateAnswer:
-        "Orbi sælger ikke persondata, personhenførbare oplysninger eller adgang til individuelle profiler. Vi bruger ikke dine persondata til annoncering eller målretning.",
+        "Ja. Orbi sælger ikke persondata, personhenførbare oplysninger eller adgang til individuelle profiler. Vi bruger ikke dine persondata til annoncering eller målretning.",
       encryptionQuestion: "Bruger Orbi end-to-end-kryptering?",
       encryptionAnswer:
-        "Ja. Orbi bruger end-to-end-kryptering.",
+        'Ja. Beskeder og opkald i Orbi-chats er end-to-end-krypterede, også billeder, videoer, talebeskeder og filer. <a href="privacy/#service-providers">Læs mere i vores privatlivspolitik</a>.',
       eventsQuestion: "Hvordan fungerer events i Orbi?",
       eventsAnswer:
         "Events giver planer deres eget sted uden for rodede chattråde. Du kan oprette et event, invitere venner, tilføje detaljer som tid og sted, følge med i hvem der kommer og holde eventopdateringer nemme at finde.",
