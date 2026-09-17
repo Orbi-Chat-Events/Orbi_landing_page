@@ -681,6 +681,15 @@
         text-align: right;
       }
 
+      .safety-link {
+        align-self: flex-start;
+        color: var(--accent);
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 0.18em;
+      }
+
       .chip-warning {
         background: var(--warning-soft);
         color: var(--warning);
@@ -1319,7 +1328,7 @@
           const NEEDS_ATTENTION = new Set(["open", "new", "pending", "in_progress"]);
           const readable = (key) => key.replaceAll("_", " ").replace(/^./, (letter) => letter.toUpperCase());
 
-          const safetyGroup = (title, items, labelFor, chipFor = () => null) => {
+          const safetyGroup = (title, items, labelFor, chipFor = () => null, footer = null) => {
             const total = items.reduce((sum, item) => sum + item.count, 0);
             const list = el("ul", { class: "count-list" });
             if (items.length === 0) {
@@ -1339,6 +1348,7 @@
                 el("span", { class: "safety-total num", text: fmt(total) }),
               ]),
               list,
+              footer,
             ]);
           };
 
@@ -1352,6 +1362,13 @@
                 NEEDS_ATTENTION.has(item.key) && item.count > 0
                   ? el("span", { class: "chip chip-warning" }, [el("span", { "aria-hidden": "true", text: "●" }), document.createTextNode("Needs attention")])
                   : null,
+              el("a", {
+                class: "safety-link",
+                href: "https://mail.google.com/mail/u/2/#chat/home",
+                target: "_blank",
+                rel: "noopener noreferrer",
+                text: "Open reports in Google Chat ↗",
+              }),
             ),
             safetyGroup("Security events", data.safety.securityEvents30d, (item) => SECURITY_EVENTS[item.key] || readable(item.key)),
           );
