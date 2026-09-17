@@ -737,6 +737,37 @@ a {
   font-weight: 800;
 }
 
+.roadmap-card .principle-icon svg {
+  width: 1.45rem;
+  height: 1.45rem;
+}
+
+.roadmap-status {
+  display: inline-block;
+  margin: 0 0 0 0.7rem;
+  vertical-align: middle;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(201, 131, 88, 0.14);
+  color: var(--brand-orange-deep);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.roadmap-note {
+  margin: 1.6rem 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.roadmap-note a {
+  color: var(--brand-blue);
+  font-weight: 700;
+}
+
 .principle-card h3,
 .feature-copy h3,
 .support-card h2,

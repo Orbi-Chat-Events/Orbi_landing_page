@@ -17,6 +17,7 @@ const translations = {
       mobilePrimary: "Mobile Primary",
       why: "Why Orbi?",
       features: "Features",
+      roadmap: "Roadmap",
       faq: "FAQ",
       contact: "Contact us",
       join: "Join Orbi",
@@ -121,6 +122,22 @@ const translations = {
       feature6: "Feature 6",
       feature7: "Feature 7",
     },
+    roadmap: {
+      eyebrow: "Roadmap",
+      title: "What we're building next",
+      text: "Orbi is growing step by step. These are the features we are working on right now.",
+      status: "In development",
+      videoTitle: "Video calls",
+      videoText:
+        "Video calls with friends and groups, built with the same focus on privacy as our audio calls.",
+      webTitle: "Orbi on the web",
+      webText:
+        "Use Orbi in the browser on your computer, with your chats and events in sync with the app.",
+      publicTitle: "Public groups and events",
+      publicText:
+        "Open groups and events that people can discover and join, for clubs, associations, and local communities.",
+      note: 'We don\'t have release dates yet. Have an idea for Orbi? <a href="#contact">Get in touch</a>.',
+    },
     faq: {
       eyebrow: "FAQ",
       title: "Frequently asked questions",
@@ -180,6 +197,7 @@ const translations = {
       mobilePrimary: "Mobil primær",
       why: "Hvorfor Orbi?",
       features: "Funktioner",
+      roadmap: "Roadmap",
       faq: "FAQ",
       contact: "Kontakt os",
       join: "Kom med i Orbi",
@@ -283,6 +301,22 @@ const translations = {
       feature5: "Funktion 5",
       feature6: "Funktion 6",
       feature7: "Funktion 7",
+    },
+    roadmap: {
+      eyebrow: "Roadmap",
+      title: "Det bygger vi på nu",
+      text: "Orbi udvikles skridt for skridt. Det er de funktioner, vi arbejder på lige nu.",
+      status: "Under udvikling",
+      videoTitle: "Videoopkald",
+      videoText:
+        "Videoopkald med venner og grupper, bygget med samme fokus på privatliv som vores lydopkald.",
+      webTitle: "Orbi på nettet",
+      webText:
+        "Brug Orbi i browseren på din computer, med dine chats og events synkroniseret med appen.",
+      publicTitle: "Offentlige grupper og events",
+      publicText:
+        "Åbne grupper og events, som andre kan finde og deltage i, for eksempel klubber, foreninger og lokale fællesskaber.",
+      note: 'Vi har ingen udgivelsesdatoer endnu. Har du en idé til Orbi? <a href="#contact">Skriv til os</a>.',
     },
     faq: {
       eyebrow: "FAQ",
