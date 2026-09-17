@@ -342,6 +342,57 @@
         gap: 12px;
       }
 
+      .funnel-panel {
+        margin-bottom: 12px;
+      }
+
+      .funnel {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .funnel-step {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        min-width: 0;
+      }
+
+      .funnel-name {
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .funnel-count {
+        font-family: "Sora", system-ui, sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+      }
+
+      .funnel-share {
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .funnel-drop {
+        display: inline-flex;
+        align-self: flex-start;
+      }
+
+      .funnel-footer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 20px;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
       .panel {
         position: relative;
         display: flex;
@@ -415,6 +466,7 @@
       /* Horizontal bar lists */
       .bars {
         display: grid;
+        align-content: start;
         gap: 8px;
         margin: 0;
         padding: 0;
@@ -573,9 +625,80 @@
         transition: opacity 0.2s;
       }
 
+      .safety-groups {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: start;
+        gap: 16px 28px;
+      }
+
+      .safety-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        min-width: 0;
+      }
+
+      .safety-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .safety-total {
+        font-family: "Sora", system-ui, sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .count-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .count-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 9px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .count-label {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px 8px;
+        min-width: 0;
+      }
+
+      .count-value {
+        font-weight: 800;
+        text-align: right;
+      }
+
+      .chip-warning {
+        background: var(--warning-soft);
+        color: var(--warning);
+      }
+
+      .bars-builds .bar-row {
+        grid-template-columns: max-content 1fr auto;
+      }
+
       @media (max-width: 1060px) {
         .kpis {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
+        .kpi {
+          grid-column: span 2;
+        }
+        .kpi:nth-child(n + 4) {
+          grid-column: span 3;
         }
         .grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -588,6 +711,19 @@
       @media (max-width: 680px) {
         .kpis {
           grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .kpi,
+        .kpi:nth-child(n + 4) {
+          grid-column: auto;
+        }
+        .kpi:last-child {
+          grid-column: 1 / -1;
+        }
+        .funnel {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .safety-groups {
+          grid-template-columns: minmax(0, 1fr);
         }
         .grid {
           grid-template-columns: minmax(0, 1fr);
@@ -653,6 +789,16 @@
 
       <section class="kpis" aria-label="Key numbers" id="kpis"></section>
 
+      <section class="panel funnel-panel" aria-labelledby="funnel-title">
+        <div class="panel-head">
+          <h2 id="funnel-title">Signup · last 30 days</h2>
+          <span class="panel-total num" id="funnel-left"></span>
+        </div>
+        <p class="panel-note">New phone numbers that asked for a code, and how far they got. Onboarding is finished when the profile is created.</p>
+        <ol class="funnel" id="funnel"></ol>
+        <div class="funnel-footer num" id="funnel-footer"></div>
+      </section>
+
       <section class="grid" aria-label="Details">
         <article class="panel">
           <div class="panel-head">
@@ -679,7 +825,7 @@
         <article class="panel">
           <div class="panel-head"><h2>App builds in use</h2></div>
           <p class="panel-note">Devices seen in the last 30 days</p>
-          <ul class="bars" id="builds"></ul>
+          <ul class="bars bars-builds" id="builds"></ul>
         </article>
         <article class="panel">
           <div class="panel-head"><h2>Platforms</h2></div>
@@ -715,7 +861,7 @@
         <article class="panel span-2">
           <div class="panel-head"><h2>Safety</h2></div>
           <p class="panel-note">Reports and security events in the last 30 days</p>
-          <div class="grid" id="safety"></div>
+          <div class="safety-groups" id="safety"></div>
         </article>
       </section>
     </div>
@@ -1012,6 +1158,45 @@
             ),
           );
 
+          const onboarding = data.onboarding || {};
+          const started = Number(onboarding.requestedCode) || 0;
+          const steps = [
+            ["Asked for a code", onboarding.requestedCode],
+            ["Entered the code", onboarding.enteredCode],
+            ["Signed in on the app", onboarding.signedIn],
+            ["Finished profile", onboarding.finishedProfile],
+          ];
+          $("funnel-left").textContent = started > 0
+            ? `${fmt(onboarding.leftBeforeFinishing)} left before finishing (${pct(onboarding.leftBeforeFinishing, started)}%)`
+            : "No new signups";
+          $("funnel").replaceChildren(
+            ...steps.map(([name, value], index) => {
+              const count = Number(value) || 0;
+              const previous = index === 0 ? count : Number(steps[index - 1][1]) || 0;
+              const dropped = previous - count;
+              return el("li", { class: "funnel-step" }, [
+                el("span", { class: "funnel-name", text: name }),
+                el("span", { class: "funnel-count num", text: fmt(count) }),
+                el("div", { class: "bar-track", role: "img", "aria-label": `${name}: ${pct(count, started)}% of everyone who started` }, [
+                  el("div", { class: "bar-fill", style: `width:${started > 0 ? (count / started) * 100 : 0}%` }),
+                ]),
+                el("span", { class: "funnel-share num", text: index === 0 ? "Everyone who started" : `${pct(count, started)}% of started` }),
+                index > 0 && dropped > 0
+                  ? el("span", { class: "chip chip-critical funnel-drop num" }, [
+                      el("span", { "aria-hidden": "true", text: "↓" }),
+                      document.createTextNode(`${fmt(dropped)} left here`),
+                    ])
+                  : null,
+              ]);
+            }),
+          );
+          $("funnel-footer").replaceChildren(
+            el("span", { text: `Set a backup PIN: ${fmt(onboarding.backupPin)} of ${fmt(onboarding.finishedProfile)} who finished (${pct(onboarding.backupPin, onboarding.finishedProfile)}%)` }),
+            Number(onboarding.unfinishedLast24h) > 0
+              ? el("span", { text: `${fmt(onboarding.unfinishedLast24h)} started in the last 24 hours and may still finish` })
+              : null,
+          );
+
           const series = (key) => daily.map((day) => ({ date: day.date, value: Number(day[key]) || 0 }));
           barChart($("chart-new-users"), series("newUsers"), "new users");
           barChart($("chart-messages"), series("messages"), "messages");
@@ -1124,18 +1309,51 @@
             ),
           );
 
-          const safety = $("safety");
-          const blocks = [
-            ["Reports by type", data.safety.reports30d, (item) => ({ support: "Support", ugc: "Reported content", recovery: "Account recovery" })[item.key] || item.key],
-            ["Report status", data.safety.reportStatus30d, (item) => item.key.charAt(0).toUpperCase() + item.key.slice(1)],
-            ["Security events", data.safety.securityEvents30d, (item) => ({ skip_restore: "Skipped restore", new_pending_login: "New login to approve", phone_number_changed: "Phone number changed" })[item.key] || item.key.replaceAll("_", " ")],
-          ];
-          safety.replaceChildren(
-            ...blocks.map(([title, items, labelFor]) => {
-              const list = el("ul", { class: "bars" });
-              barList(list, items, { labelFor });
-              return el("div", { class: "meter" }, [el("span", { class: "kpi-label", text: title }), list]);
-            }),
+          const REPORT_KINDS = { support: "Support request", ugc: "Reported content", recovery: "Account recovery" };
+          const REPORT_STATUSES = { open: "Open", new: "New", pending: "Pending", in_progress: "In progress", resolved: "Resolved", closed: "Closed", dismissed: "Dismissed" };
+          const SECURITY_EVENTS = {
+            new_pending_login: "New login waiting for approval",
+            skip_restore: "Skipped backup restore",
+            phone_number_changed: "Phone number changed",
+          };
+          const NEEDS_ATTENTION = new Set(["open", "new", "pending", "in_progress"]);
+          const readable = (key) => key.replaceAll("_", " ").replace(/^./, (letter) => letter.toUpperCase());
+
+          const safetyGroup = (title, items, labelFor, chipFor = () => null) => {
+            const total = items.reduce((sum, item) => sum + item.count, 0);
+            const list = el("ul", { class: "count-list" });
+            if (items.length === 0) {
+              list.append(el("li", { class: "count-row empty", text: "None in the last 30 days" }));
+            }
+            for (const item of items) {
+              list.append(
+                el("li", { class: "count-row" }, [
+                  el("span", { class: "count-label" }, [document.createTextNode(labelFor(item)), chipFor(item)]),
+                  el("span", { class: "count-value num", text: fmt(item.count) }),
+                ]),
+              );
+            }
+            return el("section", { class: "safety-group", "aria-label": title }, [
+              el("div", { class: "safety-heading" }, [
+                el("h3", { class: "kpi-label", text: title }),
+                el("span", { class: "safety-total num", text: fmt(total) }),
+              ]),
+              list,
+            ]);
+          };
+
+          $("safety").replaceChildren(
+            safetyGroup("Reports", data.safety.reports30d, (item) => REPORT_KINDS[item.key] || readable(item.key)),
+            safetyGroup(
+              "Report status",
+              data.safety.reportStatus30d,
+              (item) => REPORT_STATUSES[item.key] || readable(item.key),
+              (item) =>
+                NEEDS_ATTENTION.has(item.key) && item.count > 0
+                  ? el("span", { class: "chip chip-warning" }, [el("span", { "aria-hidden": "true", text: "●" }), document.createTextNode("Needs attention")])
+                  : null,
+            ),
+            safetyGroup("Security events", data.safety.securityEvents30d, (item) => SECURITY_EVENTS[item.key] || readable(item.key)),
           );
         }
 
@@ -1204,6 +1422,7 @@
             users: { total: 1284, new7d: 58, new30d: 214, withBackupPin: 903 },
             active: { day: 212, week: 541, month: 822, pushEnabledMonth: 701 },
             retention: { cohortSize: 164, activeLast7d: 97 },
+            onboarding: { requestedCode: 262, enteredCode: 231, signedIn: 224, finishedProfile: 214, backupPin: 151, unfinishedLast24h: 4, leftBeforeFinishing: 48 },
             daily,
             messages: {
               last7d: 7420, last30d: 28900, reactions30d: 3120,
