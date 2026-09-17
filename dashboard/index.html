@@ -1,0 +1,1245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Orbi Pulse</title>
+    <link rel="icon" href="../favicon.png" type="image/png" />
+    <style>
+      @font-face {
+        font-family: "Manrope";
+        font-style: normal;
+        font-weight: 400 800;
+        font-display: swap;
+        src: url("../assets/fonts/manrope-latin.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Sora";
+        font-style: normal;
+        font-weight: 500 800;
+        font-display: swap;
+        src: url("../assets/fonts/sora-latin.woff2") format("woff2");
+      }
+
+      :root {
+        --ground: #f3eee9;
+        --surface: #fbf8f5;
+        --surface-sunk: #efe8e1;
+        --ink: #2a2b33;
+        --muted: #6b6a70;
+        --faint: #9a979c;
+        --line: rgba(36, 56, 123, 0.12);
+        --grid: rgba(36, 56, 123, 0.08);
+        --accent: #24387b;
+        --accent-soft: rgba(36, 56, 123, 0.08);
+        --series-1: #2f4a9e;
+        --series-2: #c46f3c;
+        --good: #0f7d3b;
+        --good-soft: rgba(15, 125, 59, 0.1);
+        --critical: #b8322f;
+        --critical-soft: rgba(184, 50, 47, 0.1);
+        --warning: #9a6200;
+        --warning-soft: rgba(250, 178, 25, 0.16);
+        --tooltip-bg: #24262f;
+        --tooltip-ink: #f5f3f0;
+        --shadow: 0 1px 2px rgba(42, 43, 51, 0.06), 0 8px 24px rgba(42, 43, 51, 0.06);
+        --radius: 18px;
+        color-scheme: light;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --ground: #14161d;
+          --surface: #1b1d26;
+          --surface-sunk: #232633;
+          --ink: #eceef5;
+          --muted: #a3a7b8;
+          --faint: #7a7f92;
+          --line: rgba(160, 175, 230, 0.14);
+          --grid: rgba(160, 175, 230, 0.08);
+          --accent: #9fb0f2;
+          --accent-soft: rgba(159, 176, 242, 0.12);
+          --series-1: #7389e0;
+          --series-2: #c9774a;
+          --good: #4cc27a;
+          --good-soft: rgba(76, 194, 122, 0.14);
+          --critical: #f07470;
+          --critical-soft: rgba(240, 116, 112, 0.14);
+          --warning: #f2b544;
+          --warning-soft: rgba(242, 181, 68, 0.14);
+          --tooltip-bg: #eceef5;
+          --tooltip-ink: #1b1d26;
+          --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+          color-scheme: dark;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        --ground: #14161d;
+        --surface: #1b1d26;
+        --surface-sunk: #232633;
+        --ink: #eceef5;
+        --muted: #a3a7b8;
+        --faint: #7a7f92;
+        --line: rgba(160, 175, 230, 0.14);
+        --grid: rgba(160, 175, 230, 0.08);
+        --accent: #9fb0f2;
+        --accent-soft: rgba(159, 176, 242, 0.12);
+        --series-1: #7389e0;
+        --series-2: #c9774a;
+        --good: #4cc27a;
+        --good-soft: rgba(76, 194, 122, 0.14);
+        --critical: #f07470;
+        --critical-soft: rgba(240, 116, 112, 0.14);
+        --warning: #f2b544;
+        --warning-soft: rgba(242, 181, 68, 0.14);
+        --tooltip-bg: #eceef5;
+        --tooltip-ink: #1b1d26;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+        color-scheme: dark;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      body {
+        min-height: 100vh;
+        padding-block: env(safe-area-inset-top, 0px) env(safe-area-inset-bottom, 0px);
+        background: var(--ground);
+        color: var(--ink);
+        font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+        font-size: 15px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button,
+      input {
+        font: inherit;
+        color: inherit;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .num {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ---- Gate ---- */
+      .gate {
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        padding-inline: 16px;
+      }
+
+      .gate-card {
+        width: min(100%, 380px);
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .brand {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin: 0;
+        font-family: "Sora", system-ui, sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .brand-mark {
+        color: var(--series-2);
+      }
+
+      .gate-card h1 {
+        font-size: 1.6rem;
+      }
+
+      .gate-card p {
+        margin: 8px 0 20px;
+        color: var(--muted);
+      }
+
+      .field-label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 0.85rem;
+        font-weight: 700;
+      }
+
+      .code-input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--surface-sunk);
+        letter-spacing: 0.04em;
+      }
+
+      .remember {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 14px 0 18px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .primary {
+        width: 100%;
+        padding: 12px 16px;
+        border: 0;
+        border-radius: 12px;
+        background: var(--accent);
+        color: var(--surface);
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .primary[disabled] {
+        opacity: 0.6;
+        cursor: progress;
+      }
+
+      .gate-error {
+        min-height: 1.4em;
+        margin: 12px 0 0;
+        color: var(--critical);
+        font-size: 0.9rem;
+      }
+
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+
+      /* ---- Dashboard ---- */
+      .shell {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 20px 16px 48px;
+      }
+
+      .topbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px 20px;
+        margin-bottom: 20px;
+      }
+
+      .topbar .brand {
+        font-size: 1.35rem;
+      }
+
+      .topbar-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 12px;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .ghost {
+        padding: 7px 12px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--surface);
+        font-size: 0.85rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .ghost:hover {
+        background: var(--accent-soft);
+      }
+
+      .banner {
+        margin: 0 0 16px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        background: var(--warning-soft);
+        color: var(--ink);
+        font-size: 0.9rem;
+      }
+
+      .kpis {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .kpi {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 16px 18px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+      }
+
+      .kpi-label,
+      .panel h2 {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .kpi-value {
+        font-family: "Sora", system-ui, sans-serif;
+        font-size: clamp(1.7rem, 3vw, 2.3rem);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        line-height: 1.1;
+      }
+
+      .kpi-sub {
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .delta-up {
+        color: var(--good);
+        font-weight: 700;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .panel {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        min-width: 0;
+        padding: 16px 18px 18px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+      }
+
+      .panel-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 4px 12px;
+      }
+
+      .panel-total {
+        font-family: "Sora", system-ui, sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .panel-note {
+        margin: -6px 0 0;
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .span-2 {
+        grid-column: span 2;
+      }
+
+      /* Daily bar charts */
+      .chart {
+        position: relative;
+        width: 100%;
+      }
+
+      .chart svg {
+        display: block;
+        width: 100%;
+        height: 150px;
+        overflow: visible;
+      }
+
+      .chart text {
+        fill: var(--faint);
+        font-size: 11px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .tooltip {
+        position: absolute;
+        z-index: 2;
+        padding: 6px 10px;
+        border-radius: 8px;
+        background: var(--tooltip-bg);
+        color: var(--tooltip-ink);
+        font-size: 0.8rem;
+        line-height: 1.35;
+        white-space: nowrap;
+        pointer-events: none;
+        transform: translate(-50%, calc(-100% - 8px));
+      }
+
+      /* Horizontal bar lists */
+      .bars {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .bar-row {
+        display: grid;
+        grid-template-columns: minmax(88px, 34%) 1fr auto;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
+      }
+
+      .bar-label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .bar-track {
+        display: block;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--surface-sunk);
+        overflow: hidden;
+      }
+
+      .bar-fill {
+        display: block;
+        height: 100%;
+        min-width: 2px;
+        border-radius: 999px;
+        background: var(--series-1);
+      }
+
+      .bar-value {
+        min-width: 3ch;
+        color: var(--ink);
+        font-weight: 700;
+        text-align: right;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 1px 7px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .chip-critical {
+        background: var(--critical-soft);
+        color: var(--critical);
+      }
+
+      .chip-good {
+        background: var(--good-soft);
+        color: var(--good);
+      }
+
+      /* Split bar */
+      .split {
+        display: flex;
+        gap: 2px;
+        height: 14px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: var(--surface-sunk);
+      }
+
+      .split span {
+        height: 100%;
+      }
+
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 16px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 0.9rem;
+      }
+
+      .legend li {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .swatch {
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+      }
+
+      /* Stat lists */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 16px;
+        margin: 0;
+      }
+
+      .stats div {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+
+      .stats dt {
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .stats dd {
+        margin: 0;
+        font-family: "Sora", system-ui, sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .meter {
+        display: grid;
+        gap: 6px;
+      }
+
+      .meter-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        font-size: 0.9rem;
+      }
+
+      .meter-head strong {
+        font-variant-numeric: tabular-nums;
+      }
+
+      .empty {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .loading {
+        opacity: 0.55;
+        transition: opacity 0.2s;
+      }
+
+      @media (max-width: 1060px) {
+        .kpis {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .span-2 {
+          grid-column: span 2;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .kpis {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .span-2 {
+          grid-column: auto;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .loading {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="gate" class="gate" hidden>
+      <form id="gate-form" class="gate-card" autocomplete="on">
+        <h1 class="brand"><span>Orbi Pulse</span><span class="brand-mark" aria-hidden="true">●</span></h1>
+        <p>Enter your dashboard code to see how Orbi is doing.</p>
+        <input
+          class="visually-hidden"
+          type="text"
+          id="gate-username"
+          name="username"
+          autocomplete="username"
+          value="Orbi dashboard"
+          tabindex="-1"
+          aria-hidden="true"
+          readonly
+        />
+        <label class="field-label" for="gate-code">Dashboard code</label>
+        <input
+          class="code-input"
+          type="password"
+          id="gate-code"
+          name="password"
+          autocomplete="current-password"
+          spellcheck="false"
+          required
+        />
+        <label class="remember" for="gate-remember">
+          <input type="checkbox" id="gate-remember" checked />
+          Remember on this device
+        </label>
+        <button class="primary" type="submit" id="gate-submit">Unlock</button>
+        <p class="gate-error" id="gate-error" role="alert"></p>
+      </form>
+    </main>
+
+    <div id="app" class="shell" hidden>
+      <header class="topbar">
+        <h1 class="brand"><span>Orbi Pulse</span><span class="brand-mark" aria-hidden="true">●</span></h1>
+        <div class="topbar-meta">
+          <span id="updated" class="num">Loading…</span>
+          <button class="ghost" type="button" id="refresh">Refresh</button>
+          <button class="ghost" type="button" id="lock">Lock</button>
+        </div>
+      </header>
+
+      <p class="banner" id="banner" hidden></p>
+
+      <section class="kpis" aria-label="Key numbers" id="kpis"></section>
+
+      <section class="grid" aria-label="Details">
+        <article class="panel">
+          <div class="panel-head">
+            <h2>New users per day</h2>
+            <span class="panel-total num" id="total-new-users"></span>
+          </div>
+          <div class="chart" id="chart-new-users"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Messages per day</h2>
+            <span class="panel-total num" id="total-messages"></span>
+          </div>
+          <div class="chart" id="chart-messages"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head">
+            <h2>People sending messages</h2>
+            <span class="panel-total num" id="total-senders"></span>
+          </div>
+          <div class="chart" id="chart-senders"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><h2>App builds in use</h2></div>
+          <p class="panel-note">Devices seen in the last 30 days</p>
+          <ul class="bars" id="builds"></ul>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2>Platforms</h2></div>
+          <p class="panel-note">Devices seen in the last 30 days</p>
+          <div id="platforms"></div>
+          <div class="panel-head"><h2>Countries</h2></div>
+          <ul class="bars" id="countries"></ul>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2>What people send</h2></div>
+          <p class="panel-note">Messages in the last 30 days</p>
+          <ul class="bars" id="message-types"></ul>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><h2>Chats &amp; connections</h2></div>
+          <dl class="stats" id="social"></dl>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2>Events</h2></div>
+          <dl class="stats" id="events"></dl>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2>Audio calls</h2></div>
+          <p class="panel-note">Last 30 days</p>
+          <dl class="stats" id="calls"></dl>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><h2>Privacy &amp; recovery</h2></div>
+          <div class="meter" id="meters"></div>
+        </article>
+        <article class="panel span-2">
+          <div class="panel-head"><h2>Safety</h2></div>
+          <p class="panel-note">Reports and security events in the last 30 days</p>
+          <div class="grid" id="safety"></div>
+        </article>
+      </section>
+    </div>
+
+    <script>
+      (() => {
+        const ENDPOINT =
+          "https://kgsysdwkclmquduxxifd.functions.eu-central-1.nhost.run/v1/NEW_dashboard-metrics";
+        const STORAGE_KEY = "orbiPulseCode";
+        const MIN_SUPPORTED_BUILD = 166;
+        const REFRESH_MS = 5 * 60 * 1000;
+
+        const $ = (id) => document.getElementById(id);
+        const numberFormat = new Intl.NumberFormat("en-GB");
+        const fmt = (value) => numberFormat.format(Number(value) || 0);
+        const pct = (part, whole) => (whole > 0 ? Math.round((part / whole) * 100) : 0);
+        const dayFormat = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
+        const timeFormat = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit" });
+        const labelOf = (dateText) => dayFormat.format(new Date(`${dateText}T12:00:00Z`));
+
+        function el(tag, attrs = {}, children = []) {
+          const node = document.createElement(tag);
+          for (const [key, value] of Object.entries(attrs)) {
+            if (key === "text") node.textContent = value;
+            else if (key === "class") node.className = value;
+            else if (key === "style") node.setAttribute("style", value);
+            else node.setAttribute(key, value);
+          }
+          for (const child of [].concat(children)) if (child) node.append(child);
+          return node;
+        }
+
+        function readCode() {
+          try {
+            return localStorage.getItem(STORAGE_KEY) || sessionStorage.getItem(STORAGE_KEY) || "";
+          } catch {
+            return "";
+          }
+        }
+
+        function storeCode(code, remember) {
+          try {
+            localStorage.removeItem(STORAGE_KEY);
+            sessionStorage.removeItem(STORAGE_KEY);
+            (remember ? localStorage : sessionStorage).setItem(STORAGE_KEY, code);
+          } catch {
+            /* Storage can be unavailable; the code then lasts for this page only. */
+          }
+        }
+
+        function forgetCode() {
+          try {
+            localStorage.removeItem(STORAGE_KEY);
+            sessionStorage.removeItem(STORAGE_KEY);
+          } catch {
+            /* Nothing stored. */
+          }
+        }
+
+        let activeCode = "";
+        let refreshTimer = null;
+
+        function showGate(message = "") {
+          clearInterval(refreshTimer);
+          $("app").hidden = true;
+          $("gate").hidden = false;
+          $("gate-error").textContent = message;
+          $("gate-code").value = "";
+          $("gate-code").focus();
+        }
+
+        async function fetchMetrics(code) {
+          const response = await fetch(ENDPOINT, {
+            method: "POST",
+            headers: { Authorization: `Bearer ${code}`, "Content-Type": "application/json" },
+            body: "{}",
+            cache: "no-store",
+          });
+          const body = await response.json().catch(() => ({}));
+          if (response.status === 401) throw Object.assign(new Error("code"), { kind: "code" });
+          if (!response.ok || body.ok !== true) throw Object.assign(new Error("server"), { kind: "server" });
+          return body;
+        }
+
+        /* ---- Rendering ---- */
+
+        function niceMax(value) {
+          if (value <= 4) return 4;
+          const magnitude = 10 ** Math.floor(Math.log10(value));
+          for (const step of [1, 2, 2.5, 5, 10]) {
+            if (step * magnitude >= value) return step * magnitude;
+          }
+          return 10 * magnitude;
+        }
+
+        function barChart(container, points, noun) {
+          container.replaceChildren();
+          const width = Math.max(240, Math.round(container.clientWidth || 320));
+          const height = 150;
+          const left = 30;
+          const bottom = 20;
+          const top = 8;
+          const plotWidth = width - left;
+          const plotHeight = height - bottom - top;
+          const max = niceMax(Math.max(0, ...points.map((point) => point.value)));
+          const slot = plotWidth / points.length;
+          const barWidth = Math.max(2, slot - 2);
+          const svgNs = "http://www.w3.org/2000/svg";
+          const svg = document.createElementNS(svgNs, "svg");
+          svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+          svg.setAttribute("role", "img");
+          svg.setAttribute(
+            "aria-label",
+            `${noun} per day for the last ${points.length} days, from ${fmt(Math.min(...points.map((p) => p.value)))} to ${fmt(Math.max(...points.map((p) => p.value)))}`,
+          );
+
+          const add = (name, attrs) => {
+            const node = document.createElementNS(svgNs, name);
+            for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
+            svg.append(node);
+            return node;
+          };
+
+          for (const tick of [0, max / 2, max]) {
+            const y = top + plotHeight - (tick / max) * plotHeight;
+            add("line", { x1: left, x2: width, y1: y, y2: y, stroke: "var(--grid)", "stroke-width": 1, "vector-effect": "non-scaling-stroke" });
+            const label = add("text", { x: left - 6, y: y + 4, "text-anchor": "end" });
+            label.textContent = fmt(tick);
+          }
+
+          points.forEach((point, index) => {
+            const x = left + index * slot + (slot - barWidth) / 2;
+            const barHeight = (point.value / max) * plotHeight;
+            if (barHeight > 0) {
+              const r = Math.min(3, barWidth / 2, barHeight);
+              const y = top + plotHeight - barHeight;
+              const base = top + plotHeight;
+              add("path", {
+                d: `M${x},${base} V${y + r} Q${x},${y} ${x + r},${y} H${x + barWidth - r} Q${x + barWidth},${y} ${x + barWidth},${y + r} V${base} Z`,
+                fill: index === points.length - 1 ? "var(--series-2)" : "var(--series-1)",
+              });
+            }
+          });
+
+          for (const index of [0, Math.floor((points.length - 1) / 2), points.length - 1]) {
+            const x = left + index * slot + slot / 2;
+            const label = add("text", {
+              x,
+              y: height - 4,
+              "text-anchor": index === 0 ? "start" : index === points.length - 1 ? "end" : "middle",
+            });
+            label.textContent = index === points.length - 1 ? "Today" : labelOf(points[index].date);
+          }
+
+          const hit = add("rect", { x: left, y: 0, width: plotWidth, height, fill: "transparent" });
+          const tooltip = el("div", { class: "tooltip", role: "status" });
+          tooltip.hidden = true;
+
+          const show = (event) => {
+            const bounds = svg.getBoundingClientRect();
+            const ratio = (event.clientX - bounds.left) / bounds.width;
+            const index = Math.min(points.length - 1, Math.max(0, Math.floor(((ratio * width) - left) / slot)));
+            const point = points[index];
+            tooltip.hidden = false;
+            tooltip.replaceChildren(
+              el("strong", { class: "num", text: fmt(point.value) }),
+              document.createTextNode(` ${noun} · ${index === points.length - 1 ? "Today (so far)" : labelOf(point.date)}`),
+            );
+            const centre = ((left + index * slot + slot / 2) / width) * bounds.width;
+            const barTop = top + plotHeight - (point.value / max) * plotHeight;
+            tooltip.style.left = `${Math.min(bounds.width - 60, Math.max(60, centre))}px`;
+            tooltip.style.top = `${(barTop / height) * bounds.height}px`;
+          };
+          hit.addEventListener("pointermove", show);
+          hit.addEventListener("pointerdown", show);
+          hit.addEventListener("pointerleave", () => {
+            tooltip.hidden = true;
+          });
+
+          container.append(svg, tooltip);
+        }
+
+        function barList(container, items, { labelFor = (item) => item.key, chipFor = () => null } = {}) {
+          container.replaceChildren();
+          if (!items.length) {
+            container.append(el("li", { class: "empty", text: "No data yet" }));
+            return;
+          }
+          const max = Math.max(...items.map((item) => item.count));
+          for (const item of items) {
+            const width = max > 0 ? Math.max(1.5, (item.count / max) * 100) : 0;
+            container.append(
+              el("li", { class: "bar-row" }, [
+                el("span", { class: "bar-label", title: labelFor(item) }, [
+                  document.createTextNode(labelFor(item)),
+                  chipFor(item),
+                ]),
+                el("span", { class: "bar-track", "aria-hidden": "true" }, [
+                  el("span", { class: "bar-fill", style: `width:${width}%` }),
+                ]),
+                el("span", { class: "bar-value num", text: fmt(item.count) }),
+              ]),
+            );
+          }
+        }
+
+        function stats(container, rows) {
+          container.replaceChildren(
+            ...rows.map(([label, value]) =>
+              el("div", {}, [el("dt", { text: label }), el("dd", { class: "num", text: value })]),
+            ),
+          );
+        }
+
+        function kpi(label, value, sub) {
+          return el("article", { class: "kpi" }, [
+            el("h2", { class: "kpi-label", text: label }),
+            el("div", { class: "kpi-value num", text: value }),
+            sub,
+          ]);
+        }
+
+        function subText(parts) {
+          const node = el("div", { class: "kpi-sub num" });
+          for (const part of parts) {
+            if (typeof part === "string") node.append(document.createTextNode(part));
+            else node.append(part);
+          }
+          return node;
+        }
+
+        const TYPE_LABELS = {
+          text: "Text",
+          link: "Links",
+          textLink: "Text with link",
+          onlyEmoji: "Emoji",
+          image: "Photos",
+          video: "Videos",
+          audio: "Voice messages",
+          file: "Files",
+          gif: "GIFs & stickers",
+          maps: "Shared places",
+          location: "Live locations",
+          poll: "Polls",
+          other: "Other",
+        };
+
+        const COUNTRY_NAMES = (() => {
+          try {
+            return new Intl.DisplayNames(["en"], { type: "region" });
+          } catch {
+            return null;
+          }
+        })();
+
+        let lastData = null;
+        let resizeFrame = 0;
+        window.addEventListener("resize", () => {
+          cancelAnimationFrame(resizeFrame);
+          resizeFrame = requestAnimationFrame(() => {
+            if (lastData && !$("app").hidden) render(lastData);
+          });
+        });
+
+        function render(data) {
+          lastData = data;
+          const users = data.users;
+          const active = data.active;
+          const daily = data.daily;
+          const sum = (key, days = daily.length) =>
+            daily.slice(-days).reduce((total, day) => total + (Number(day[key]) || 0), 0);
+
+          $("updated").textContent = `Updated ${timeFormat.format(new Date(data.generatedAt))}`;
+          const banner = $("banner");
+          banner.hidden = !data.truncated && !data.sample;
+          banner.textContent = data.sample
+            ? "Sample data — these are example numbers, not Orbi's."
+            : "Some device counts hit the row limit and may be incomplete.";
+
+          const retentionRate = pct(data.retention.activeLast7d, data.retention.cohortSize);
+          $("kpis").replaceChildren(
+            kpi("Users", fmt(users.total), subText([el("span", { class: "delta-up", text: `+${fmt(users.new7d)}` }), " this week"])),
+            kpi("Active today", fmt(active.day), subText([`${fmt(active.week)} this week · ${fmt(active.month)} this month`])),
+            kpi("Stickiness", `${pct(active.day, active.month)}%`, subText(["Daily ÷ monthly active"])),
+            kpi("Messages", fmt(data.messages.last7d), subText([`last 7 days · ${fmt(data.chats.active7d)} active chats`])),
+            kpi(
+              "Retention",
+              data.retention.cohortSize > 0 ? `${retentionRate}%` : "–",
+              subText([
+                data.retention.cohortSize > 0
+                  ? `of ${fmt(data.retention.cohortSize)} who joined 30–60 days ago were active this week`
+                  : "No users joined 30–60 days ago",
+              ]),
+            ),
+          );
+
+          const series = (key) => daily.map((day) => ({ date: day.date, value: Number(day[key]) || 0 }));
+          barChart($("chart-new-users"), series("newUsers"), "new users");
+          barChart($("chart-messages"), series("messages"), "messages");
+          barChart($("chart-senders"), series("senders"), "people");
+          $("total-new-users").textContent = `${fmt(sum("newUsers"))} in 30 days`;
+          $("total-messages").textContent = `${fmt(sum("messages"))} in 30 days`;
+          $("total-senders").textContent = `${fmt(active.month)} active this month`;
+
+          const builds = [...data.devices.builds].sort((a, b) => {
+            const left = Number(a.key);
+            const right = Number(b.key);
+            if (Number.isFinite(left) && Number.isFinite(right)) return right - left;
+            return Number.isFinite(left) ? -1 : 1;
+          });
+          barList($("builds"), builds.slice(0, 8), {
+            labelFor: (item) => (item.key === "Unknown" ? "Unknown" : `Build ${item.key}`),
+            chipFor: (item) => {
+              const build = Number(item.key);
+              if (!Number.isFinite(build) || build >= MIN_SUPPORTED_BUILD) return null;
+              return el("span", { class: "chip chip-critical" }, [
+                el("span", { "aria-hidden": "true", text: "!" }),
+                document.createTextNode("Unsupported"),
+              ]);
+            },
+          });
+
+          const platformCounts = Object.fromEntries(data.devices.platforms.map((item) => [item.key, item.count]));
+          const ios = platformCounts.ios || 0;
+          const android = platformCounts.android || 0;
+          const otherPlatforms = platformCounts.other || 0;
+          const deviceTotal = ios + android + otherPlatforms;
+          const platforms = $("platforms");
+          platforms.replaceChildren();
+          if (deviceTotal === 0) {
+            platforms.append(el("p", { class: "empty", text: "No devices seen yet" }));
+          } else {
+            const split = el("div", { class: "split", role: "img", "aria-label": `iPhone ${pct(ios, deviceTotal)}%, Android ${pct(android, deviceTotal)}%` }, [
+              el("span", { style: `width:${(ios / deviceTotal) * 100}%;background:var(--series-1)` }),
+              el("span", { style: `width:${(android / deviceTotal) * 100}%;background:var(--series-2)` }),
+            ]);
+            const legend = el("ul", { class: "legend" }, [
+              el("li", {}, [el("span", { class: "swatch", style: "background:var(--series-1)" }), el("span", { class: "num", text: `iPhone ${fmt(ios)} (${pct(ios, deviceTotal)}%)` })]),
+              el("li", {}, [el("span", { class: "swatch", style: "background:var(--series-2)" }), el("span", { class: "num", text: `Android ${fmt(android)} (${pct(android, deviceTotal)}%)` })]),
+              otherPlatforms > 0 ? el("li", { class: "num", text: `Other ${fmt(otherPlatforms)}` }) : null,
+            ]);
+            platforms.append(split, legend);
+          }
+
+          barList($("countries"), data.devices.countries, {
+            labelFor: (item) =>
+              item.key === "Other" || item.key === "Unknown"
+                ? item.key
+                : (COUNTRY_NAMES && COUNTRY_NAMES.of(item.key)) || item.key,
+          });
+
+          barList(
+            $("message-types"),
+            [...data.messages.byType].sort((a, b) => b.count - a.count).map((item) => ({ key: item.type, count: item.count })),
+            { labelFor: (item) => TYPE_LABELS[item.key] || item.key },
+          );
+
+          const chats = data.chats;
+          const social = data.social;
+          stats($("social"), [
+            ["Chats", fmt(chats.total)],
+            ["Group chats", fmt(chats.groups)],
+            ["Friendships", fmt(social.friendships)],
+            ["New this week", `+${fmt(social.newFriendships7d)}`],
+            ["Pending friend requests", fmt(social.pendingFriendRequests)],
+            ["Pending message requests", fmt(chats.requests.pending)],
+            ["Message requests accepted", `${fmt(chats.requests.accepted)} of ${fmt(chats.requests.accepted + chats.requests.declined)}`],
+            ["Active blocks", fmt(social.activeBlocks)],
+          ]);
+
+          const events = data.events;
+          stats($("events"), [
+            ["Upcoming", fmt(events.upcoming)],
+            ["Created in 30 days", fmt(events.created30d)],
+            ["All events", fmt(events.total)],
+            ["Guests per event", events.total > 0 ? (events.members / events.total).toFixed(1) : "–"],
+            ["Comments in 30 days", fmt(events.comments30d)],
+            ["SMS invites claimed", `${fmt(events.phoneInvitesClaimed)} of ${fmt(events.phoneInvitesClaimed + events.phoneInvitesPending)}`],
+          ]);
+
+          const calls = data.calls;
+          stats($("calls"), [
+            ["Calls started", fmt(calls.started)],
+            ["Connected", fmt(calls.completed)],
+            ["Minutes talked", fmt(calls.minutes)],
+            ["Average call", calls.completed > 0 ? `${calls.averageMinutes} min` : "–"],
+          ]);
+
+          const meters = [
+            ["Chats end-to-end encrypted", chats.encrypted, chats.total],
+            ["Users with a backup PIN", users.withBackupPin, users.total],
+            ["Active users with notifications on", active.pushEnabledMonth, active.month],
+          ];
+          $("meters").replaceChildren(
+            ...meters.map(([label, part, whole]) =>
+              el("div", { class: "meter" }, [
+                el("div", { class: "meter-head" }, [
+                  el("span", { text: label }),
+                  el("strong", { text: `${pct(part, whole)}%` }),
+                ]),
+                el("div", { class: "bar-track", role: "img", "aria-label": `${label}: ${pct(part, whole)}%` }, [
+                  el("div", { class: "bar-fill", style: `width:${pct(part, whole)}%` }),
+                ]),
+                el("span", { class: "panel-note num", text: `${fmt(part)} of ${fmt(whole)}` }),
+              ]),
+            ),
+          );
+
+          const safety = $("safety");
+          const blocks = [
+            ["Reports by type", data.safety.reports30d, (item) => ({ support: "Support", ugc: "Reported content", recovery: "Account recovery" })[item.key] || item.key],
+            ["Report status", data.safety.reportStatus30d, (item) => item.key.charAt(0).toUpperCase() + item.key.slice(1)],
+            ["Security events", data.safety.securityEvents30d, (item) => ({ skip_restore: "Skipped restore", new_pending_login: "New login to approve", phone_number_changed: "Phone number changed" })[item.key] || item.key.replaceAll("_", " ")],
+          ];
+          safety.replaceChildren(
+            ...blocks.map(([title, items, labelFor]) => {
+              const list = el("ul", { class: "bars" });
+              barList(list, items, { labelFor });
+              return el("div", { class: "meter" }, [el("span", { class: "kpi-label", text: title }), list]);
+            }),
+          );
+        }
+
+        async function load(code, { fromGate = false } = {}) {
+          $("app").classList.add("loading");
+          try {
+            const data = await fetchMetrics(code);
+            activeCode = code;
+            $("gate").hidden = true;
+            $("app").hidden = false;
+            render(data);
+            clearInterval(refreshTimer);
+            refreshTimer = setInterval(() => {
+              if (document.visibilityState === "visible") load(activeCode);
+            }, REFRESH_MS);
+            return true;
+          } catch (error) {
+            if (error.kind === "code") {
+              forgetCode();
+              showGate(fromGate ? "That code isn't right. Check it and try again." : "Your saved code no longer works. Enter the current code.");
+            } else if (fromGate || $("app").hidden) {
+              showGate("Couldn't load the numbers from Nhost. Check your connection and try again.");
+            } else {
+              $("updated").textContent = "Couldn't refresh — showing the last numbers";
+            }
+            return false;
+          } finally {
+            $("app").classList.remove("loading");
+          }
+        }
+
+        $("gate-form").addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const code = $("gate-code").value.trim();
+          if (!code) return;
+          const button = $("gate-submit");
+          button.disabled = true;
+          button.textContent = "Unlocking…";
+          const ok = await load(code, { fromGate: true });
+          if (ok) storeCode(code, $("gate-remember").checked);
+          button.disabled = false;
+          button.textContent = "Unlock";
+        });
+
+        $("refresh").addEventListener("click", () => load(activeCode));
+        $("lock").addEventListener("click", () => {
+          forgetCode();
+          activeCode = "";
+          showGate();
+        });
+
+        const params = new URLSearchParams(location.search);
+        if (params.has("sample")) {
+          const today = new Date();
+          const daily = Array.from({ length: 30 }, (_, index) => {
+            const date = new Date(today.getTime() - (29 - index) * 86400000).toISOString().slice(0, 10);
+            const wave = Math.sin(index / 3) * 0.25 + 1 + index / 40;
+            return { date, newUsers: Math.round(6 * wave), messages: Math.round(900 * wave), senders: Math.round(140 * wave) };
+          });
+          $("gate").hidden = true;
+          $("app").hidden = false;
+          render({
+            ok: true,
+            sample: true,
+            generatedAt: today.toISOString(),
+            users: { total: 1284, new7d: 58, new30d: 214, withBackupPin: 903 },
+            active: { day: 212, week: 541, month: 822, pushEnabledMonth: 701 },
+            retention: { cohortSize: 164, activeLast7d: 97 },
+            daily,
+            messages: {
+              last7d: 7420, last30d: 28900, reactions30d: 3120,
+              byType: [
+                { type: "text", count: 19800 }, { type: "image", count: 3900 }, { type: "gif", count: 1700 },
+                { type: "audio", count: 1200 }, { type: "textLink", count: 900 }, { type: "maps", count: 410 },
+                { type: "video", count: 380 }, { type: "poll", count: 120 }, { type: "other", count: 490 },
+              ],
+            },
+            chats: { total: 1930, direct: 1410, groups: 520, encrypted: 1780, active7d: 604, requests: { pending: 23, accepted: 131, declined: 19 } },
+            social: { friendships: 4120, pendingFriendRequests: 188, newFriendships7d: 142, activeBlocks: 31 },
+            events: { total: 690, created30d: 118, upcoming: 74, members: 5210, comments30d: 960, phoneInvitesClaimed: 62, phoneInvitesPending: 40 },
+            calls: { started: 420, completed: 336, minutes: 3180, averageMinutes: 9.5 },
+            devices: {
+              total: 910,
+              platforms: [{ key: "ios", count: 540 }, { key: "android", count: 370 }],
+              builds: [{ key: "171", count: 402 }, { key: "170", count: 311 }, { key: "169", count: 98 }, { key: "166", count: 61 }, { key: "158", count: 38 }],
+              countries: [{ key: "DK", count: 780 }, { key: "SE", count: 51 }, { key: "DE", count: 33 }, { key: "NO", count: 21 }, { key: "Other", count: 25 }],
+            },
+            safety: {
+              reports30d: [{ key: "support", count: 9 }, { key: "ugc", count: 3 }, { key: "recovery", count: 2 }],
+              reportStatus30d: [{ key: "open", count: 5 }, { key: "resolved", count: 9 }],
+              securityEvents30d: [{ key: "new_pending_login", count: 44 }, { key: "skip_restore", count: 6 }, { key: "phone_number_changed", count: 3 }],
+            },
+          });
+          return;
+        }
+
+        const saved = readCode();
+        if (saved) {
+          $("gate").hidden = true;
+          load(saved);
+        } else {
+          showGate();
+        }
+      })();
+    </script>
+  </body>
+</html>
