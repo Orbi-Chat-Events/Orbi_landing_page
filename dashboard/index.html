@@ -1835,8 +1835,14 @@
                   body: JSON.stringify({ action: "image", id: report.id, index }),
                   cache: "no-store",
                 }).then(async (response) => {
-                  if (!response.ok) throw new Error(`image ${response.status}`);
-                  return URL.createObjectURL(await response.blob());
+                  const body = await response.json().catch(() => ({}));
+                  if (!response.ok || body.ok !== true || !body.data) {
+                    throw new Error([response.status, body.reason || body.error].filter(Boolean).join(" "));
+                  }
+                  const binary = atob(body.data);
+                  const bytes = new Uint8Array(binary.length);
+                  for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
+                  return URL.createObjectURL(new Blob([bytes], { type: body.type }));
                 });
             // A failed load is retried the next time the card is drawn.
             imageCache.set(key, loading.catch((error) => {
@@ -1879,8 +1885,9 @@
                 image.src = url;
                 button.replaceChildren(image);
               })
-              .catch(() => {
+              .catch((error) => {
                 button.textContent = "Couldn't load";
+                button.title = `Couldn't load this screenshot (${error.message || "network error"})`;
               });
           };
           button.addEventListener("click", () => openLightbox(report, index));
