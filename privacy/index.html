@@ -93,8 +93,13 @@
               <li>Relationships and event activity you create through Orbi</li>
               <li>Your privacy choices, such as who can find you</li>
               <li>Phone numbers from your contacts, if you choose to find friends (see section 4)</li>
+              <li>Phone numbers you enter to invite someone to an event</li>
               <li>Support reports and limited technical and usage information</li>
             </ul>
+            <p>
+              Your phone number is required to create an account. Everything
+              else is optional or created as you use Orbi.
+            </p>
             <p>
               We process chat and event content to provide the service. We do
               not analyze private message or attachment content for advertising,
@@ -104,9 +109,8 @@
               aggregate statistics described below.
             </p>
             <p>
-              If you choose to provide your date of birth, it will be visible 
-              to other users (e.g. your friends or connections) to enable birthday 
-              features. 
+              If you choose to provide your date of birth, your friends can see
+              the day and month, not the year, to enable birthday features.
             </p>
             <p>
               We may collect limited technical and usage data to improve performance, 
@@ -182,9 +186,11 @@
             <h2>7. Data Retention</h2>
             <p>
               We retain your data only as long as necessary to provide the
-              service. When you delete your account, your data is removed from
-              our active systems within a reasonable time, except where retention
-              is required for legal or security purposes.
+              service. When you delete your account, your account and profile
+              data are deleted, except where retention is required for legal or
+              security purposes. Messages you have sent and events you have
+              created remain visible to the other people in those chats and
+              events.
             </p>
             <p>
               Technical and activity information used to produce statistics is
@@ -199,7 +205,7 @@
             <p>You can:</p>
             <ul>
               <li>Delete your account at any time</li>
-              <li>Delete your chats and events manually</li>
+              <li>Delete messages you have sent, remove chats from your list, leave group chats, and delete events you created</li>
               <li>Edit or remove your date of birth in account settings</li>
               <li>Choose who can find you in Settings</li>
               <li>Request a copy or correction of your data by contacting us</li>
@@ -226,12 +232,15 @@
               them or rely on their standard data processing terms.
             </p>
             <p>
-              In encrypted chats, messages, photos, videos, voice messages,
-              files, polls, shared locations, link previews, GIFs, and audio
-              calls are end-to-end encrypted, so the providers listed below,
-              including our hosting provider, cannot read them. Other
-              information, such as reactions and event details and comments, is
-              encrypted in transit but not end-to-end encrypted.
+              In encrypted chats, the content of messages is end-to-end
+              encrypted: text, photos, videos, voice messages, files, polls,
+              shared locations, link previews, and GIF links. Audio calls are
+              end-to-end encrypted too. Other information is encrypted in
+              transit but not end-to-end encrypted, such as who is in a chat,
+              chat names and profile photos, message timestamps, reactions, poll
+              votes, and event details and comments. When you view a shared
+              location or a GIF, the map or GIF is loaded from Google or GIPHY,
+              and a link preview may be fetched through our servers.
             </p>
 
             <h3>Hosting in the European Union</h3>
@@ -249,12 +258,13 @@
               <li>
                 <strong>Google Firebase Cloud Messaging</strong>: delivers push
                 notifications. Receives your device's push token and the
-                notification. For encrypted chats, the message itself is never
-                included; the notification may include the sender's username,
-                profile photo link, and the group name. Other notifications may
-                include usernames (for example friend requests and incoming
-                calls), event titles and event comments, and the device type and
-                country for new sign-in alerts.
+                notification. For encrypted chats, the message preview is itself
+                end-to-end encrypted, so Google cannot read it; the notification
+                may include the sender's username and profile photo link, and the
+                group's name and photo. Other notifications may include usernames (for example friend requests
+                and incoming calls), event titles and event comments, the device
+                type, app version, and country for new sign-in alerts, and part of
+                your phone number when it is changed.
               </li>
               <li>
                 <strong>Google Firebase App Check</strong>: helps confirm that
@@ -271,20 +281,25 @@
               <li>
                 <strong>Google Maps Platform</strong>: shows maps for events and
                 shared locations, and suggests places when you pick a location.
-                When a map loads, Google receives your IP address and the area
-                shown. Place searches are sent through our servers.
+                When a map or place photo loads, Google receives the area shown
+                and may receive your IP address. Place searches are sent through
+                our servers, together with your location if you allow location
+                access, so that nearby places are suggested first.
               </li>
               <li>
                 <strong>GIPHY</strong>: provides GIF and sticker search. When you
-                search, GIPHY receives your search terms, IP address, and basic
+                open the GIF picker or search, GIPHY receives your search terms,
+                IP address, and basic
                 device information. When a GIF is shown in a chat or event, it is
                 loaded from GIPHY, which receives your IP address. We do not send
                 your name, phone number, or any account identifier to GIPHY.
               </li>
               <li>
-                <strong>Twilio</strong>: sends sign-in codes by SMS or voice call
-                and verifies phone number changes. Receives your phone number
-                and the verification code. We are working on replacing Twilio
+                <strong>Twilio</strong>: sends sign-in codes by SMS or voice call,
+                verifies phone number changes, and sends an SMS when you invite
+                someone who is not on Orbi to an event. Receives the phone number
+                and the message: the verification code, or for an invitation your
+                first name and a link to Orbi. We are working on replacing Twilio
                 with a European provider.
               </li>
               <li>
@@ -308,8 +323,9 @@
             <p>
               To show which country a device signed in from, our own servers
               look up the country of the device's IP address in a local copy of
-              an IP geolocation database. The IP address is not sent to any
-              other service, and only the country code is stored. IP geolocation
+              an IP geolocation database. For this, the IP address is not sent
+              to any other service, and only the country code is stored with the
+              device's session information. IP geolocation
               by <a href="https://db-ip.com">DB-IP</a>.
             </p>
 
@@ -362,6 +378,8 @@
               <li>Correct inaccurate data</li>
               <li>Request deletion</li>
               <li>Object to or restrict certain kinds of processing</li>
+              <li>Receive your data in a portable format</li>
+              <li>Withdraw your consent at any time, where processing is based on consent</li>
               <li>File a complaint with your local Data Protection Authority</li>
             </ul>
           </section>
