@@ -4,9 +4,9 @@ const supportedLanguages = ["en", "da"];
 const translations = {
   en: {
     meta: {
-      title: "Orbi - Chat & Events: A place to talk, plan, and connect, without distractions",
+      title: "Orbi Chat – Private Chat & Event App",
       description:
-        "Orbi is a free, privacy-first chat and event planning app. Message friends, organize events, remember birthdays, and connect without feeds or ads.",
+        "Orbi (Orbi Chat) is a free, privacy-first chat and event app from Denmark. Message friends, plan events and remember birthdays, with no ads or feeds.",
       ogDescription:
         "Message friends, organize events, remember birthdays, and stay connected without feeds, ads, or distractions.",
       twitterDescription:
@@ -184,9 +184,9 @@ const translations = {
   },
   da: {
     meta: {
-      title: "Orbi - Chat & Events: Et sted at tale, planlægge og holde kontakt uden distraktioner",
+      title: "Orbi Chat – Privat chat- og eventapp",
       description:
-        "Orbi er en gratis, privatlivsfokuseret chat- og eventapp. Skriv med venner, planlæg events, husk fødselsdage, og undgå feeds og reklamer.",
+        "Orbi (Orbi Chat) er en gratis, privatlivsfokuseret chat- og eventapp fra Danmark. Skriv med venner, planlæg events og husk fødselsdage – uden reklamer og feeds.",
       ogDescription:
         "Skriv med venner, planlæg events, husk fødselsdage, og hold kontakten uden feeds, reklamer eller distraktioner.",
       twitterDescription:

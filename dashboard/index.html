@@ -681,18 +681,150 @@
         text-align: right;
       }
 
-      .safety-link {
-        align-self: flex-start;
-        color: var(--accent);
-        font-size: 0.9rem;
-        font-weight: 700;
-        text-decoration: underline;
-        text-underline-offset: 0.18em;
-      }
-
       .chip-warning {
         background: var(--warning-soft);
         color: var(--warning);
+      }
+
+      .chip-good {
+        background: var(--good-soft);
+        color: var(--good);
+      }
+
+      /* ---- Reports & feedback ---- */
+      .reports-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px 20px;
+        margin-bottom: 16px;
+      }
+
+      .view-title {
+        margin: 0;
+        font-family: "Sora", system-ui, sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .tabs,
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .filters {
+        margin-bottom: 14px;
+      }
+
+      .tab,
+      .filter {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 14px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--surface);
+        font-size: 0.88rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .tab[aria-selected="true"],
+      .filter[aria-pressed="true"] {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: var(--surface);
+      }
+
+      .tab-count {
+        font-variant-numeric: tabular-nums;
+        opacity: 0.75;
+      }
+
+      .entries {
+        display: grid;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .entry {
+        display: grid;
+        gap: 8px;
+        padding: 16px 18px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+      }
+
+      .entry-top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 6px 12px;
+      }
+
+      .entry-kind {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px 8px;
+        color: var(--muted);
+        font-size: 0.84rem;
+        font-weight: 700;
+      }
+
+      .entry-date {
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .entry h3 {
+        margin: 0;
+        font-size: 1.02rem;
+        font-weight: 800;
+        overflow-wrap: anywhere;
+      }
+
+      .entry-body {
+        margin: 0;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+
+      .entry-body.empty {
+        font-style: italic;
+      }
+
+      .entry-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 16px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .entry-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .entry-actions .ghost[disabled] {
+        opacity: 0.6;
+        cursor: progress;
+      }
+
+      .close-report {
+        border-color: var(--accent);
+        color: var(--accent);
       }
 
       .bars-builds .bar-row {
@@ -788,6 +920,7 @@
       <header class="topbar">
         <h1 class="brand"><span>Orbi Pulse</span><span class="brand-mark" aria-hidden="true">●</span></h1>
         <div class="topbar-meta">
+          <button class="ghost" type="button" id="back" hidden>← Overview</button>
           <span id="updated" class="num">Loading…</span>
           <button class="ghost" type="button" id="refresh">Refresh</button>
           <button class="ghost" type="button" id="lock">Lock</button>
@@ -796,6 +929,7 @@
 
       <p class="banner" id="banner" hidden></p>
 
+      <div id="overview-view">
       <section class="kpis" aria-label="Key numbers" id="kpis"></section>
 
       <section class="panel funnel-panel" aria-labelledby="funnel-title">
@@ -868,10 +1002,40 @@
           <div class="meter" id="meters"></div>
         </article>
         <article class="panel span-2">
-          <div class="panel-head"><h2>Safety</h2></div>
+          <div class="panel-head">
+            <h2>Safety</h2>
+            <button class="ghost" type="button" id="open-reports">Reports &amp; feedback →</button>
+          </div>
           <p class="panel-note">Reports and security events in the last 30 days</p>
           <div class="safety-groups" id="safety"></div>
         </article>
+      </section>
+      </div>
+
+      <section id="reports-view" aria-labelledby="reports-title" hidden>
+        <div class="reports-head">
+          <h2 class="view-title" id="reports-title">Reports &amp; feedback</h2>
+          <div class="tabs" role="tablist" aria-label="Show">
+            <button class="tab" type="button" role="tab" id="tab-reports" aria-controls="reports-panel" aria-selected="true">
+              Problem reports <span class="tab-count" id="count-reports"></span>
+            </button>
+            <button class="tab" type="button" role="tab" id="tab-feedback" aria-controls="feedback-panel" aria-selected="false">
+              Feedback <span class="tab-count" id="count-feedback"></span>
+            </button>
+          </div>
+        </div>
+        <div id="reports-panel" role="tabpanel" aria-labelledby="tab-reports">
+          <div class="filters" role="group" aria-label="Filter reports">
+            <button class="filter" type="button" data-filter="open" aria-pressed="true">Open <span class="tab-count" id="count-open"></span></button>
+            <button class="filter" type="button" data-filter="closed" aria-pressed="false">Closed <span class="tab-count" id="count-closed"></span></button>
+            <button class="filter" type="button" data-filter="all" aria-pressed="false">All</button>
+          </div>
+          <ol class="entries" id="report-list"></ol>
+        </div>
+        <div id="feedback-panel" role="tabpanel" aria-labelledby="tab-feedback" hidden>
+          <ol class="entries" id="feedback-list"></ol>
+        </div>
+        <p class="panel-note" id="reports-note"></p>
       </section>
     </div>
 
@@ -879,6 +1043,8 @@
       (() => {
         const ENDPOINT =
           "https://kgsysdwkclmquduxxifd.functions.eu-central-1.nhost.run/v1/NEW_dashboard-metrics";
+        const REPORTS_ENDPOINT =
+          "https://kgsysdwkclmquduxxifd.functions.eu-central-1.nhost.run/v1/NEW_dashboard-reports";
         const STORAGE_KEY = "orbiPulseCode";
         const MIN_SUPPORTED_BUILD = 166;
         const REFRESH_MS = 5 * 60 * 1000;
@@ -890,6 +1056,15 @@
         const dayFormat = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
         const timeFormat = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit" });
         const labelOf = (dateText) => dayFormat.format(new Date(`${dateText}T12:00:00Z`));
+
+        const REPORT_KINDS = { support: "Support request", ugc: "Reported content", recovery: "Account recovery" };
+        const REPORT_STATUSES = { open: "Open", new: "New", pending: "Pending", in_progress: "In progress", resolved: "Resolved", closed: "Closed", dismissed: "Dismissed" };
+        const REPORT_CONTEXTS = {
+          app: "App", settings: "Settings", chat: "Chat", message: "Message", event: "Event",
+          event_comment: "Event comment", user: "Profile", account_recovery: "Account recovery",
+        };
+        const NEEDS_ATTENTION = new Set(["open", "new", "pending", "in_progress"]);
+        const readable = (key) => String(key || "").replaceAll("_", " ").replace(/^./, (letter) => letter.toUpperCase());
 
         function el(tag, attrs = {}, children = []) {
           const node = document.createElement(tag);
@@ -1318,16 +1493,11 @@
             ),
           );
 
-          const REPORT_KINDS = { support: "Support request", ugc: "Reported content", recovery: "Account recovery" };
-          const REPORT_STATUSES = { open: "Open", new: "New", pending: "Pending", in_progress: "In progress", resolved: "Resolved", closed: "Closed", dismissed: "Dismissed" };
           const SECURITY_EVENTS = {
             new_pending_login: "New login waiting for approval",
             skip_restore: "Skipped backup restore",
             phone_number_changed: "Phone number changed",
           };
-          const NEEDS_ATTENTION = new Set(["open", "new", "pending", "in_progress"]);
-          const readable = (key) => key.replaceAll("_", " ").replace(/^./, (letter) => letter.toUpperCase());
-
           const safetyGroup = (title, items, labelFor, chipFor = () => null, footer = null) => {
             const total = items.reduce((sum, item) => sum + item.count, 0);
             const list = el("ul", { class: "count-list" });
@@ -1362,16 +1532,220 @@
                 NEEDS_ATTENTION.has(item.key) && item.count > 0
                   ? el("span", { class: "chip chip-warning" }, [el("span", { "aria-hidden": "true", text: "●" }), document.createTextNode("Needs attention")])
                   : null,
-              el("a", {
-                class: "safety-link",
-                href: "https://mail.google.com/mail/u/2/#chat/home",
-                target: "_blank",
-                rel: "noopener noreferrer",
-                text: "Open reports in Google Chat ↗",
-              }),
             ),
             safetyGroup("Security events", data.safety.securityEvents30d, (item) => SECURITY_EVENTS[item.key] || readable(item.key)),
           );
+        }
+
+        /* ---- Reports & feedback ---- */
+        const reportsState = { reports: [], feedback: [], tab: "reports", filter: "open", loaded: false, sample: false };
+        const stampFormat = new Intl.DateTimeFormat("en-GB", {
+          day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit",
+        });
+        const relativeFormat = new Intl.RelativeTimeFormat("en-GB", { numeric: "auto" });
+
+        function when(iso) {
+          const date = new Date(iso);
+          if (Number.isNaN(date.getTime())) return "";
+          const minutes = Math.round((date.getTime() - Date.now()) / 60000);
+          const relative =
+            Math.abs(minutes) < 60 ? relativeFormat.format(minutes, "minute")
+            : Math.abs(minutes) < 60 * 48 ? relativeFormat.format(Math.round(minutes / 60), "hour")
+            : relativeFormat.format(Math.round(minutes / 1440), "day");
+          return `${stampFormat.format(date)} · ${relative}`;
+        }
+
+        function personText(person, fallback) {
+          if (!person) return fallback;
+          return person.handle ? `${person.name} (@${person.handle})` : person.name;
+        }
+
+        function deviceText(entry) {
+          const platform = { ios: "iOS", android: "Android" }[String(entry.platform).toLowerCase()] || entry.platform;
+          const build = /(?:\+|\(|\s)(\d{1,6})\)?\s*$/.exec(entry.appVersion || "");
+          return [platform, build ? `build ${build[1]}` : entry.appVersion, entry.device].filter(Boolean).join(" · ");
+        }
+
+        const isOpen = (report) => NEEDS_ATTENTION.has(report.status);
+
+        async function callReports(body) {
+          const response = await fetch(REPORTS_ENDPOINT, {
+            method: "POST",
+            headers: { Authorization: `Bearer ${activeCode}`, "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+            cache: "no-store",
+          });
+          const result = await response.json().catch(() => ({}));
+          if (response.status === 401) throw Object.assign(new Error("code"), { kind: "code" });
+          if (!response.ok || result.ok !== true) throw Object.assign(new Error("server"), { kind: "server" });
+          return result;
+        }
+
+        function reportEntry(report) {
+          const open = isOpen(report);
+          const status = el("span", { class: `chip ${open ? "chip-warning" : "chip-good"}` }, [
+            el("span", { "aria-hidden": "true", text: "●" }),
+            document.createTextNode(REPORT_STATUSES[report.status] || readable(report.status)),
+          ]);
+          const meta = [
+            `From ${personText(report.reporter, "someone not signed in")}`,
+            `About: ${REPORT_CONTEXTS[report.context] || readable(report.context)}`,
+            report.reportedUser ? `Reported: ${personText(report.reportedUser, "")}` : "",
+            deviceText(report),
+            report.attachments > 0 ? `${report.attachments} screenshot${report.attachments === 1 ? "" : "s"} attached` : "",
+          ].filter(Boolean);
+          const button = el("button", {
+            class: `ghost ${open ? "close-report" : ""}`,
+            type: "button",
+            text: open ? "Close report" : "Reopen",
+          });
+          button.addEventListener("click", () => setReportStatus(report, open ? "close" : "reopen", button));
+          return el("li", { class: "entry" }, [
+            el("div", { class: "entry-top" }, [
+              el("span", { class: "entry-kind" }, [document.createTextNode(REPORT_KINDS[report.kind] || readable(report.kind)), status]),
+              el("time", { class: "entry-date num", datetime: report.createdAt, text: when(report.createdAt) }),
+            ]),
+            el("h3", { text: report.issue || REPORT_KINDS[report.kind] || "Report" }),
+            el("p", {
+              class: `entry-body${report.description ? "" : " empty"}`,
+              text: report.description || "No description",
+            }),
+            el("p", { class: "entry-meta" }, meta.map((line) => el("span", { text: line }))),
+            el("div", { class: "entry-actions" }, [button]),
+          ]);
+        }
+
+        function feedbackEntry(item) {
+          return el("li", { class: "entry" }, [
+            el("div", { class: "entry-top" }, [
+              el("span", { class: "entry-kind", text: item.rating ? `Rating: ${item.rating}` : "Feedback" }),
+              el("time", { class: "entry-date num", datetime: item.createdAt, text: when(item.createdAt) }),
+            ]),
+            el("p", {
+              class: `entry-body${item.improvements ? "" : " empty"}`,
+              text: item.improvements || "No written feedback",
+            }),
+            el("p", { class: "entry-meta" }, [
+              el("span", { text: `From ${personText(item.sender, "someone not signed in")}` }),
+              deviceText(item) ? el("span", { text: deviceText(item) }) : null,
+            ]),
+          ]);
+        }
+
+        function renderReports() {
+          const { reports, feedback, tab, filter } = reportsState;
+          const openCount = reports.filter(isOpen).length;
+          $("count-reports").textContent = fmt(reports.length);
+          $("count-feedback").textContent = fmt(feedback.length);
+          $("count-open").textContent = fmt(openCount);
+          $("count-closed").textContent = fmt(reports.length - openCount);
+
+          $("tab-reports").setAttribute("aria-selected", String(tab === "reports"));
+          $("tab-feedback").setAttribute("aria-selected", String(tab === "feedback"));
+          $("reports-panel").hidden = tab !== "reports";
+          $("feedback-panel").hidden = tab !== "feedback";
+          for (const button of document.querySelectorAll(".filter")) {
+            button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
+          }
+
+          const shown = reports.filter((report) =>
+            filter === "all" ? true : filter === "open" ? isOpen(report) : !isOpen(report),
+          );
+          const emptyReports = { open: "No open reports. Nice.", closed: "No closed reports yet.", all: "No reports yet." }[filter];
+          $("report-list").replaceChildren(
+            ...(shown.length ? shown.map(reportEntry) : [el("li", { class: "empty", text: emptyReports })]),
+          );
+          $("feedback-list").replaceChildren(
+            ...(feedback.length ? feedback.map(feedbackEntry) : [el("li", { class: "empty", text: "No feedback yet." })]),
+          );
+          $("reports-note").textContent = reportsState.sample
+            ? "Sample data. Nothing here is real."
+            : "Shows the newest 300 reports and 300 feedback entries.";
+        }
+
+        async function loadReports() {
+          if (reportsState.sample) {
+            renderReports();
+            return;
+          }
+          $("app").classList.add("loading");
+          try {
+            const result = await callReports({ action: "list" });
+            reportsState.reports = result.reports || [];
+            reportsState.feedback = result.feedback || [];
+            reportsState.loaded = true;
+            $("updated").textContent = `Updated ${timeFormat.format(new Date())}`;
+            renderReports();
+          } catch (error) {
+            if (error.kind === "code") {
+              forgetCode();
+              showGate("Your saved code no longer works. Enter the current code.");
+            } else {
+              $("updated").textContent = reportsState.loaded
+                ? "Couldn't refresh — showing the last reports"
+                : "Couldn't load reports from Nhost";
+              if (!reportsState.loaded) renderReports();
+            }
+          } finally {
+            $("app").classList.remove("loading");
+          }
+        }
+
+        async function setReportStatus(report, action, button) {
+          button.disabled = true;
+          button.textContent = action === "close" ? "Closing…" : "Reopening…";
+          try {
+            const status = reportsState.sample
+              ? (action === "close" ? "closed" : "open")
+              : (await callReports({ action, id: report.id })).report.status;
+            report.status = status;
+            renderReports();
+          } catch (error) {
+            if (error.kind === "code") {
+              forgetCode();
+              showGate("Your saved code no longer works. Enter the current code.");
+              return;
+            }
+            button.disabled = false;
+            button.textContent = action === "close" ? "Close report" : "Reopen";
+            $("updated").textContent = "Couldn't update the report. Try again.";
+          }
+        }
+
+        function showView() {
+          const reports = location.hash === "#reports";
+          $("overview-view").hidden = reports;
+          $("reports-view").hidden = !reports;
+          $("back").hidden = !reports;
+          if (reports) {
+            renderReports();
+            loadReports();
+          }
+          window.scrollTo(0, 0);
+        }
+
+        $("open-reports").addEventListener("click", () => {
+          location.hash = "#reports";
+        });
+        $("back").addEventListener("click", () => {
+          history.pushState(null, "", location.pathname + location.search);
+          showView();
+        });
+        window.addEventListener("hashchange", showView);
+        window.addEventListener("popstate", showView);
+        $("tab-reports").addEventListener("click", () => {
+          reportsState.tab = "reports";
+          renderReports();
+        });
+        $("tab-feedback").addEventListener("click", () => {
+          reportsState.tab = "feedback";
+          renderReports();
+        });
+        for (const button of document.querySelectorAll(".filter")) {
+          button.addEventListener("click", () => {
+            reportsState.filter = button.dataset.filter;
+            renderReports();
+          });
         }
 
         async function load(code, { fromGate = false } = {}) {
@@ -1379,9 +1753,11 @@
           try {
             const data = await fetchMetrics(code);
             activeCode = code;
+            const firstLoad = $("app").hidden;
             $("gate").hidden = true;
             $("app").hidden = false;
             render(data);
+            if (firstLoad) showView();
             clearInterval(refreshTimer);
             refreshTimer = setInterval(() => {
               if (document.visibilityState === "visible") load(activeCode);
@@ -1415,7 +1791,10 @@
           button.textContent = "Unlock";
         });
 
-        $("refresh").addEventListener("click", () => load(activeCode));
+        $("refresh").addEventListener("click", () => {
+          if (location.hash === "#reports") loadReports();
+          else load(activeCode);
+        });
         $("lock").addEventListener("click", () => {
           forgetCode();
           activeCode = "";
@@ -1430,8 +1809,23 @@
             const wave = Math.sin(index / 3) * 0.25 + 1 + index / 40;
             return { date, newUsers: Math.round(6 * wave), messages: Math.round(900 * wave), senders: Math.round(140 * wave) };
           });
+          const hoursAgo = (hours) => new Date(today.getTime() - hours * 3600000).toISOString();
+          Object.assign(reportsState, {
+            sample: true,
+            loaded: true,
+            reports: [
+              { id: "s1", kind: "support", status: "open", issue: "Can't send photos", description: "When I pick a photo it spins forever.\nTried twice on wifi.", context: "chat", platform: "ios", appVersion: "1.1.3+175", device: "iPhone 11", attachments: 2, createdAt: hoursAgo(3), reporter: { name: "Maria", handle: "maria" }, reportedUser: null },
+              { id: "s2", kind: "ugc", status: "open", issue: "Spam", description: "", context: "message", platform: "android", appVersion: "1.1.3+174", device: "SM-A226B", attachments: 0, createdAt: hoursAgo(26), reporter: { name: "Jonas", handle: "jonas" }, reportedUser: { name: "Deal Bot", handle: "deals" } },
+              { id: "s3", kind: "recovery", status: "closed", issue: "Lost my phone", description: "New number, need my chats back.", context: "account_recovery", platform: "ios", appVersion: "1.1.3+173", device: "", attachments: 0, createdAt: hoursAgo(96), reporter: null, reportedUser: null },
+            ],
+            feedback: [
+              { id: "f1", rating: "5", improvements: "Love the events! Would like dark mode for the calendar.", platform: "ios", appVersion: "1.1.3+175", createdAt: hoursAgo(5), sender: { name: "Freja", handle: "freja" } },
+              { id: "f2", rating: "4", improvements: "", platform: "android", appVersion: "1.1.3+174", createdAt: hoursAgo(50), sender: null },
+            ],
+          });
           $("gate").hidden = true;
           $("app").hidden = false;
+          showView();
           render({
             ok: true,
             sample: true,
