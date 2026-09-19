@@ -818,10 +818,19 @@
         gap: 8px;
       }
 
-      .entry.has-images {
+      /* Report cards: text, then screenshots, then the actions on the far right. */
+      .report-entry {
         grid-template-columns: minmax(0, 1fr) auto;
         align-items: start;
         column-gap: 20px;
+      }
+
+      .report-entry.has-images {
+        grid-template-columns: minmax(0, 1fr) auto auto;
+      }
+
+      .report-entry .entry-actions {
+        align-self: end;
       }
 
       .entry-main {
@@ -1015,7 +1024,8 @@
 
       @media (max-width: 680px) {
         .score-card,
-        .entry.has-images {
+        .report-entry,
+        .report-entry.has-images {
           grid-template-columns: minmax(0, 1fr);
         }
         .lightbox-stage img {
@@ -1975,7 +1985,7 @@
             : el("button", { class: "ghost delete-report", type: "button", text: "Delete" });
           remove?.addEventListener("click", () => deleteReport(report, remove));
           const images = Number(report.images) || 0;
-          return el("li", { class: `entry${images > 0 ? " has-images" : ""}` }, [
+          return el("li", { class: `entry report-entry${images > 0 ? " has-images" : ""}` }, [
             el("div", { class: "entry-main" }, [
               el("div", { class: "entry-top" }, [
                 el("span", { class: "entry-kind" }, [document.createTextNode(REPORT_KINDS[report.kind] || readable(report.kind)), status]),
@@ -1987,7 +1997,6 @@
                 text: report.description || "No description",
               }),
               el("p", { class: "entry-meta" }, meta.map((line) => el("span", { text: line }))),
-              el("div", { class: "entry-actions" }, [button, remove]),
             ]),
             images > 0
               ? el(
@@ -1996,6 +2005,7 @@
                   Array.from({ length: images }, (_, index) => thumbnail(report, index)),
                 )
               : null,
+            el("div", { class: "entry-actions" }, [button, remove]),
           ]);
         }
 
