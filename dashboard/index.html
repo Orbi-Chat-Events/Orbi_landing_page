@@ -815,6 +815,7 @@
       .entry-actions {
         display: flex;
         justify-content: flex-end;
+        gap: 8px;
       }
 
       #reports-note {
@@ -911,6 +912,15 @@
       .close-report {
         border-color: var(--accent);
         color: var(--accent);
+      }
+
+      .delete-report {
+        border-color: var(--critical);
+        color: var(--critical);
+      }
+
+      .delete-report:hover {
+        background: var(--critical-soft);
       }
 
       .bars-builds .bar-row {
@@ -1689,6 +1699,11 @@
             text: open ? "Close report" : "Reopen",
           });
           button.addEventListener("click", () => setReportStatus(report, open ? "close" : "reopen", button));
+          // Only closed reports can be deleted; the server refuses open ones too.
+          const remove = open
+            ? null
+            : el("button", { class: "ghost delete-report", type: "button", text: "Delete" });
+          remove?.addEventListener("click", () => deleteReport(report, remove));
           return el("li", { class: "entry" }, [
             el("div", { class: "entry-top" }, [
               el("span", { class: "entry-kind" }, [document.createTextNode(REPORT_KINDS[report.kind] || readable(report.kind)), status]),
@@ -1700,7 +1715,7 @@
               text: report.description || "No description",
             }),
             el("p", { class: "entry-meta" }, meta.map((line) => el("span", { text: line }))),
-            el("div", { class: "entry-actions" }, [button]),
+            el("div", { class: "entry-actions" }, [button, remove]),
           ]);
         }
 
@@ -1854,6 +1869,28 @@
             button.disabled = false;
             button.textContent = action === "close" ? "Close report" : "Reopen";
             $("updated").textContent = "Couldn't update the report. Try again.";
+          }
+        }
+
+        async function deleteReport(report, button) {
+          const title = report.issue || REPORT_KINDS[report.kind] || "this report";
+          const files = report.attachments > 0 ? " and its screenshots" : "";
+          if (!window.confirm(`Delete "${title}"${files} permanently? This can't be undone.`)) return;
+          button.disabled = true;
+          button.textContent = "Deleting…";
+          try {
+            if (!reportsState.sample) await callReports({ action: "delete", id: report.id });
+            reportsState.reports = reportsState.reports.filter((item) => item.id !== report.id);
+            renderReports();
+          } catch (error) {
+            if (error.kind === "code") {
+              forgetCode();
+              showGate("Your saved code no longer works. Enter the current code.");
+              return;
+            }
+            button.disabled = false;
+            button.textContent = "Delete";
+            $("updated").textContent = "Couldn't delete the report. Try again.";
           }
         }
 
