@@ -817,6 +817,92 @@
         justify-content: flex-end;
       }
 
+      #reports-note {
+        margin: 20px 0 0;
+      }
+
+      .score-card {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: center;
+        gap: 16px 32px;
+        margin-bottom: 14px;
+        padding: 18px 20px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+      }
+
+      .score-value {
+        margin: 0;
+        font-family: "Sora", system-ui, sans-serif;
+        font-size: 2.6rem;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+
+      .score-value small {
+        color: var(--muted);
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0;
+      }
+
+      .score-stars {
+        margin: 6px 0 2px;
+        color: var(--series-2);
+        font-size: 1.05rem;
+        letter-spacing: 2px;
+      }
+
+      .score-sub {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .score-bars {
+        display: grid;
+        gap: 6px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .score-bar {
+        display: grid;
+        grid-template-columns: 2.2em minmax(0, 1fr) 2.6em;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.84rem;
+      }
+
+      .score-track {
+        height: 8px;
+        border-radius: 999px;
+        background: var(--surface-sunk);
+        overflow: hidden;
+      }
+
+      .score-fill {
+        display: block;
+        height: 100%;
+        border-radius: 999px;
+        background: var(--series-2);
+      }
+
+      .score-count {
+        color: var(--muted);
+        text-align: right;
+      }
+
+      @media (max-width: 680px) {
+        .score-card {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+
       .entry-actions .ghost[disabled] {
         opacity: 0.6;
         cursor: progress;
@@ -1033,6 +1119,7 @@
           <ol class="entries" id="report-list"></ol>
         </div>
         <div id="feedback-panel" role="tabpanel" aria-labelledby="tab-feedback" hidden>
+          <section class="score-card" id="feedback-score" aria-label="Overall feedback score"></section>
           <ol class="entries" id="feedback-list"></ol>
         </div>
         <p class="panel-note" id="reports-note"></p>
@@ -1557,7 +1644,9 @@
 
         function personText(person, fallback) {
           if (!person) return fallback;
-          return person.handle ? `${person.name} (@${person.handle})` : person.name;
+          // Stored handles may already start with "@"; show exactly one.
+          const handle = String(person.handle || "").replace(/^@+/, "");
+          return handle ? `${person.name} (@${handle})` : person.name;
         }
 
         function deviceText(entry) {
@@ -1618,7 +1707,10 @@
         function feedbackEntry(item) {
           return el("li", { class: "entry" }, [
             el("div", { class: "entry-top" }, [
-              el("span", { class: "entry-kind", text: item.rating ? `Rating: ${item.rating}` : "Feedback" }),
+              el("span", {
+                class: "entry-kind",
+                text: ratingOf(item) ? `${"★".repeat(ratingOf(item))}${"☆".repeat(5 - ratingOf(item))}  ${ratingOf(item)}/5` : "Feedback",
+              }),
               el("time", { class: "entry-date num", datetime: item.createdAt, text: when(item.createdAt) }),
             ]),
             el("p", {
@@ -1630,6 +1722,58 @@
               deviceText(item) ? el("span", { text: deviceText(item) }) : null,
             ]),
           ]);
+        }
+
+        const ratingOf = (item) => {
+          const value = Number.parseInt(String(item.rating ?? "").trim(), 10);
+          return value >= 1 && value <= 5 ? value : null;
+        };
+
+        function renderScore(feedback, limitReached) {
+          const ratings = feedback.map(ratingOf).filter((value) => value !== null);
+          const card = $("feedback-score");
+          if (ratings.length === 0) {
+            card.replaceChildren(el("p", { class: "empty", text: "No ratings yet." }));
+            return;
+          }
+          const average = ratings.reduce((sum, value) => sum + value, 0) / ratings.length;
+          const rounded = Math.round(average * 10) / 10;
+          const fullStars = Math.round(average);
+          const counts = [5, 4, 3, 2, 1].map((stars) => ({
+            stars,
+            count: ratings.filter((value) => value === stars).length,
+          }));
+          const most = Math.max(...counts.map((item) => item.count), 1);
+          card.replaceChildren(
+            el("div", {}, [
+              el("p", { class: "score-value num" }, [
+                document.createTextNode(rounded.toFixed(1)),
+                el("small", { text: " / 5" }),
+              ]),
+              el("p", {
+                class: "score-stars",
+                "aria-hidden": "true",
+                text: "★".repeat(fullStars) + "☆".repeat(5 - fullStars),
+              }),
+              el("p", {
+                class: "score-sub num",
+                text: `${limitReached ? "Newest " : ""}${fmt(ratings.length)} rating${ratings.length === 1 ? "" : "s"}`,
+              }),
+            ]),
+            el(
+              "ul",
+              { class: "score-bars", "aria-label": "Ratings by stars" },
+              counts.map((item) =>
+                el("li", { class: "score-bar num" }, [
+                  el("span", { text: `${item.stars} ★` }),
+                  el("span", { class: "score-track" }, [
+                    el("span", { class: "score-fill", style: `width: ${(item.count / most) * 100}%` }),
+                  ]),
+                  el("span", { class: "score-count", text: fmt(item.count) }),
+                ]),
+              ),
+            ),
+          );
         }
 
         function renderReports() {
@@ -1658,6 +1802,7 @@
           $("feedback-list").replaceChildren(
             ...(feedback.length ? feedback.map(feedbackEntry) : [el("li", { class: "empty", text: "No feedback yet." })]),
           );
+          renderScore(feedback, feedback.length >= 300);
           $("reports-note").textContent = reportsState.sample
             ? "Sample data. Nothing here is real."
             : "Shows the newest 300 reports and 300 feedback entries.";
@@ -1821,6 +1966,8 @@
             feedback: [
               { id: "f1", rating: "5", improvements: "Love the events! Would like dark mode for the calendar.", platform: "ios", appVersion: "1.1.3+175", createdAt: hoursAgo(5), sender: { name: "Freja", handle: "freja" } },
               { id: "f2", rating: "4", improvements: "", platform: "android", appVersion: "1.1.3+174", createdAt: hoursAgo(50), sender: null },
+              { id: "f3", rating: "5", improvements: "Finally a chat app without ads.", platform: "ios", appVersion: "1.1.3+174", createdAt: hoursAgo(70), sender: { name: "Kim", handle: "kim" } },
+              { id: "f4", rating: "3", improvements: "Calls sometimes drop on Android.", platform: "android", appVersion: "1.1.3+173", createdAt: hoursAgo(120), sender: { name: "Laura", handle: "laura" } },
             ],
           });
           $("gate").hidden = true;
