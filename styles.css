@@ -1681,6 +1681,34 @@ a {
   color: var(--ink);
 }
 
+.founder-intro {
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: center;
+  margin: 2rem 0 0.5rem;
+}
+
+.founder-photo {
+  flex: none;
+  width: clamp(112px, 26vw, 168px);
+  aspect-ratio: 5 / 6;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+}
+
+.founder-intro p {
+  margin: 0;
+}
+
+@media (max-width: 560px) {
+  .founder-intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 .legal-lead {
   font-weight: 800;
   color: var(--brand-blue);
