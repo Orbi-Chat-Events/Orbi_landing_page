@@ -447,6 +447,13 @@ a {
   line-height: 0.95;
 }
 
+/* The "Orbi - Chat & Events" line is part of the heading, styled as before. */
+.hero h1 .eyebrow {
+  display: block;
+  font-family: "Manrope", sans-serif;
+  line-height: 1.4;
+}
+
 .hero-text,
 .hero-subtext,
 .section-heading p,
