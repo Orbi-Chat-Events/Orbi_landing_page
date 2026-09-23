@@ -17,6 +17,9 @@
     />
     <meta name="robots" content="noindex, nofollow" />
     <link rel="canonical" href="https://orbichat.io/about/" />
+    <link rel="alternate" hreflang="en" href="https://orbichat.io/about/" />
+    <link rel="alternate" hreflang="da" href="https://orbichat.io/about/da/" />
+    <link rel="alternate" hreflang="x-default" href="https://orbichat.io/about/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Orbi" />
     <meta property="og:title" content="About the Founder | Orbi Chat &amp; Events" />
@@ -35,9 +38,14 @@
             <img src="../assets/orbi-logo-color.png" alt="Orbi" />
           </a>
           <nav class="site-nav desktop-nav" aria-label="Secondary">
+            <a href="../terms/">Terms</a>
             <a href="../privacy/">Privacy</a>
             <a href="../support/">Support</a>
           </nav>
+          <div class="language-switcher desktop-language" aria-label="Language">
+            <button class="language-option is-active" type="button" data-language-option="en" data-language-href="./">EN</button>
+            <button class="language-option" type="button" data-language-option="da" data-language-href="da/">DA</button>
+          </div>
           <a class="cta-pill desktop-cta" href="../">Join Orbi</a>
           <button
             class="menu-toggle"
@@ -52,9 +60,14 @@
           </button>
           <div class="mobile-menu" id="mobile-menu">
             <nav class="mobile-nav" aria-label="Mobile Secondary">
+              <a href="../terms/" data-menu-close>Terms</a>
               <a href="../privacy/" data-menu-close>Privacy</a>
               <a href="../support/" data-menu-close>Support</a>
             </nav>
+            <div class="language-switcher mobile-language" aria-label="Language">
+              <button class="language-option is-active" type="button" data-language-option="en" data-language-href="./">EN</button>
+              <button class="language-option" type="button" data-language-option="da" data-language-href="da/">DA</button>
+            </div>
             <a class="cta-pill mobile-cta" href="../" data-menu-close
               >Join Orbi</a
             >
@@ -70,10 +83,12 @@
           <div class="founder-intro">
             <img
               class="founder-photo"
-              src="../assets/founder-placeholder.svg"
+              src="../assets/founder.jpg"
               alt="Anna Villebro Rasmussen"
-              width="400"
-              height="480"
+              width="500"
+              height="600"
+              loading="lazy"
+              decoding="async"
             />
             <p class="legal-lead">
               I’m Anna Villebro Rasmussen, MSc in Engineering, and I work on Orbi
@@ -88,26 +103,31 @@
           <section>
             <h2>Why I built it</h2>
             <p>
-              I wanted one place to talk with my friends and plan the things we
-              actually do together. The apps I was using kept drifting into
-              something else: feeds to scroll, posts to react to, a quiet nudge
-              to stay a bit longer. The practical parts got buried — who’s
-              coming on Saturday, whose birthday is tomorrow, where we said
-              we’d meet.
+              I was tired of depending on Facebook to keep track of what I do
+              with my friends. The groups and the events were why I stayed —
+              that is where the plans were made, where the invitations came,
+              and where the communities lived. I wanted an alternative where I
+              could keep all the practical parts without having to take the
+              advertising and the algorithmic feed along with them.
             </p>
             <p>
-              So I built what I wanted instead. Orbi sits between a chat app
-              and a social network, and stays on the practical side of that
-              line: messages, events and birthdays. No advertising, no
-              algorithmic feed, and no strangers turning up in your inbox —
-              people can only reach you once you’ve accepted them.
+              What I was missing was somewhere to talk and plan something
+              without ending up scrolling. Who’s coming on Saturday? Whose
+              birthday is tomorrow? Where was it we said we’d meet? Those were
+              the things I needed, and they were the ones that kept getting
+              lost in the noise.
             </p>
             <p>
-              There’s a second reason. Almost everything we talk to each other
-              through is built outside Europe, under someone else’s rules, and
-              paid for by advertising. I wanted the alternative to exist: a
-              communication tool made here, held to European privacy standards,
-              and answerable to the people using it.
+              So I built Orbi: an alternative to what I used Facebook for. A
+              place for messages, events and birthdays, about the people you
+              actually know. No advertising or tracking, no algorithmic feed,
+              and no strangers in your inbox.
+            </p>
+            <p>
+              I also wanted to build a European alternative. A communication
+              tool made here, with respect for privacy, answerable to the
+              people using it. It should be possible to opt out of Big Tech
+              and still be part of the community.
             </p>
           </section>
 
@@ -133,39 +153,10 @@
           </section>
 
           <section>
-            <h2>How Orbi is run</h2>
-            <ul>
-              <li>
-                <strong>Free, and free of advertising.</strong> Orbi doesn’t
-                sell personal data, profiles or access to you, and no decision
-                here is made to keep you on the screen longer.
-              </li>
-              <li>
-                <strong>Encrypted end to end.</strong> Messages and calls are
-                encrypted between the people in them, so I can’t read or hear
-                them either.
-              </li>
-              <li>
-                <strong>Danish and European.</strong> Run from Denmark under
-                Danish and EU law, with the backend hosted in Frankfurt,
-                Germany.
-              </li>
-              <li>
-                <strong>Registered in Denmark</strong> as [company name], CVR
-                [number].
-              </li>
-            </ul>
-            <p>
-              What Orbi collects, and what it doesn’t, is spelled out in the
-              <a href="../privacy/">privacy policy</a>.
-            </p>
-          </section>
-
-          <section>
             <h2>Write to me</h2>
             <p>
               If something’s broken, or you think Orbi gets something wrong,
-              I’d rather hear it:
+              I’d like to hear it:
               <a href="mailto:hello@orbichat.io">hello@orbichat.io</a>. For
               trouble with your account, the
               <a href="../support/">support page</a> is the faster way in.

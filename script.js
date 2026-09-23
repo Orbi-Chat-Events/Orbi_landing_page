@@ -403,7 +403,13 @@ function setMetaContent(selector, content) {
 function applyLanguage(language, shouldStore = false) {
   const nextLanguage = supportedLanguages.includes(language) ? language : "en";
   currentLanguage = nextLanguage;
-  document.documentElement.lang = nextLanguage;
+  // Only a page whose text is translated here takes its language, title and
+  // description from these tables. A page written in one language, such as
+  // the privacy policy or either founder page, keeps its own.
+  const translatesInPlace = document.querySelector("[data-i18n], [data-i18n-html]") !== null;
+  if (translatesInPlace) {
+    document.documentElement.lang = nextLanguage;
+  }
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const value = getTranslation(nextLanguage, element.dataset.i18n);
@@ -443,13 +449,15 @@ function applyLanguage(language, shouldStore = false) {
     button.setAttribute("aria-pressed", String(isActive));
   });
 
-  const meta = translations[nextLanguage].meta;
-  document.title = meta.title;
-  setMetaContent('meta[name="description"]', meta.description);
-  setMetaContent('meta[property="og:title"]', meta.title);
-  setMetaContent('meta[property="og:description"]', meta.ogDescription);
-  setMetaContent('meta[name="twitter:title"]', meta.title);
-  setMetaContent('meta[name="twitter:description"]', meta.twitterDescription);
+  if (translatesInPlace) {
+    const meta = translations[nextLanguage].meta;
+    document.title = meta.title;
+    setMetaContent('meta[name="description"]', meta.description);
+    setMetaContent('meta[property="og:title"]', meta.title);
+    setMetaContent('meta[property="og:description"]', meta.ogDescription);
+    setMetaContent('meta[name="twitter:title"]', meta.title);
+    setMetaContent('meta[name="twitter:description"]', meta.twitterDescription);
+  }
 
   if (shouldStore) {
     try {
@@ -460,13 +468,47 @@ function applyLanguage(language, shouldStore = false) {
   }
 }
 
+// A page that exists as its own document per language, like the founder page,
+// gives each switch button the path to that language's document. Switching
+// then moves between the two documents instead of swapping text in place.
+function languageDocument(language) {
+  const button = document.querySelector(
+    `[data-language-option="${language}"][data-language-href]`,
+  );
+  if (!button) return null;
+  const target = new URL(button.dataset.languageHref, window.location.href);
+  return target.pathname === window.location.pathname ? null : target.href;
+}
+
+function rememberLanguage(language) {
+  try {
+    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+  } catch (error) {
+    // Ignore storage failures; the switch still works for this visit.
+  }
+}
+
 document.querySelectorAll("[data-language-option]").forEach((button) => {
   button.addEventListener("click", () => {
-    applyLanguage(button.dataset.languageOption, true);
+    const language = button.dataset.languageOption;
+    const target = languageDocument(language);
+    if (target) {
+      rememberLanguage(language);
+      window.location.href = target;
+      return;
+    }
+    applyLanguage(language, true);
   });
 });
 
 applyLanguage(currentLanguage);
+
+// Someone who chose Danish on the front page lands on the Danish document
+// here too. `replace` keeps the back button pointing where they came from.
+const preferredDocument = languageDocument(currentLanguage);
+if (preferredDocument) {
+  window.location.replace(preferredDocument);
+}
 
 const track = document.querySelector("[data-carousel-track]");
 const slides = track ? Array.from(track.children) : [];
