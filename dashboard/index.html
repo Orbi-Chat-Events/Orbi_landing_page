@@ -1964,6 +1964,13 @@
             el("span", { "aria-hidden": "true", text: "●" }),
             document.createTextNode(REPORT_STATUSES[report.status] || readable(report.status)),
           ]);
+          // A website report may give an address for a reply.
+          const replyTo = report.replyEmail
+            ? el("span", {}, [
+                document.createTextNode("Reply to: "),
+                el("a", { href: `mailto:${encodeURIComponent(report.replyEmail).replace(/%40/g, "@")}`, text: report.replyEmail }),
+              ])
+            : null;
           const meta = [
             `From ${personText(report.reporter, "someone not signed in")}`,
             `About: ${REPORT_CONTEXTS[report.context] || readable(report.context)}`,
@@ -1996,7 +2003,7 @@
                 class: `entry-body${report.description ? "" : " empty"}`,
                 text: report.description || "No description",
               }),
-              el("p", { class: "entry-meta" }, meta.map((line) => el("span", { text: line }))),
+              el("p", { class: "entry-meta" }, [...meta.map((line) => el("span", { text: line })), replyTo]),
             ]),
             images > 0
               ? el(

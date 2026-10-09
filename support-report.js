@@ -12,6 +12,11 @@
   const submit = form.querySelector('button[type="submit"]');
   const turnstileContainer = form.querySelector("[data-turnstile-container]");
   const disclosure = form.closest("[data-support-report-disclosure]");
+  // The reply address support accepts (NEW_problem-report): letters, digits
+  // and . _ % + - before the @, a dotted domain ending in letters, at most 254
+  // characters.
+  const replyEmailPattern =
+    /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
   let captchaToken = "";
   let turnstileWidgetId = null;
   let turnstileStarted = false;
@@ -95,6 +100,12 @@
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (form.website.value || !form.reportValidity()) return;
+    const email = (form.email?.value || "").trim();
+    if (email && (email.length > 254 || !replyEmailPattern.test(email))) {
+      setStatus("Enter a valid email address, or leave it empty.", "error");
+      form.email.focus();
+      return;
+    }
     if (!endpoint || !captchaToken) {
       setStatus("Complete the security check before sending.", "error");
       return;
@@ -123,6 +134,7 @@
         installationId: deviceId,
         platform: "web",
         appVersion: "landing-page",
+        ...(email ? { email } : {}),
       });
       form.reset();
       captchaToken = "";

@@ -88,8 +88,9 @@
             <div class="support-report-content">
               <h2 id="report-title">Tell us what went wrong</h2>
               <p>
-                Reports are sent privately to Orbi support. Please do not include
-                passwords, backup PINs, verification codes, or other secrets.
+                Reports are sent privately to Orbi support. Add your email if you’d
+                like a reply. Please do not include passwords, backup PINs,
+                verification codes, or other secrets.
               </p>
               <form class="support-report-form" data-support-report novalidate>
                 <label>
@@ -113,6 +114,16 @@
                     required
                     placeholder="Describe the problem without including private security information."
                   ></textarea>
+                </label>
+                <label>
+                  Your email (optional)
+                  <input
+                    name="email"
+                    type="email"
+                    maxlength="254"
+                    autocomplete="email"
+                    placeholder="If you’d like a reply"
+                  />
                 </label>
                 <label class="support-report-trap" aria-hidden="true">
                   Leave this field empty
@@ -138,88 +149,195 @@
                 <details class="support-accordion-item" open>
                   <summary>Do I need to create an account?</summary>
                   <p>
-                    Yes. You need an account to message others and create or
-                    join events.
+                    Yes. You sign up with your phone number and a 6-digit code
+                    we text you, with no password or email needed. You need an
+                    account to chat, add friends and create or join events.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>How do I delete my account?</summary>
                   <p>
-                    You can delete your account in the app settings. Scroll to
-                    the bottom.
+                    Open the People tab and tap the gear icon to go to Settings.
+                    Scroll to the bottom, tap Delete account and confirm. This
+                    can’t be undone: your profile, friends, devices and backup
+                    PIN are removed. Messages you’ve already sent stay visible to
+                    the other people in those chats. If you only just signed in on this
+                    phone, you can delete your account after 24 hours.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>Do I need to use my real name?</summary>
-                  <p>No. You can choose any username you like.</p>
+                  <p>
+                    No. Choose any name your friends will recognise, up to 25
+                    characters. It doesn’t have to be unique. Orbi also gives
+                    you an Orbi ID made from your name (we add a number if it’s
+                    taken), so friends can find exactly you. Your Orbi ID can’t
+                    be changed later.
+                  </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>Can I create more than one account?</summary>
                   <p>
-                    Orbi is designed for one account per person. If you need
-                    help accessing your account, contact support.
+                    Each Orbi account belongs to one phone number, and a number
+                    can only be used for one account. If your number belonged to
+                    someone else on Orbi before, tap “I don’t remember my PIN”
+                    when asked for a backup PIN, choose “I am a new user” and
+                    tap “Contact support”. We’ll check and text you, usually
+                    within 1–2 business days.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>What happens if I lose access to my account?</summary>
                   <p>
-                    If you haven&#8217;t set up a backup PIN or no longer have
-                    access to your phone, you can reset your account by
-                    selecting &#8220;Skip&#8221; on the &#8220;Access your
-                    data&#8221; page during login. This will start a 6&#8211;8
-                    hour waiting period. Once the wait is over, tap
-                    &#8220;Reset Account&#8221; to regain access. Please note
-                    that this will permanently remove access to all
-                    end-to-end encrypted chats.
+                    When you sign in on a new phone or after reinstalling Orbi,
+                    you’ll see “Unlock your chat history”. Enter your backup PIN
+                    to get your chats back. If Orbi is still signed in on
+                    another phone, set a new PIN there (Settings → Backup &amp;
+                    restore) and enter it here, and you keep everything.
+                  </p>
+                  <p>
+                    Otherwise tap “I don’t remember my PIN”, choose “Start
+                    fresh” and tap “Continue”. A security wait of at least 8
+                    hours starts. If one of your other phones was used in the
+                    last 24 hours, the wait lasts until that phone has been
+                    unused for 24 hours. Your other phones are alerted and can
+                    approve or reject the reset. When the wait is over, tap
+                    “Check reset status”.
+                  </p>
+                  <p>
+                    A reset gives you a new encryption key. Some encrypted chat
+                    history may be lost for good, your old backup PIN stops
+                    working (create a new one), and your other phones need to
+                    unlock again.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>What is the Backup PIN used for?</summary>
                   <p>
-                    Your backup PIN is a security code used to access your
-                    account when logging in from a new device or after logging
-                    out. It also enables end-to-end encrypted chats to be
-                    securely available across all your devices.
+                    Your backup PIN is a 6-digit code that unlocks your
+                    end-to-end encrypted chats when you start using Orbi on a
+                    new phone or after reinstalling the app. It doesn’t sign you
+                    in; you always sign in with your phone number and a code.
+                    Without it, a new phone can’t open your existing encrypted
+                    chats. Create or change it in Settings → Backup &amp;
+                    restore.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>What if I forgot my backup PIN?</summary>
                   <p>
-                    If you forgot your backup PIN, you can reset it. Go to
-                    Settings page -&gt; Backup &amp; restore -&gt; create new PIN.
+                    If you’re still signed in on a phone, open Settings → Backup
+                    &amp; restore, type a new 6-digit PIN and tap ✓. You don’t
+                    need the old one. Then enter the new PIN on your new phone
+                    (tap “Retry PIN” if you’re on the waiting screen). If you’re
+                    not signed in on any phone, the PIN can’t be reset: tap “I
+                    don’t remember my PIN” and choose “Start fresh” (see “What
+                    happens if I lose access to my account?”).
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>Why is there a waiting period to reset my account?</summary>
                   <p>
-                    The waiting period is a security measure that helps protect
-                    your account from unauthorized access by giving you time to
-                    review and deny any login attempts you didn&#8217;t
-                    initiate.
+                    The wait protects you if someone else gets hold of your
+                    phone number. While it runs, your other signed-in phones get
+                    an alert and can tap Reject, which blocks the phone that’s
+                    asking and cancels the reset. Entering the correct backup
+                    PIN on any phone also cancels it. An account can be reset at
+                    most once a day.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>Can I change my username or photo later?</summary>
                   <p>
-                    Yes. You can update your username and profile photo on your
-                    profile page. Click the edit button next to your profile
-                    picture.
+                    Yes, as often as you like. Open the People tab and tap the
+                    pencil button on your profile card at the top (it’s also at
+                    the top of Settings). Tap your photo to choose a new one, or
+                    change your name, then tap ✓. Your Orbi ID stays the same.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>Is my personal information visible to others?</summary>
                   <p>
-                    Only your username and profile photo is visible to others. <br>
-                    Your birthday (date not year) is visible on the day, if you enable the feature.
+                    Your name, Orbi ID and profile photo are shown to people who
+                    can find you (Settings → Who can find you) and to people you
+                    share a chat or event with. Your phone number is never
+                    shown, but people who already have your number saved can see
+                    that you’re on Orbi, unless you choose “No one”. Friends can
+                    see the friends, groups and events you have in common. In
+                    chats, people can see when you’ve read their messages and
+                    when you’re typing. If you add your birthday, only friends
+                    who’ve added theirs can see the day and month, never the
+                    year.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>How do I change my phone number?</summary>
+                  <p>
+                    Go to Settings → Phone number, enter your new number and the
+                    code we text it. The change happens 24 hours later; until
+                    then any of your phones can cancel it. Afterwards, sign in
+                    with your new number.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>I got “Your number changes in 24 hours”, but it wasn’t me.</summary>
+                  <p>
+                    Open Orbi → Settings and tap Cancel change. Then go to
+                    Manage devices and remove the phone you don’t recognise.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>Orbi says someone signed in to my account.</summary>
+                  <p>
+                    Tap “It’s me” if it was you, or “Not me!” to block that
+                    phone right away.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>How do I see or remove my devices?</summary>
+                  <p>
+                    Go to Settings → Manage devices. Tap the log-out icon next
+                    to a device, or “Terminate all other sessions”.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>Who can find me?</summary>
+                  <p>
+                    You choose in Settings → Who can find you: Everyone, Friends
+                    of friends, Contacts only or No one. Friends can always find
+                    you. “No one” also stops people with your number from seeing
+                    that you’re on Orbi.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>Why can’t my new phone change my number, delete my account or remove devices?</summary>
+                  <p>
+                    For your safety, a newly approved phone has to wait 24 hours
+                    before it can do these things. Your other phones can still
+                    do them.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>I’m not getting the code.</summary>
+                  <p>
+                    Wait 30 seconds and tap “Didn’t get a code? Call me
+                    instead”. An automated call reads the code to you.
                   </p>
                 </details>
               </div>
@@ -231,63 +349,136 @@
                 <details class="support-accordion-item">
                   <summary>How do I start a chat?</summary>
                   <p>
-                    On the Chats page, click the create button in the top right
-                    corner. You need to have friends before you can start a
-                    chat.
+                    Tap the pen icon at the top right of the Chats tab. Choose
+                    one friend for a one-to-one chat, or several friends for a
+                    group (up to 100 people), then tap ✓. Group chats are for
+                    friends only. Want to write to someone who isn’t your friend
+                    yet? Tap their name and choose Message to send them a
+                    message request.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>How do I connect with someone on Orbi?</summary>
                   <p>
-                    You connect with people by sending or accepting a friend
-                    request. Once you&#8217;re connected, you can message each
-                    other directly. Go to the profile page and click
-                    &quot;Find Friends&quot;.
+                    Send a friend request. Open the People tab and search by
+                    name or Orbi ID, or look under “People you might know” or
+                    “From contacts” (if you allow contacts). Then tap Add
+                    friend. Once they accept, you’re friends and can chat and
+                    add each other to groups.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>What happens when I receive a friend request?</summary>
                   <p>
-                    You can choose to accept or ignore it. You&#8217;re always
-                    in control of who you connect with.
+                    You’ll get a notification, and the request shows at the top
+                    of the People tab under Friend requests. Tap Accept to
+                    become friends, or Decline. Orbi doesn’t tell them you
+                    declined, but they can’t send you a new request for 30 days.
+                    You can also leave it unanswered, or block them from the ⋮
+                    menu.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>Will I receive spam or random messages?</summary>
                   <p>
-                    Not likely. Since only accepted connections can message you
-                    directly, you won&#8217;t receive direct messages from
-                    strangers.
+                    Rarely. People who aren’t your friends can’t start a normal
+                    chat with you, but someone who can find you can send you one
+                    short message request. It waits under People → Message
+                    requests, not in your Chats, and they can’t send anything
+                    more until you tap Accept. If you tap Delete, they can’t
+                    send you another request for 30 days. You can also block
+                    people, or change who can find you under Settings → Who can
+                    find you.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>Can I block someone?</summary>
                   <p>
-                    Yes. You can block users to prevent any further interaction.
-                    Go to Profile page -&gt; &quot;View Friends&quot; and select
-                    &quot;Remove &amp; block user&quot;
+                    Yes. On the People tab, tap ⋮ next to the person and choose
+                    Block user. You can also block from their profile (More →
+                    Block user) or from a chat (tap their name at the top → More
+                    → Block user). Blocking ends your friendship, and neither of
+                    you can send the other friend requests, message requests or
+                    direct messages. Your one-to-one chat disappears from your
+                    list. If you’re in the same group or event you both stay in
+                    it, but you won’t be notified of their messages. They aren’t
+                    told. To unblock, go to Settings → Blocked users.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>Can I remove someone later?</summary>
                   <p>
-                    Yes. You can remove a connection at any time. If you choose
-                    to remove and block a user, they can no longer send a new
-                    friend request and message you directly.
+                    Yes. On the People tab, tap ⋮ next to the friend (or More on
+                    their profile) and choose Remove friend. They aren’t
+                    notified. Removing a friend doesn’t delete your chat, so you
+                    can both still write in an existing one-to-one chat. If they
+                    sent the original friend request, they have to wait 24 hours
+                    before sending a new one. To stop all direct contact, choose
+                    Block user instead; that also removes the friendship.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>Can people message me without my permission?</summary>
                   <p>
-                    You decide who can reach you&#8212;only people you&#8217;ve
-                    connected with can message you directly. If a friend adds
-                    you to a group, people in that group can message you there.
+                    Mostly no. Only friends can start a normal chat with you.
+                    Anyone else who can find you can send one message request,
+                    which you can accept or delete. Friends can add you to group
+                    chats, and the people in that group can write to you there.
+                    You can leave a group at any time (More → Leave group). If
+                    you’re invited to an event, you’re added to its chat. To
+                    stop someone completely, block them.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>What is a message request?</summary>
+                  <p>
+                    A single short text message from someone who isn’t your
+                    friend yet. It waits under People → Message requests until
+                    you tap Accept or Delete. Accepting doesn’t make you
+                    friends.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>Can I edit or delete a message?</summary>
+                  <p>
+                    Yes. Long-press your message. Edit changes a text message
+                    and marks it “Edited”. “Delete for everyone” removes your
+                    own message for everyone, and “Delete for me” removes any
+                    message just for you.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>Can others see when I’ve read their message?</summary>
+                  <p>
+                    Yes. Two ticks mean seen, and you can long-press your
+                    message to see who has seen it. It can’t be turned off, and
+                    it’s never shown between blocked people.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>Can I call people?</summary>
+                  <p>
+                    Yes. Tap the phone icon at the top of a chat. One-to-one and
+                    group calls are end-to-end encrypted. You can’t call someone
+                    until they’ve accepted your message request.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>How do I report someone?</summary>
+                  <p>
+                    On their profile, tap More → Report user. In a chat, tap the
+                    name at the top → More → Report.
                   </p>
                 </details>
               </div>
@@ -299,59 +490,119 @@
                 <details class="support-accordion-item">
                   <summary>How do I create an event?</summary>
                   <p>
-                    On the Events page, click the create button in the top right
-                    corner. You need to have friends before you can invite
-                    poeple to your event.
+                    Go to Events and tap the pen icon in the top right corner.
+                    Add a title, time and place, then tap Create event. Then tap
+                    Invite friends to invite your friends, people from your
+                    group chats or your other events, or anyone by phone number
+                    via SMS.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>Can I update an event after creating it?</summary>
                   <p>
-                    Yes. You can update event details at any time, and
-                    participants will see the changes.
+                    Yes, if you’re the host or a co-host. Open the event, tap
+                    Manage and choose Edit event. You can change the photo,
+                    title, time, place, description and event type until the
+                    event is over. Guests get a notification that the event was
+                    updated.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
-                  <summary>How do I track who&#8217;s coming?</summary>
+                  <summary>How do I track who’s coming?</summary>
                   <p>
-                    You can see responses directly in the event&#8212;no need
-                    to manage messages or separate lists.
+                    Open the event and tap View next to the Invited | Going
+                    count. You’ll see who’s Going, who Can’t go, who said Maybe
+                    and who hasn’t answered yet, plus how many people you
+                    invited by SMS.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>Can I invite people who are not on Orbi yet?</summary>
                   <p>
-                    Yes. You can invite people to events by SMS, even if they are not on Orbi yet. 
-                    This makes it easier to plan with everyone, not only people already using the app.
+                    Yes. Open the event, tap Invite friends (under Manage if
+                    you’re hosting) and choose Via SMS. Enter their phone number
+                    and tap Invite. If they’re not on Orbi yet, they get a text
+                    with a link to join. If they are, they get the invitation in
+                    the app. They become a guest once they answer. SMS
+                    invitations expire after 30 days, and you can send up to 5 a
+                    day.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
-                  <summary>Can i delete or cancel an event?</summary>
+                  <summary>Can I delete or cancel an event?</summary>
                   <p>
-                    Yes. If you create or manage an event, you can cancel it or delete it from Orbi. 
-                    When an event is cancelled, invited guests can see that the plan is no longer happening, so everyone stays updated.
+                    Yes, if you’re the host or a co-host. Open the event, tap
+                    Manage and choose Cancel event. Choose “Cancel event and
+                    keep event information” to call it off: guests are notified
+                    and can still see the details and comments, and you can add
+                    a comment about why. Or choose “Delete event” to remove it
+                    completely. Deleting can’t be undone, and guests aren’t
+                    notified. Changed your mind? You can bring back a cancelled
+                    event with Restore event before it starts.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
-                  <summary>How do i create an event group chat?</summary>
+                  <summary>How do I create an event group chat?</summary>
                   <p>
-                    When you create or manage an event, open the Manage dropdown 
-                    and select Create group chat to start a dedicated event chat 
-                    with the event guests.
+                    You need to be the host or a co-host. Open the event, tap
+                    Manage and choose Create group chat (you need to have
+                    invited at least one guest first). Everyone in the event is
+                    added, except people who answered Can’t go, and guests
+                    invited later join automatically. If you remove someone from
+                    the event, they also leave the chat.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
-                  <summary>How do i remind guests to respond to event?</summary>
+                  <summary>How do I remind guests to respond to an event?</summary>
                   <p>
-                    When you create or manage an event, open the Manage dropdown 
-                    and select Remind guests to respond to send a reminder 
-                    to invited guests who haven’t responded yet.
+                    You need to be the host or a co-host. Open the event, tap
+                    Manage and choose “Remind guests to respond to event”.
+                    Everyone who hasn’t answered yet, or answered Maybe, gets a
+                    reminder. You can send one reminder every 24 hours until the
+                    event starts.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>How do I remove someone from my event?</summary>
+                  <p>
+                    Open the event and tap View next to the Invited | Going
+                    count. Tap the remove icon next to the person and confirm.
+                    They’re taken out of the event and its group chat. Hosts and
+                    co-hosts can remove any guest except another co-host.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>Can I add co-hosts?</summary>
+                  <p>
+                    Yes. Open the event, tap Manage → Add co-hosts and tap Add
+                    next to someone who’s invited. Co-hosts can edit the event,
+                    invite people, send reminders, remove guests and cancel the
+                    event.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>Can I comment on an event?</summary>
+                  <p>
+                    Yes. Everyone in the event can comment, add a photo, GIF or
+                    poll, reply and react. Comments close when the event is over
+                    or cancelled, but stay visible.
+                  </p>
+                </details>
+
+                <details class="support-accordion-item">
+                  <summary>Can I leave an event?</summary>
+                  <p>
+                    There’s no Leave button. Answer Can’t go so the host knows,
+                    and mute the event if you don’t want notifications.
                   </p>
                 </details>
 
@@ -364,39 +615,51 @@
                 <details class="support-accordion-item">
                   <summary>Do you use my data for ads?</summary>
                   <p>
-                    No. Orbi does not use your personal data for advertising or
-                    targeting, and we do not sell personal data or access to
-                    individual profiles. We may use privacy-protected aggregate
-                    statistics that do not identify individual users.
+                    No. There are no ads in Orbi, and we don’t use your personal
+                    data for advertising or targeting. We never sell personal
+                    data or access to individual profiles. We may create and
+                    share privacy-protected aggregate statistics that don’t
+                    identify anyone.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>What data do you collect?</summary>
                   <p>
-                    We collect the data needed to provide and secure the app,
-                    such as account details, content you choose to share, and
-                    limited technical and usage information. We may turn
-                    activity information into privacy-protected aggregate
-                    statistics, but customers do not receive user-level data
-                    through those statistics.
+                    We collect what we need to run and protect Orbi: your phone
+                    number and name, a profile photo and birthday if you add
+                    them, your friends and events, the content you share, and
+                    limited technical information such as device type, app
+                    version and crash reports. If you use Find friends, your
+                    contacts’ phone numbers are checked against Orbi accounts
+                    and then discarded. See our <a href="../privacy/">Privacy
+                    Policy</a> for the full list.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>Does Orbi use end-to-end encryption?</summary>
                   <p>
-                    Yes&#8212;messages on Orbi are secured with end-to-end
-                    encryption when this option is enabled during chat creation,
-                    meaning only participants in the conversation can read them.
+                    Yes. Every chat on Orbi is end-to-end encrypted, including
+                    one-to-one, group and event chats, and including photos,
+                    videos, voice messages and files. Calls are end-to-end
+                    encrypted too. Only the people in the chat can read or hear
+                    them, not Orbi. A few things aren’t end-to-end encrypted,
+                    such as who is in a chat, chat names, message times, and
+                    event details and comments.
                   </p>
                 </details>
 
                 <details class="support-accordion-item">
                   <summary>Is my data secure?</summary>
                   <p>
-                    Yes. We use encryption to protect your data both in transit
-                    and at rest, and we design Orbi with privacy in mind.
+                    We work hard to keep it safe. Your data travels over
+                    encrypted connections, chats and calls are end-to-end
+                    encrypted, and what Orbi stores on your phone is encrypted,
+                    with your keys kept in your phone’s secure storage. Your
+                    backup PIN never leaves your phone, and our servers are in
+                    Frankfurt, Germany. No system is 100% secure, but we review
+                    our security regularly.
                   </p>
                 </details>
               </div>
@@ -437,12 +700,15 @@
                 </details>
 
                 <details class="support-accordion-item">
-                  <summary>Something isn&#8217;t working&#8212;what should I do?</summary>
+                  <summary>Something isn’t working—what should I do?</summary>
                   <p>
-                    Try restarting the app or checking your internet
-                    connection.<br />
-                    If the issue continues, contact us at:
-                    <a href="mailto:hello@orbichat.io">hello@orbichat.io</a>.
+                    Try restarting the app, checking your internet connection
+                    and updating Orbi to the latest version. If it still doesn’t
+                    work, go to Settings → Report a problem in the app; you can
+                    add screenshots, and your app version is included
+                    automatically. You can also use the form at the top of this
+                    page and add your email if you’d like a reply, or email us
+                    at <a href="mailto:hello@orbichat.io">hello@orbichat.io</a>.
                   </p>
                 </details>
               </div>
