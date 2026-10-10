@@ -64,12 +64,12 @@
         <article class="legal-sheet" data-reveal>
           <p class="eyebrow">Privacy Policy</p>
           <h1>Privacy Policy</h1>
-          <p class="legal-lead">Last Updated: 9th of October 2026</p>
+          <p class="legal-lead">Last Updated: 10th of October 2026</p>
           <p>
             At Orbi, your privacy matters. This Privacy Policy explains what
             personal data we collect, how we use it, and your rights under the
             General Data Protection Regulation (GDPR). It applies when you use
-            Orbi and its related services.
+            Orbi, including Orbi Web in your browser, and its related services.
           </p>
 
           <section>
@@ -91,7 +91,7 @@
               <li>Username (this does not have to be your real name)</li>
               <li>Profile photo (optional)</li>
               <li>Date of birth (optional)</li>
-              <li>Device and security-session information</li>
+              <li>Device and security-session information, including browsers you link to Orbi Web (see below)</li>
               <li>Relationships and event activity you create through Orbi</li>
               <li>Your privacy choices, such as who can find you</li>
               <li>Phone numbers from your contacts, if you choose to find friends (see section 4)</li>
@@ -119,6 +119,52 @@
               We may collect limited technical and usage data to improve performance, 
               reliability, and security.
             </p>
+
+            <h3 id="orbi-web">Orbi Web</h3>
+            <p>
+              Orbi Web, at web.orbichat.io, lets you use your chats and events
+              on a computer. You link a browser by scanning a code with Orbi on
+              your phone, and you can remove a linked browser from your phone at
+              any time.
+            </p>
+            <ul>
+              <li>
+                A linked browser is kept with your devices, with a name such as
+                &ldquo;Chrome on macOS&rdquo;, the country it was linked from
+                (looked up from its IP address, as for phones), and when it was
+                linked and last used. Your other devices are told when a browser
+                is linked.
+              </li>
+              <li>
+                To open encrypted chats, you enter your backup PIN in the
+                browser. The PIN unlocks your keys inside the browser and is
+                never sent to us.
+              </li>
+              <li>
+                Your messages are kept only in the browser&rsquo;s memory while
+                Orbi Web is open, and are loaded again from our servers the next
+                time. If you choose &ldquo;Remember this browser&rdquo;, your
+                sign-in and your keys are stored in that browser, encrypted with
+                a key the browser can use but cannot reveal, until you sign out
+                or the browser is removed. Otherwise nothing stays in the browser
+                after you close the tab. Choose it only on a computer that only
+                you use.
+              </li>
+              <li>
+                To protect linking against misuse, we count link attempts per IP
+                address. We store only a scrambled form of the address (a keyed
+                hash), never the address itself.
+              </li>
+              <li>
+                Orbi Web loads its code and fonts only from web.orbichat.io and
+                otherwise connects only to our servers, except for GIFs: as in
+                the app, GIF search and the GIFs shown come from GIPHY (see
+                section 9). It uses no analytics, advertising, or tracking
+                cookies. Links you open, such as a place in Google Maps, open on
+                that site. The browser asks before Orbi Web can use your
+                microphone (for voice messages) or your location (to share it).
+              </li>
+            </ul>
             </section>
 
           <section>
@@ -208,6 +254,12 @@
               are deleted 180 days after the report was last updated.
             </p>
             <p>
+              A browser linked to Orbi Web that has not been used for 14 days
+              is signed out automatically. Codes for linking a browser are
+              deleted within a day, and the scrambled IP addresses counted
+              against misuse within two days.
+            </p>
+            <p>
               Technical and activity information used to produce statistics is
               retained only as long as reasonably necessary for its stated
               purpose. Statistics may be retained for longer when they have been
@@ -223,6 +275,7 @@
               <li>Delete messages you have sent, remove chats from your list, leave group chats, and delete events you created</li>
               <li>Edit or remove your date of birth in account settings</li>
               <li>Choose who can find you in Settings</li>
+              <li>Sign out of Orbi Web, or remove a linked browser from Orbi on your phone</li>
               <li>Request a copy or correction of your data by contacting us</li>
             </ul>
           </section>
@@ -344,12 +397,20 @@
               by <a href="https://db-ip.com">DB-IP</a>.
             </p>
 
-            <h3>Providers used on this website</h3>
+            <h3>Providers used on our websites</h3>
             <ul>
               <li>
                 <strong>GitHub Pages (GitHub, United States)</strong>: hosts
                 orbichat.io. Like any web host, it receives your IP address and
                 browser information when you visit.
+              </li>
+              <li>
+                <strong>Cloudflare Pages (Cloudflare, United States)</strong>:
+                hosts Orbi Web at web.orbichat.io. Like any web host, it receives
+                your IP address, browser information, and which of Orbi Web&rsquo;s
+                files your browser loads, including the font files needed for the
+                characters shown. It does not receive your messages, which travel
+                directly between your browser and our servers at Nhost.
               </li>
               <li>
                 <strong>Cloudflare Turnstile (United States)</strong>: protects
@@ -358,7 +419,7 @@
               </li>
             </ul>
             <p>
-              This website does not use analytics, advertising cookies, or
+              Our websites do not use analytics, advertising cookies, or
               externally hosted fonts. Links to the App Store and Google Play
               take you to Apple's and Google's own sites, which have their own
               privacy policies.
