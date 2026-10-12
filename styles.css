@@ -764,6 +764,12 @@ a {
   text-transform: uppercase;
 }
 
+/* Nearly ready: blue, apart from what is still in development. */
+.roadmap-status--soon {
+  background: rgba(36, 56, 123, 0.1);
+  color: var(--brand-blue);
+}
+
 .roadmap-note {
   margin: 1.6rem 0 0;
   color: var(--muted);

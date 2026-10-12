@@ -130,6 +130,7 @@ const translations = {
       videoTitle: "Video calls",
       videoText:
         "Video calls with friends and groups, built with the same focus on privacy as our audio calls.",
+      webStatus: "Beta coming soon",
       webTitle: "Orbi on the web",
       webText:
         "Use Orbi in the browser on your computer, with your chats and events in sync with the app.",
@@ -311,6 +312,7 @@ const translations = {
       videoTitle: "Videoopkald",
       videoText:
         "Videoopkald med venner og grupper, bygget med samme fokus på privatliv som vores lydopkald.",
+      webStatus: "Beta klar snart",
       webTitle: "Orbi på nettet",
       webText:
         "Brug Orbi i browseren på din computer, med dine chats og events synkroniseret med appen.",
