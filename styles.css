@@ -255,6 +255,78 @@ a {
   width: 100%;
 }
 
+/* Orbi Web, for people who already have the app: a quiet link beside
+   "Join Orbi", as WhatsApp's "Log in", not a second call to action. */
+.web-link {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-pill);
+  color: #202020;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: background-color 180ms ease;
+}
+
+.web-link:hover,
+.web-link:focus-visible {
+  background: rgba(36, 56, 123, 0.06);
+  outline: none;
+}
+
+/* Where the header gets tight, a more compact one, so the link fits
+   without making the header taller than it was without it: no "Beta" tag,
+   and less room around the links (under 760 the menu takes over). */
+@media (max-width: 1179px) {
+  .web-link .beta-tag {
+    display: none;
+  }
+
+  .site-nav a,
+  .web-link {
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .nav-shell {
+    gap: 0.5rem;
+  }
+
+  .site-nav {
+    gap: 0;
+  }
+
+  .site-nav a,
+  .web-link {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .cta-pill.desktop-cta {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.beta-tag {
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(36, 56, 123, 0.1);
+  color: var(--brand-blue);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
 .menu-toggle,
 .mobile-menu {
   display: none;
@@ -518,6 +590,22 @@ a {
   box-shadow: 0 0 0 0.25rem rgba(244, 161, 101, 0.16);
 }
 
+/* Under the store badges: Orbi Web, for those who already have the app. */
+.web-note {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.web-note a {
+  margin-left: 0.2rem;
+  color: var(--brand-blue);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
 .store-badge {
   display: inline-flex;
   align-items: center;
@@ -768,6 +856,15 @@ a {
 .roadmap-status--soon {
   background: rgba(36, 56, 123, 0.1);
   color: var(--brand-blue);
+}
+
+.roadmap-link {
+  display: inline-block;
+  margin-top: 0.9rem;
+  color: var(--brand-blue);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .roadmap-note {
@@ -2182,6 +2279,7 @@ a {
   }
 
   .desktop-nav,
+  .desktop-web,
   .desktop-cta,
   .desktop-language {
     display: none;

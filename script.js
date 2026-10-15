@@ -21,6 +21,8 @@ const translations = {
       faq: "FAQ",
       contact: "Contact us",
       join: "Join Orbi",
+      web: "Orbi Web",
+      webBeta: "Beta",
     },
     language: {
       label: "Language",
@@ -45,6 +47,8 @@ const translations = {
       googlePlayAlt: "Get it on Google Play",
       betaLabel: "Beta version",
       betaText: "Orbi is still being tested and improved.",
+      webQuestion: "Already on Orbi?",
+      webLink: "Use it on your computer →",
     },
     principles: {
       eyebrow: "Why Orbi?",
@@ -130,10 +134,11 @@ const translations = {
       videoTitle: "Video calls",
       videoText:
         "Video calls with friends and groups, built with the same focus on privacy as our audio calls.",
-      webStatus: "Beta coming soon",
+      webStatus: "Beta – try it now",
       webTitle: "Orbi on the web",
       webText:
         "Use Orbi in the browser on your computer, with your chats and events in sync with the app.",
+      webLink: "Open Orbi Web →",
       publicTitle: "Public groups and events",
       publicText:
         "Open groups and events that people can discover and join, for clubs, associations, and local communities.",
@@ -156,6 +161,9 @@ const translations = {
         "You decide who can reach you. Friends can message you directly. Anyone else can only send you a message request: one short text message, without photos, files, or calls. You can accept the request to start chatting or delete it, and they cannot write again until you accept. If you are added to a group chat, people in that group can message you there.",
       freeQuestion: "Is Orbi free to use?",
       freeAnswer: "Yes. Orbi is completely free to use.",
+      webQuestion: "Can I use Orbi on my computer?",
+      webAnswer:
+        'Yes, with Orbi Web (beta). Open <a href="https://web.orbichat.io">web.orbichat.io</a> in your browser, then on your phone go to Settings → Orbi on your computer → Scan code, and unlock your chats with your backup PIN. Your phone stays in charge of your account, and you can sign the browser out from it at any time.',
       privateQuestion: "Is Orbi private?",
       privateAnswer:
         "Yes. Orbi does not sell personal data, personally identifiable information, or access to individual profiles. We do not use your personal data for advertising or targeting.",
@@ -179,6 +187,7 @@ const translations = {
       terms: "Terms of service",
       privacy: "Privacy policy",
       support: "Get support",
+      web: "Orbi Web",
       about: "About the founder",
       contactButton: "Contact us",
       text: "A small startup from Denmark building a calmer way to chat and plan together.",
@@ -203,6 +212,8 @@ const translations = {
       faq: "FAQ",
       contact: "Kontakt os",
       join: "Kom med i Orbi",
+      web: "Orbi Web",
+      webBeta: "Beta",
     },
     language: {
       label: "Sprog",
@@ -227,6 +238,8 @@ const translations = {
       googlePlayAlt: "Hent den på Google Play",
       betaLabel: "Betaversion",
       betaText: "Orbi bliver stadig testet og forbedret.",
+      webQuestion: "Har du allerede Orbi?",
+      webLink: "Brug den på computeren →",
     },
     principles: {
       eyebrow: "Hvorfor Orbi?",
@@ -312,10 +325,11 @@ const translations = {
       videoTitle: "Videoopkald",
       videoText:
         "Videoopkald med venner og grupper, bygget med samme fokus på privatliv som vores lydopkald.",
-      webStatus: "Beta klar snart",
+      webStatus: "Beta – prøv den nu",
       webTitle: "Orbi på nettet",
       webText:
         "Brug Orbi i browseren på din computer, med dine chats og events synkroniseret med appen.",
+      webLink: "Åbn Orbi Web →",
       publicTitle: "Offentlige grupper og events",
       publicText:
         "Åbne grupper og events, som andre kan finde og deltage i, for eksempel klubber, foreninger og lokale fællesskaber.",
@@ -338,6 +352,9 @@ const translations = {
         "Du bestemmer, hvem der kan få fat i dig. Dine venner kan skrive direkte til dig. Alle andre kan kun sende dig en beskedanmodning: én kort tekstbesked uden billeder, filer eller opkald. Du kan acceptere anmodningen og begynde at chatte eller slette den, og de kan ikke skrive igen, før du accepterer. Hvis du bliver tilføjet til en gruppechat, kan personer i den gruppe skrive til dig der.",
       freeQuestion: "Er Orbi gratis at bruge?",
       freeAnswer: "Ja. Orbi er helt gratis at bruge.",
+      webQuestion: "Kan jeg bruge Orbi på computeren?",
+      webAnswer:
+        'Ja, med Orbi Web (beta). Åbn <a href="https://web.orbichat.io">web.orbichat.io</a> i din browser, og gå på telefonen til Indstillinger → Orbi på computeren → Scan kode. Lås derefter dine chats op med din backup-PIN. Din telefon styrer stadig din konto, og du kan altid logge browseren ud derfra.',
       privateQuestion: "Er Orbi privat?",
       privateAnswer:
         "Ja. Orbi sælger ikke persondata, personhenførbare oplysninger eller adgang til individuelle profiler. Vi bruger ikke dine persondata til annoncering eller målretning.",
@@ -361,6 +378,7 @@ const translations = {
       terms: "Servicevilkår",
       privacy: "Privatlivspolitik",
       support: "Få support",
+      web: "Orbi Web",
       about: "Om stifteren",
       contactButton: "Kontakt os",
       text: "En lille startup fra Danmark, der bygger en roligere måde at chatte og planlægge sammen på.",
