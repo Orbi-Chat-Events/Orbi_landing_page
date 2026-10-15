@@ -21,7 +21,7 @@ const translations = {
       faq: "FAQ",
       contact: "Contact us",
       join: "Join Orbi",
-      web: "Orbi Web",
+      web: "Log in",
       webBeta: "Beta",
     },
     language: {
@@ -212,7 +212,7 @@ const translations = {
       faq: "FAQ",
       contact: "Kontakt os",
       join: "Kom med i Orbi",
-      web: "Orbi Web",
+      web: "Log ind",
       webBeta: "Beta",
     },
     language: {
