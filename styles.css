@@ -261,7 +261,8 @@ a {
   flex-shrink: 0;
   gap: 0.45rem;
   background: rgba(71, 69, 68, 0.08);
-  color: var(--ink);
+  /* The nav's dark text, as "FAQ" and "Contact us" beside it. */
+  color: #202020;
   box-shadow: none;
 }
 
