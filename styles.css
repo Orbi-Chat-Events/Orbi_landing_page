@@ -853,13 +853,13 @@ a {
   color: var(--brand-blue);
 }
 
-.roadmap-link {
-  display: inline-block;
-  margin-top: 0.9rem;
-  color: var(--brand-blue);
-  font-weight: 800;
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
+/* "Åbn Orbi Web": the card's one action, as a button like "Join Orbi",
+   close under its text and a little more compact. */
+.roadmap-button {
+  margin-top: 0.15rem;
+  min-height: 2.45rem;
+  padding: 0.6rem 1.05rem;
+  font-size: 0.9rem;
 }
 
 .roadmap-note {
