@@ -138,7 +138,7 @@ const translations = {
       webTitle: "Orbi on the web",
       webText:
         "Use Orbi in the browser on your computer, with your chats and events in sync with the app.",
-      webLink: "Open Orbi Web →",
+      webLink: "Open Orbi on the web →",
       publicTitle: "Public groups and events",
       publicText:
         "Open groups and events that people can discover and join, for clubs, associations, and local communities.",
@@ -329,7 +329,7 @@ const translations = {
       webTitle: "Orbi på nettet",
       webText:
         "Brug Orbi i browseren på din computer, med dine chats og events synkroniseret med appen.",
-      webLink: "Åbn Orbi Web →",
+      webLink: "Åbn Orbi på nettet →",
       publicTitle: "Offentlige grupper og events",
       publicText:
         "Åbne grupper og events, som andre kan finde og deltage i, for eksempel klubber, foreninger og lokale fællesskaber.",
