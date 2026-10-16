@@ -1709,6 +1709,14 @@ a {
   gap: 1.5rem;
 }
 
+/* The company behind Orbi, as a Danish business site shows it. */
+.contact-card .company-info {
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
 .footer-logo {
   width: min(17rem, 55vw);
 }
