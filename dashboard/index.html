@@ -625,14 +625,14 @@
         transition: opacity 0.2s;
       }
 
-      .safety-groups {
+      .grid-row-4 {
+        grid-column: 1 / -1;
         display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        align-items: start;
-        gap: 16px 28px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
       }
 
-      .support-inbox {
+      .panel-stack {
         display: grid;
         gap: 12px;
       }
@@ -663,27 +663,6 @@
         justify-content: space-between;
         gap: 4px 8px;
         font-weight: 700;
-      }
-
-      .safety-group {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        min-width: 0;
-      }
-
-      .safety-heading {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 12px;
-      }
-
-      .safety-total {
-        font-family: "Sora", system-ui, sans-serif;
-        font-size: 1.25rem;
-        font-weight: 700;
-        letter-spacing: -0.03em;
       }
 
       .count-list {
@@ -1102,6 +1081,9 @@
         .grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+        .grid-row-4 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
         .span-2 {
           grid-column: span 2;
         }
@@ -1121,10 +1103,8 @@
         .funnel {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
-        .safety-groups {
-          grid-template-columns: minmax(0, 1fr);
-        }
-        .grid {
+        .grid,
+        .grid-row-4 {
           grid-template-columns: minmax(0, 1fr);
         }
         .span-2 {
@@ -1255,23 +1235,35 @@
           <dl class="stats" id="calls"></dl>
         </article>
 
-        <article class="panel">
-          <div class="panel-head"><h2>Privacy &amp; recovery</h2></div>
-          <div class="meter" id="meters"></div>
-        </article>
-        <article class="panel">
-          <div class="panel-head"><h2>Orbi Support</h2></div>
-          <p class="panel-note">Its inbox right now; read the chats on its phone or Orbi Web</p>
-          <div class="support-inbox" id="support"></div>
-        </article>
-        <article class="panel">
-          <div class="panel-head">
-            <h2>Safety</h2>
+        <!-- Four shorter boxes side by side, rather than three tall ones. -->
+        <div class="grid-row-4">
+          <article class="panel">
+            <div class="panel-head"><h2>Privacy &amp; recovery</h2></div>
+            <div class="meter" id="meters"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><h2>Orbi Support</h2></div>
+            <p class="panel-note">Its inbox right now; read the chats on its phone or Orbi Web</p>
+            <div class="panel-stack" id="support"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <h2>Security events</h2>
+              <span class="panel-total num" id="security-total"></span>
+            </div>
+            <p class="panel-note">Last 30 days</p>
+            <div class="panel-stack" id="security"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <h2>Reports</h2>
+              <span class="panel-total num" id="reports-total"></span>
+            </div>
+            <p class="panel-note">Last 30 days</p>
+            <div class="panel-stack" id="safety"></div>
             <button class="ghost" type="button" id="open-reports">Reports &amp; feedback →</button>
-          </div>
-          <p class="panel-note">Report status and security events in the last 30 days</p>
-          <div class="safety-groups" id="safety"></div>
-        </article>
+          </article>
+        </div>
       </section>
       </div>
 
@@ -1772,30 +1764,21 @@
             skip_restore: "Skipped backup restore",
             phone_number_changed: "Phone number changed",
           };
-          const safetyGroup = (title, items, labelFor, chipFor = () => null, footer = null, highlight = null, groupTotal = null) => {
-            const total = groupTotal ?? items.reduce((sum, item) => sum + item.count, 0);
-            const list = el("ul", { class: "count-list" });
-            if (items.length === 0 && !highlight) {
-              list.append(el("li", { class: "count-row empty", text: "None in the last 30 days" }));
-            }
-            for (const item of items) {
-              list.append(
-                el("li", { class: "count-row" }, [
-                  el("span", { class: "count-label" }, [document.createTextNode(labelFor(item)), chipFor(item)]),
-                  el("span", { class: "count-value num", text: fmt(item.count) }),
-                ]),
-              );
-            }
-            return el("section", { class: "safety-group", "aria-label": title }, [
-              el("div", { class: "safety-heading" }, [
-                el("h3", { class: "kpi-label", text: title }),
-                el("span", { class: "safety-total num", text: fmt(total) }),
-              ]),
-              highlight,
-              list,
-              footer,
-            ]);
-          };
+          // [label, count] rows; [empty] when there are none.
+          const countRows = (rows, empty = null) =>
+            el(
+              "ul",
+              { class: "count-list" },
+              rows.length === 0 && empty
+                ? [el("li", { class: "count-row empty", text: empty })]
+                : rows.map(([label, value]) =>
+                    el("li", { class: "count-row" }, [
+                      el("span", { class: "count-label", text: label }),
+                      el("span", { class: "count-value num", text: fmt(value) }),
+                    ]),
+                  ),
+            );
+          const countOf = (items) => items.reduce((total, item) => total + item.count, 0);
 
           const needsAttention = () =>
             el("span", { class: "chip chip-warning" }, [el("span", { "aria-hidden": "true", text: "●" }), document.createTextNode("Needs attention")]);
@@ -1821,42 +1804,34 @@
             ...(support
               ? [
                   attentionBox("Unread messages", support.unreadMessages, "All read"),
-                  el(
-                    "ul",
-                    { class: "count-list" },
-                    [
-                      ["Received in the last 30 days", support.received30d],
-                      ["Chats", support.chats],
-                    ].map(([label, value]) =>
-                      el("li", { class: "count-row" }, [
-                        el("span", { class: "count-label", text: label }),
-                        el("span", { class: "count-value num", text: fmt(value) }),
-                      ]),
-                    ),
-                  ),
+                  countRows([
+                    ["Received in the last 30 days", support.received30d],
+                    ["Chats", support.chats],
+                  ]),
                 ]
               : [el("p", { class: "empty", text: "Orbi Support isn't set up yet." })]),
           );
 
+          // Open reports, large, as Orbi Support's unread messages; the
+          // handled ones listed below.
+          const reportStatuses = data.safety.reportStatus30d;
+          $("reports-total").textContent = fmt(countOf(reportStatuses));
           $("safety").replaceChildren(
-            // Open reports, large, as Orbi Support's unread messages; the
-            // handled ones listed below.
-            safetyGroup(
-              "Report status",
-              data.safety.reportStatus30d.filter((item) => !NEEDS_ATTENTION.has(item.key)),
-              (item) => REPORT_STATUSES[item.key] || readable(item.key),
-              () => null,
-              null,
-              attentionBox(
-                "Open reports",
-                data.safety.reportStatus30d
-                  .filter((item) => NEEDS_ATTENTION.has(item.key))
-                  .reduce((sum, item) => sum + item.count, 0),
-                "All handled",
-              ),
-              data.safety.reportStatus30d.reduce((sum, item) => sum + item.count, 0),
+            attentionBox("Open reports", countOf(reportStatuses.filter((item) => NEEDS_ATTENTION.has(item.key))), "All handled"),
+            countRows(
+              reportStatuses
+                .filter((item) => !NEEDS_ATTENTION.has(item.key))
+                .map((item) => [REPORT_STATUSES[item.key] || readable(item.key), item.count]),
             ),
-            safetyGroup("Security events", data.safety.securityEvents30d, (item) => SECURITY_EVENTS[item.key] || readable(item.key)),
+          );
+
+          const securityEvents = data.safety.securityEvents30d;
+          $("security-total").textContent = fmt(countOf(securityEvents));
+          $("security").replaceChildren(
+            countRows(
+              securityEvents.map((item) => [SECURITY_EVENTS[item.key] || readable(item.key), item.count]),
+              "None in the last 30 days",
+            ),
           );
         }
 
