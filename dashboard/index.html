@@ -627,9 +627,42 @@
 
       .safety-groups {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 1fr);
         align-items: start;
         gap: 16px 28px;
+      }
+
+      .support-inbox {
+        display: grid;
+        gap: 12px;
+      }
+
+      /* A count that needs action stands out: amber while any wait, green at none. */
+      .support-unread {
+        display: grid;
+        gap: 6px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: var(--good-soft);
+        color: var(--good);
+      }
+
+      .support-unread.waiting {
+        background: var(--warning-soft);
+        color: var(--warning);
+      }
+
+      .support-unread .kpi-value {
+        color: inherit;
+      }
+
+      .support-unread .support-unread-label {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px 8px;
+        font-weight: 700;
       }
 
       .safety-group {
@@ -1226,12 +1259,17 @@
           <div class="panel-head"><h2>Privacy &amp; recovery</h2></div>
           <div class="meter" id="meters"></div>
         </article>
-        <article class="panel span-2">
+        <article class="panel">
+          <div class="panel-head"><h2>Orbi Support</h2></div>
+          <p class="panel-note">Its inbox right now; read the chats on its phone or Orbi Web</p>
+          <div class="support-inbox" id="support"></div>
+        </article>
+        <article class="panel">
           <div class="panel-head">
             <h2>Safety</h2>
             <button class="ghost" type="button" id="open-reports">Reports &amp; feedback →</button>
           </div>
-          <p class="panel-note">Orbi Support's unread messages now; reports and security events in the last 30 days</p>
+          <p class="panel-note">Report status and security events in the last 30 days</p>
           <div class="safety-groups" id="safety"></div>
         </article>
       </section>
@@ -1734,10 +1772,10 @@
             skip_restore: "Skipped backup restore",
             phone_number_changed: "Phone number changed",
           };
-          const safetyGroup = (title, items, labelFor, chipFor = () => null, footer = null) => {
-            const total = items.reduce((sum, item) => sum + item.count, 0);
+          const safetyGroup = (title, items, labelFor, chipFor = () => null, footer = null, highlight = null, groupTotal = null) => {
+            const total = groupTotal ?? items.reduce((sum, item) => sum + item.count, 0);
             const list = el("ul", { class: "count-list" });
-            if (items.length === 0) {
+            if (items.length === 0 && !highlight) {
               list.append(el("li", { class: "count-row empty", text: "None in the last 30 days" }));
             }
             for (const item of items) {
@@ -1753,6 +1791,7 @@
                 el("h3", { class: "kpi-label", text: title }),
                 el("span", { class: "safety-total num", text: fmt(total) }),
               ]),
+              highlight,
               list,
               footer,
             ]);
@@ -1760,41 +1799,62 @@
 
           const needsAttention = () =>
             el("span", { class: "chip chip-warning" }, [el("span", { "aria-hidden": "true", text: "●" }), document.createTextNode("Needs attention")]);
+          // A count that needs action, large: amber with "Needs attention"
+          // while any wait, green with [doneText] at none.
+          const attentionBox = (label, count, doneText) =>
+            el("div", { class: count > 0 ? "support-unread waiting" : "support-unread" }, [
+              el("div", { class: "support-unread-label" }, [
+                el("span", { text: label }),
+                count > 0
+                  ? needsAttention()
+                  : el("span", { class: "chip chip-good" }, [
+                      el("span", { "aria-hidden": "true", text: "✓" }),
+                      document.createTextNode(doneText),
+                    ]),
+              ]),
+              el("div", { class: "kpi-value num", text: fmt(count) }),
+            ]);
+
           // Counts only: Orbi Support's chats are read on its phone or Orbi Web.
           const support = data.safety.supportInbox;
-          const supportGroup = support
-            ? el("section", { class: "safety-group", "aria-label": "Orbi Support" }, [
-                el("div", { class: "safety-heading" }, [
-                  el("h3", { class: "kpi-label", text: "Orbi Support" }),
-                  el("span", { class: "safety-total num", text: fmt(support.unreadMessages) }),
-                ]),
-                el(
-                  "ul",
-                  { class: "count-list" },
-                  [
-                    ["Unread messages", support.unreadMessages, support.unreadMessages > 0 ? needsAttention() : null],
-                    ["Chats with unread messages", support.unreadChats, null],
-                    ["Received in the last 30 days", support.received30d, null],
-                    ["Chats", support.chats, null],
-                  ].map(([label, value, chip]) =>
-                    el("li", { class: "count-row" }, [
-                      el("span", { class: "count-label" }, [document.createTextNode(label), chip]),
-                      el("span", { class: "count-value num", text: fmt(value) }),
-                    ]),
+          $("support").replaceChildren(
+            ...(support
+              ? [
+                  attentionBox("Unread messages", support.unreadMessages, "All read"),
+                  el(
+                    "ul",
+                    { class: "count-list" },
+                    [
+                      ["Received in the last 30 days", support.received30d],
+                      ["Chats", support.chats],
+                    ].map(([label, value]) =>
+                      el("li", { class: "count-row" }, [
+                        el("span", { class: "count-label", text: label }),
+                        el("span", { class: "count-value num", text: fmt(value) }),
+                      ]),
+                    ),
                   ),
-                ),
-              ])
-            : null;
+                ]
+              : [el("p", { class: "empty", text: "Orbi Support isn't set up yet." })]),
+          );
 
           $("safety").replaceChildren(
-            ...(supportGroup ? [supportGroup] : []),
-            safetyGroup("Reports", data.safety.reports30d, (item) => REPORT_KINDS[item.key] || readable(item.key)),
+            // Open reports, large, as Orbi Support's unread messages; the
+            // handled ones listed below.
             safetyGroup(
               "Report status",
-              data.safety.reportStatus30d,
+              data.safety.reportStatus30d.filter((item) => !NEEDS_ATTENTION.has(item.key)),
               (item) => REPORT_STATUSES[item.key] || readable(item.key),
-              (item) =>
-                NEEDS_ATTENTION.has(item.key) && item.count > 0 ? needsAttention() : null,
+              () => null,
+              null,
+              attentionBox(
+                "Open reports",
+                data.safety.reportStatus30d
+                  .filter((item) => NEEDS_ATTENTION.has(item.key))
+                  .reduce((sum, item) => sum + item.count, 0),
+                "All handled",
+              ),
+              data.safety.reportStatus30d.reduce((sum, item) => sum + item.count, 0),
             ),
             safetyGroup("Security events", data.safety.securityEvents30d, (item) => SECURITY_EVENTS[item.key] || readable(item.key)),
           );
