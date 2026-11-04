@@ -908,11 +908,32 @@ a {
   align-items: center;
 }
 
-#why,
+/* The menu bar floats over the page (85px), so a menu link must land each
+   section's label below it. The coloured bands land at the top of the
+   screen, filling the bar's background with their own colour rather than a
+   strip of the section above; the light sections land a little higher. */
+#why {
+  scroll-margin-top: 5.5rem;
+}
+
+#roadmap {
+  scroll-margin-top: max(0px, calc(6.5rem - var(--section-padding)));
+}
+
 #features,
 #faq,
 #contact {
-  scroll-margin-top: 5.5rem;
+  scroll-margin-top: 0;
+}
+
+/* Where a band's own top padding is less than the bar, the band it was
+   linked to takes more, only while it is the link's target. */
+#faq:target {
+  padding-top: max(var(--section-padding), 6.5rem);
+}
+
+#contact:target {
+  padding-top: 6.5rem;
 }
 
 .feature-frame,
