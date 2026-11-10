@@ -181,7 +181,7 @@ const translations = {
         "Orbi uses a 6-digit Backup PIN to help you restore access to your account and encrypted chats on a new device.",
       behindQuestion: "Who is behind Orbi?",
       behindAnswer:
-        "Orbi is built by a small Danish startup. Our core backend is hosted in Frankfurt, Germany.",
+        'Orbi is built by a small Danish startup. Our core backend is hosted in Frankfurt, Germany. <a href="about/">Read more about the founder</a>.',
     },
     footer: {
       terms: "Terms of service",
@@ -372,7 +372,7 @@ const translations = {
         "Orbi bruger en 6-cifret backup-PIN til at hjælpe dig med at gendanne adgang til din konto og dine krypterede chats på en ny enhed.",
       behindQuestion: "Hvem står bag Orbi?",
       behindAnswer:
-        "Orbi er bygget af en lille dansk startup. Vores centrale backend er hostet i Frankfurt, Tyskland.",
+        'Orbi er bygget af en lille dansk startup. Vores centrale backend er hostet i Frankfurt, Tyskland. <a href="about/da/">Læs mere om stifteren</a>.',
     },
     footer: {
       terms: "Servicevilkår",
