@@ -1204,6 +1204,29 @@
         </article>
 
         <article class="panel">
+          <div class="panel-head">
+            <h2>Website visitors per day</h2>
+            <span class="panel-total num" id="total-website"></span>
+          </div>
+          <div class="chart" id="chart-website"></div>
+          <p class="panel-note">orbichat.io, counted without cookies. Each visitor once a day.</p>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2>Where visitors come from</h2></div>
+          <p class="panel-note">Visits in the last 30 days</p>
+          <ul class="bars" id="website-sources"></ul>
+          <div class="panel-head"><h2>Pages</h2></div>
+          <ul class="bars" id="website-pages"></ul>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><h2>Website → app</h2></div>
+          <p class="panel-note">Last 30 days</p>
+          <dl class="stats" id="website-stats"></dl>
+          <div class="panel-head"><h2>Visitor devices</h2></div>
+          <ul class="bars" id="website-devices"></ul>
+        </article>
+
+        <article class="panel">
           <div class="panel-head"><h2>App builds in use</h2></div>
           <p class="panel-note">People seen in the last 30 days, each at their newest build</p>
           <ul class="bars bars-builds" id="builds"></ul>
@@ -1576,6 +1599,69 @@
           });
         });
 
+        const SOURCE_LABELS = {
+          direct: "Direct",
+          google: "Google",
+          bing: "Bing",
+          duckduckgo: "DuckDuckGo",
+          ecosia: "Ecosia",
+          yahoo: "Yahoo",
+          facebook: "Facebook",
+          instagram: "Instagram",
+          linkedin: "LinkedIn",
+          x: "X (Twitter)",
+          tiktok: "TikTok",
+          reddit: "Reddit",
+          youtube: "YouTube",
+          "app store": "App Store",
+          "google play": "Google Play",
+          "orbi web": "Orbi Web",
+        };
+        const PAGE_LABELS = {
+          "/": "Front page",
+          "/about/": "Founder",
+          "/about/da/": "Founder (Danish)",
+          "/privacy/": "Privacy policy",
+          "/terms/": "Terms",
+          "/support/": "Support",
+        };
+        const WEBSITE_DEVICES = { ios: "iPhone & iPad", android: "Android", desktop: "Computer", other: "Other" };
+
+        function renderWebsite(website) {
+          if (!website) {
+            $("chart-website").replaceChildren(el("p", { class: "empty", text: "No website data yet" }));
+            $("total-website").textContent = "";
+            for (const id of ["website-sources", "website-pages", "website-devices"]) barList($(id), []);
+            stats($("website-stats"), []);
+            return;
+          }
+          barChart(
+            $("chart-website"),
+            website.daily.map((day) => ({ date: day.date, value: Number(day.visitors) || 0 })),
+            "visitors",
+          );
+          $("total-website").textContent = `${fmt(website.visits30d)} visits in 30 days`;
+          barList($("website-sources"), website.sources, {
+            labelFor: (item) => SOURCE_LABELS[item.key] || item.key,
+          });
+          barList($("website-pages"), website.pages, {
+            labelFor: (item) => PAGE_LABELS[item.key] || item.key,
+          });
+          barList($("website-devices"), website.devices, {
+            labelFor: (item) => WEBSITE_DEVICES[item.key] || item.key,
+          });
+          const clicks = website.clicks || {};
+          const storeTaps = (Number(clicks.app_store) || 0) + (Number(clicks.google_play) || 0);
+          stats($("website-stats"), [
+            ["Visits this week", fmt(website.visits7d)],
+            ["Page views", fmt(website.views30d)],
+            ["Tapped App Store", fmt(clicks.app_store || 0)],
+            ["Tapped Google Play", fmt(clicks.google_play || 0)],
+            ["Opened Orbi Web", fmt(clicks.orbi_web || 0)],
+            ["Visits that tapped a store", website.visits30d > 0 ? `${pct(storeTaps, website.visits30d)}%` : "–"],
+          ]);
+        }
+
         function render(data) {
           lastData = data;
           const users = data.users;
@@ -1654,6 +1740,8 @@
           $("total-new-users").textContent = `${fmt(sum("newUsers"))} in 30 days`;
           $("total-messages").textContent = `${fmt(sum("messages"))} in 30 days`;
           $("total-senders").textContent = `${fmt(active.month)} active this month`;
+
+          renderWebsite(data.website);
 
           const builds = [...data.devices.builds].sort((a, b) => {
             const left = Number(a.key);
@@ -2395,6 +2483,15 @@
             social: { friendships: 4120, pendingFriendRequests: 188, newFriendships7d: 142, activeBlocks: 31 },
             events: { total: 690, created30d: 118, upcoming: 74, members: 5210, comments30d: 960, phoneInvitesClaimed: 62, phoneInvitesPending: 40 },
             calls: { started: 420, completed: 336, minutes: 3180, averageMinutes: 9.5 },
+            website: {
+              daily: daily.map((day, index) => ({ date: day.date, visitors: Math.round(45 + 30 * Math.sin(index / 2.5) + index), views: Math.round(110 + 60 * Math.sin(index / 2.5)) })),
+              visits30d: 1920, visits7d: 498, views30d: 4310,
+              sources: [{ key: "direct", count: 690 }, { key: "google", count: 610 }, { key: "instagram", count: 280 }, { key: "linkedin", count: 150 }, { key: "facebook", count: 90 }, { key: "Other", count: 100 }],
+              pages: [{ key: "/", count: 1700 }, { key: "/about/", count: 240 }, { key: "/support/", count: 120 }, { key: "/privacy/", count: 80 }, { key: "/about/da/", count: 40 }],
+              devices: [{ key: "ios", count: 980 }, { key: "desktop", count: 560 }, { key: "android", count: 380 }],
+              countries: [{ key: "DK", count: 1610 }, { key: "SE", count: 90 }, { key: "Other", count: 220 }],
+              clicks: { app_store: 312, google_play: 141, orbi_web: 58 },
+            },
             devices: {
               total: 910,
               platforms: [{ key: "ios", count: 540 }, { key: "android", count: 370 }],

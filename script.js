@@ -1,3 +1,62 @@
+// Visitor counts for the Pulse dashboard (NEW_site-visit). Cookieless and
+// stored nowhere in the browser: each page view sends its path and referring
+// site, and a click on a store button says which button. Skipped for anyone
+// who asks sites not to track them (Global Privacy Control or Do Not Track),
+// for automated browsers and off orbichat.io.
+(() => {
+  try {
+    const endpoint =
+      "https://kgsysdwkclmquduxxifd.functions.eu-central-1.nhost.run/v1/NEW_site-visit";
+    const host = window.location.hostname.replace(/^www\./, "");
+    const optedOut =
+      navigator.globalPrivacyControl === true ||
+      navigator.doNotTrack === "1" ||
+      window.doNotTrack === "1";
+    if (host !== "orbichat.io" || optedOut || navigator.webdriver) return;
+
+    const send = (body) => {
+      fetch(endpoint, {
+        method: "POST",
+        mode: "no-cors",
+        keepalive: true,
+        credentials: "omit",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({ path: window.location.pathname, ...body }),
+      }).catch(() => {});
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    send({
+      referrer: document.referrer,
+      source: params.get("utm_source") || params.get("ref") || "",
+    });
+
+    const buttons = [
+      ["apps.apple.com", "app_store"],
+      ["play.google.com", "google_play"],
+      ["web.orbichat.io", "orbi_web"],
+    ];
+    document.addEventListener(
+      "click",
+      (event) => {
+        const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+        if (!link) return;
+        let linkHost = "";
+        try {
+          linkHost = new URL(link.href).hostname;
+        } catch {
+          return;
+        }
+        const button = buttons.find(([name]) => linkHost === name);
+        if (button) send({ click: button[1] });
+      },
+      { capture: true },
+    );
+  } catch {
+    // Counting must never break the page.
+  }
+})();
+
 const LANGUAGE_STORAGE_KEY = "orbiPreferredLanguage";
 const supportedLanguages = ["en", "da"];
 
