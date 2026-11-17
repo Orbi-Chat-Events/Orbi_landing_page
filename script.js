@@ -98,7 +98,6 @@ const translations = {
       pointFeeds: "No feeds",
       pointAds: "No ads",
       pointDistractions: "No distractions",
-      maker: "Built by a small Danish startup with one mission: communication that respects your attention and keeps your data safe.",
     },
     store: {
       appStoreAlt: "Download on the App Store",
@@ -286,7 +285,6 @@ const translations = {
       pointFeeds: "Uden feeds",
       pointAds: "Uden reklamer",
       pointDistractions: "Uden distraktioner",
-      maker: "Bygget af en lille dansk startup med én mission: kommunikation, der respekterer din opmærksomhed og passer på dine data.",
     },
     store: {
       appStoreAlt: "Hent i App Store",

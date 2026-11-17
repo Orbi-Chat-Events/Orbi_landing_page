@@ -528,7 +528,7 @@ a {
 }
 
 .hero h1 {
-  font-size: clamp(3rem, 7vw, 4.8rem);
+  font-size: clamp(2.6rem, 6vw, 4.1rem);
   line-height: 1.08;
 }
 
@@ -560,8 +560,7 @@ a {
   color: var(--muted);
 }
 
-/* Hero copy: a lead line, three short promises as chips, and a quiet
-   "who makes it" line, instead of three equal paragraphs. */
+/* Hero copy: a lead line and three short promises as chips. */
 .hero-copy .hero-text {
   max-width: 34rem;
   margin: 1.4rem 0 0;
@@ -617,19 +616,12 @@ a {
   box-shadow: 0 0 0 0.2rem rgba(244, 161, 101, 0.16);
 }
 
-.hero-copy .hero-maker {
-  max-width: 30rem;
-  margin: 1.3rem 0 0;
-  color: var(--muted);
-  font-size: 0.88rem;
-  line-height: 1.6;
-}
-
+/* The store buttons, with the beta note as one small line below them. */
 .store-downloads {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 11.5rem;
-  align-items: center;
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  justify-items: start;
+  gap: 0.85rem;
   max-width: 40rem;
   margin-top: 2.75rem;
 }
@@ -642,30 +634,31 @@ a {
 
 .beta-note {
   display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
+  align-items: baseline;
+  gap: 0.55rem;
   margin: 0;
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   line-height: 1.45;
 }
 
-.beta-note strong,
-.beta-note span {
-  display: block;
+.beta-note strong {
+  color: var(--ink);
+  font-weight: 700;
 }
 
-.beta-note strong {
-  margin-bottom: 0.1rem;
-  color: var(--ink);
-  font-size: 0.82rem;
+.beta-note strong::after {
+  content: "·";
+  margin: 0 0.35rem;
+  color: var(--muted);
+  font-weight: 400;
 }
 
 .beta-note-dot {
   flex: 0 0 auto;
-  width: 0.55rem;
-  height: 0.55rem;
-  margin-top: 0.28rem;
+  align-self: center;
+  width: 0.45rem;
+  height: 0.45rem;
   border-radius: 50%;
   background: var(--brand-orange);
   box-shadow: 0 0 0 0.25rem rgba(244, 161, 101, 0.16);
@@ -2374,13 +2367,6 @@ a {
 }
 
 @media (max-width: 760px) {
-  .store-downloads {
-    grid-template-columns: 1fr;
-  }
-
-  .beta-note {
-    max-width: 18rem;
-  }
 
   .legal-main {
     width: 100%;
