@@ -63,7 +63,7 @@ const supportedLanguages = ["en", "da"];
 const translations = {
   en: {
     meta: {
-      title: "Orbi Chat – Private Chat & Event App",
+      title: "Orbi Chat – Private chat & event app",
       description:
         "Orbi (Orbi Chat) is a free, privacy-first chat and event app from Denmark. Message friends, plan events and remember birthdays, with no ads or feeds.",
       ogDescription:
@@ -93,7 +93,7 @@ const translations = {
     hero: {
       title: 'All the practical parts of Facebook <span class="hero-gradient">– redesigned</span>',
       text:
-        'A calmer, <span class="hero-accent">European alternative</span> – you get the familiar chat experience with the <span class="hero-accent">practical parts</span> of social media: <span class="hero-accent">events</span>, <span class="hero-accent">birthdays</span>, <span class="hero-accent">calls</span> and more on the way.',
+        'A calmer, <span class="hero-accent">European alternative</span> – you get the familiar chat experience with the <span class="hero-accent">practical parts</span> of social media such as <span class="hero-accent">events</span>, <span class="hero-accent">birthdays</span> and <span class="hero-accent">calls</span> – with more on the way.',
       pointsLabel: "All the practical stuff",
       pointFeeds: "No feeds",
       pointAds: "No ads",
@@ -111,7 +111,7 @@ const translations = {
       text: "Orbi is built around a few core principles:",
       privateTitle: "Ad-free & private",
       privateText:
-        "Orbi uses as little personal data as possible and avoids ad-driven product choices, advertising tracking, and targeting.<br><br>An ad-free experience, with end-to-end encrypted messaging.",
+        "Orbi uses as little personal data as possible and avoids ad-driven product choices, advertising tracking, and targeting.<br><br>An ad-free experience with end-to-end encrypted messaging.",
       europeTitle: "Independent European tech",
       europeText:
         "Choosing Orbi means supporting a small Danish startup building communication tools rooted in European values, privacy standards, and digital independence.",
@@ -121,14 +121,14 @@ const translations = {
     },
     features: {
       eyebrow: "Features",
-      title: "Feature explained",
+      title: "Features explained",
       messagingChipTop: "End-to-end encryption",
       messagingChipBottom: "Danish/European alternative",
       messagingTitle: "Chat like you're used to",
-      messagingCallout1Title: "Effortless Messaging",
+      messagingCallout1Title: "Effortless messaging",
       messagingCallout1Text:
         "Send encrypted one-to-one and group messages with reactions, pins, voice messages, photos, files, and more.",
-      messagingCallout2Title: "Dedicated Event Chats",
+      messagingCallout2Title: "Dedicated event chats",
       messagingCallout2Text:
         "Create group chats for your events to keep conversations, photos, and updates in one place.",
       eventsChipTop: "Everything at a glance",
@@ -224,7 +224,7 @@ const translations = {
         "Yes. Orbi does not sell personal data, personally identifiable information, or access to individual profiles. We do not use your personal data for advertising or targeting.",
       encryptionQuestion: "Does Orbi use end-to-end encryption?",
       encryptionAnswer:
-        'Yes. Messages and calls in Orbi chats are end-to-end encrypted, including photos, videos, voice messages, and files. <a href="privacy/#service-providers">Read more in our Privacy Policy</a>.',
+        'Yes. Messages and calls in Orbi chats are end-to-end encrypted, including photos, videos, voice messages, and files. <a href="privacy/#service-providers">Read more in our privacy policy</a>.',
       eventsQuestion: "How do events work in Orbi?",
       eventsAnswer:
         "Events give plans their own place outside messy chat threads. You can create an event, invite friends, add details like time and location, track who is going, and keep event updates easy to find.",
@@ -233,7 +233,7 @@ const translations = {
         "Yes. You can invite people to events by SMS, even if they are not on Orbi yet. This makes it easier to plan with everyone, not only people already using the app.",
       accessQuestion: "What happens if I lose access to my account?",
       accessAnswer:
-        "Orbi uses a 6-digit Backup PIN to help you restore access to your account and encrypted chats on a new device.",
+        "Orbi uses a 6-digit backup PIN to help you restore access to your account and encrypted chats on a new device.",
       behindQuestion: "Who is behind Orbi?",
       behindAnswer:
         'Orbi is built by a small Danish startup. Our core backend is hosted in Frankfurt, Germany. <a href="about/">Read more about the founder</a>.',
@@ -254,7 +254,7 @@ const translations = {
       description:
         "Orbi (Orbi Chat) er en gratis, privatlivsfokuseret chat- og eventapp fra Danmark. Skriv med venner, planlæg events og husk fødselsdage – uden reklamer og feeds.",
       ogDescription:
-        "Skriv med venner, planlæg events, husk fødselsdage, og hold kontakten uden feeds, reklamer eller distraktioner.",
+        "Skriv med venner, planlæg events, husk fødselsdage og hold kontakten uden feeds, reklamer eller distraktioner.",
       twitterDescription:
         "En gratis, privatlivsfokuseret app til beskeder, events og kontakt uden støjen fra sociale medier.",
     },
@@ -280,7 +280,7 @@ const translations = {
     hero: {
       title: 'Alle de praktiske dele af Facebook <span class="hero-gradient">– genopfundet</span>',
       text:
-        'Et roligere, <span class="hero-accent">europæisk alternativ</span> – du får den velkendte chatoplevelse med de <span class="hero-accent">praktiske dele</span> af sociale medier: <span class="hero-accent">events</span>, <span class="hero-accent">fødselsdage</span>, <span class="hero-accent">opkald</span> og mere på vej.',
+        'Et roligere, <span class="hero-accent">europæisk alternativ</span> – du får den velkendte chatoplevelse med de <span class="hero-accent">praktiske dele</span> af sociale medier som <span class="hero-accent">events</span>, <span class="hero-accent">fødselsdage</span> og <span class="hero-accent">opkald</span> – med mere på vej.',
       pointsLabel: "Alt det praktiske",
       pointFeeds: "Uden feeds",
       pointAds: "Uden reklamer",
@@ -352,7 +352,7 @@ const translations = {
         "Folk kan ikke kontakte dig direkte, medmindre I er venner. Send eller accepter først en anmodning, og skriv derefter trygt med de personer, du selv vælger at forbinde dig med.",
       appearanceChipTop: "Lyst tema",
       appearanceChipBottom: "Mørkt tema",
-      appearanceTitle: "Lyst eller mørkt - du vælger",
+      appearanceTitle: "Lyst eller mørkt – du vælger",
       appearanceText:
         "Skift mellem lyst og mørkt tema, når du har lyst. Orbi holder chats, events og kommentarer læsbare i det udtryk, der passer dig bedst.",
     },
@@ -417,7 +417,7 @@ const translations = {
         "Events giver planer deres eget sted uden for rodede chattråde. Du kan oprette et event, invitere venner, tilføje detaljer som tid og sted, følge med i hvem der kommer og holde eventopdateringer nemme at finde.",
       invitesQuestion: "Kan jeg invitere personer, der endnu ikke bruger Orbi?",
       invitesAnswer:
-        "Ja. Du kan invitere personer til events via SMS, selv hvis de ikke bruger Orbi endnu. Det gør det lettere at planlægge med alle, ikke kun personer der allerede er på appen.",
+        "Ja. Du kan invitere personer til events via sms, selv hvis de ikke bruger Orbi endnu. Det gør det lettere at planlægge med alle, ikke kun personer, der allerede bruger appen.",
       accessQuestion: "Hvad sker der, hvis jeg mister adgang til min konto?",
       accessAnswer:
         "Orbi bruger en 6-cifret backup-PIN til at hjælpe dig med at gendanne adgang til din konto og dine krypterede chats på en ny enhed.",
@@ -755,6 +755,13 @@ navShells.forEach((shell) => {
 
   closeTargets.forEach((target) => {
     target.addEventListener("click", () => setMenuState(false));
+  });
+
+  // A tap or click anywhere outside the open menu closes it.
+  document.addEventListener("click", (event) => {
+    if (shell.classList.contains("menu-open") && !shell.contains(event.target)) {
+      setMenuState(false);
+    }
   });
 
   window.addEventListener("resize", () => {
