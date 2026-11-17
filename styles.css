@@ -723,6 +723,12 @@ a {
   margin-bottom: -7.1rem;
 }
 
+/* One carousel per language; only the page's own language shows. */
+html[lang="da"] .hero-marquee[data-marquee-lang="en"],
+html:not([lang="da"]) .hero-marquee[data-marquee-lang="da"] {
+  display: none;
+}
+
 .hero-marquee {
   --marquee-gap: 1rem;
   position: relative;
@@ -784,6 +790,16 @@ a {
   background: #2c2a2b;
   contain: layout paint;
   overflow: hidden;
+}
+
+/* A light-mode screenshot sits in a light phone, as in the App Store
+   screenshots (Figma "Orbi – App Store screenshots"): a warm off-white
+   frame with a thin white rim and a soft shadow below. */
+.marquee-shot-light {
+  background: linear-gradient(180deg, #fbfaf9 0%, #f7f5f4 100%);
+  box-shadow:
+    inset 0 0 0 1px #ffffff,
+    0 14px 24px -12px rgba(70, 50, 40, 0.28);
 }
 
 .marquee-shot img {
