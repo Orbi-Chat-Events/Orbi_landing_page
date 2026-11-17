@@ -504,6 +504,20 @@ a {
   max-width: 40rem;
 }
 
+/* Side by side, the screenshot column is taller than the screen, so the text
+   places itself against the screen instead: vertically centred between the
+   bar (85px) and the bottom of the first view, and never closer to the bar
+   than the hero's top padding. The height is 100vh - 2 x padding + 85px. */
+@media (min-width: 1025px) {
+  .hero-copy {
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 9.7rem);
+  }
+}
+
 .eyebrow {
   margin: 0 0 1rem;
   font-size: 0.9rem;
@@ -596,9 +610,11 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.45rem 0.95rem 0.45rem 0.8rem;
+  padding: calc(0.45rem - 1px) calc(0.95rem - 1px) calc(0.45rem - 1px) calc(0.8rem - 1px);
+  /* The menu bar's frosted glass and white rim (.nav-shell), with a smaller
+     shadow. */
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: var(--radius-pill);
-  /* The menu bar's frosted glass (.nav-shell), with a smaller shadow. */
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.14)),
     rgba(255, 255, 255, 0.18);
@@ -2626,6 +2642,11 @@ a {
 
   .hero {
     min-height: calc(100vh - 10rem);
+  }
+
+  /* The same centring with this smaller top padding. */
+  .hero-copy {
+    min-height: calc(100vh - 9.2rem);
   }
 
   .store-downloads {
