@@ -91,15 +91,14 @@ const translations = {
       close: "Close menu",
     },
     hero: {
-      eyebrow: "Orbi - Chat & Events",
       title: 'All the practical parts of Facebook <span class="hero-gradient">– redesigned</span>',
-      text: "A place to talk, plan, and connect - everything you need, without distractions.",
-      body1:
-        'Orbi sits in the <span class="highlight">space between</span> traditional <span class="highlight">chat apps</span> and <span class="highlight">social media</span>. It gives you the familiar chat experience, while adding practical tools like <span class="highlight">events</span> and <span class="highlight">birthdays</span>, with more on the way.',
-      body2:
-        'Our mission is to offer <span class="highlight">practical communication</span> tools that <span class="highlight">respect your attention</span> and keep your data safe.',
-      body3:
-        'Built by a small <span class="highlight">Danish startup</span> creating a calmer, privacy-first <span class="highlight">European alternative</span>.',
+      text:
+        'A calmer, <span class="hero-accent">European alternative</span> – you get the familiar chat experience with the <span class="hero-accent">practical parts</span> of social media: <span class="hero-accent">events</span>, <span class="hero-accent">birthdays</span>, <span class="hero-accent">calls</span> and more on the way.',
+      pointsLabel: "All the practical stuff",
+      pointFeeds: "No feeds",
+      pointAds: "No ads",
+      pointDistractions: "No distractions",
+      maker: "Built by a small Danish startup with one mission: communication that respects your attention and keeps your data safe.",
     },
     store: {
       appStoreAlt: "Download on the App Store",
@@ -280,15 +279,14 @@ const translations = {
       close: "Luk menu",
     },
     hero: {
-      eyebrow: "Orbi - Chat & Events",
       title: 'Alle de praktiske dele af Facebook <span class="hero-gradient">– genopfundet</span>',
-      text: "Et sted at tale, planlægge og holde kontakt - alt det, du har brug for, uden distraktioner.",
-      body1:
-        'Orbi ligger i <span class="highlight">mellemrummet</span> mellem traditionelle <span class="highlight">chatapps</span> og <span class="highlight">sociale medier</span>. Du får den velkendte chatoplevelse, men med praktiske værktøjer som <span class="highlight">events</span> og <span class="highlight">fødselsdage</span>, og mere er på vej.',
-      body2:
-        'Vores mission er at tilbyde <span class="highlight">praktiske kommunikationsværktøjer</span>, der <span class="highlight">respekterer din opmærksomhed</span> og passer på dine data.',
-      body3:
-        'Bygget af en lille <span class="highlight">dansk startup</span>, der skaber et roligere, privatlivsfokuseret <span class="highlight">europæisk alternativ</span>.',
+      text:
+        'Et roligere, <span class="hero-accent">europæisk alternativ</span> – du får den velkendte chatoplevelse med de <span class="hero-accent">praktiske dele</span> af sociale medier: <span class="hero-accent">events</span>, <span class="hero-accent">fødselsdage</span>, <span class="hero-accent">opkald</span> og mere på vej.',
+      pointsLabel: "Alt det praktiske",
+      pointFeeds: "Uden feeds",
+      pointAds: "Uden reklamer",
+      pointDistractions: "Uden distraktioner",
+      maker: "Bygget af en lille dansk startup med én mission: kommunikation, der respekterer din opmærksomhed og passer på dine data.",
     },
     store: {
       appStoreAlt: "Hent i App Store",
@@ -475,6 +473,21 @@ function setMetaContent(selector, content) {
   }
 }
 
+// The hero's gradient words ("– genopfundet" in the headline and the accented
+// words in the text below) share one gradient across the text column: each
+// word shows the colours of the place it sits, measured from the headline's
+// gradient line. Past that line's width the words stay at its last blue.
+function syncHeroGradient() {
+  const line = document.querySelector(".hero h1 .hero-gradient");
+  if (!line) return;
+  const frame = line.getBoundingClientRect();
+  document.querySelectorAll(".hero-copy .hero-accent").forEach((word) => {
+    const offset = frame.left - word.getBoundingClientRect().left;
+    word.style.backgroundSize = `${frame.width}px 100%`;
+    word.style.backgroundPosition = `${offset}px 0`;
+  });
+}
+
 function applyLanguage(language, shouldStore = false) {
   const nextLanguage = supportedLanguages.includes(language) ? language : "en";
   currentLanguage = nextLanguage;
@@ -534,6 +547,8 @@ function applyLanguage(language, shouldStore = false) {
     setMetaContent('meta[name="twitter:description"]', meta.twitterDescription);
   }
 
+  syncHeroGradient();
+
   if (shouldStore) {
     try {
       window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
@@ -577,6 +592,10 @@ document.querySelectorAll("[data-language-option]").forEach((button) => {
 });
 
 applyLanguage(currentLanguage);
+window.addEventListener("resize", syncHeroGradient);
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(syncHeroGradient);
+}
 
 // Someone who chose Danish on the front page lands on the Danish document
 // here too. `replace` keeps the back button pointing where they came from.
@@ -741,7 +760,7 @@ navShells.forEach((shell) => {
   });
 
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 760) {
+    if (window.innerWidth > 919) {
       setMenuState(false);
     }
   });

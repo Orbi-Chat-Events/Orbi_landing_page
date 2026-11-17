@@ -57,6 +57,9 @@
   --radius-pill: 999px;
   --content-width: 1200px;
   --section-padding: clamp(4rem, 7vw, 6.5rem);
+  /* The logo's orange-to-blue, for gradient words. */
+  --orbi-text-gradient: linear-gradient(90deg, #c8714e 0%, #c58a68 40%, #7d6b98 72%, #3f50b8 100%);
+  --orbi-text-gradient-end: #3f50b8;
 }
 
 *,
@@ -158,7 +161,7 @@ a {
   position: relative;
   z-index: 1;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
@@ -172,6 +175,7 @@ a {
 }
 
 .site-nav a {
+  white-space: nowrap;
   padding: 0.65rem 0.85rem;
   font-size: 0.95rem;
   font-weight: 700;
@@ -281,7 +285,7 @@ a {
 }
 
 /* Where the header gets tight, a more compact one, so the pill fits
-   without making the header taller than needed (under 760 the menu takes
+   without making the header taller than needed (under 920 the menu takes
    over). */
 @media (max-width: 1179px) {
   .site-nav a {
@@ -497,11 +501,6 @@ a {
   color: rgba(255, 255, 255, 0.74);
 }
 
-.highlight {
-  color: var(--brand-orange);
-  font-weight: 700;
-}
-
 .hero h1,
 .section-heading h2,
 .feature-topline h2,
@@ -525,22 +524,14 @@ a {
   width: fit-content;
   padding-bottom: 0.12em;
   margin-bottom: -0.12em;
-  background: linear-gradient(90deg, #c8714e 0%, #c58a68 40%, #7d6b98 72%, #3f50b8 100%);
+  background: var(--orbi-text-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
 
-/* The "Orbi - Chat & Events" line is part of the heading, styled as before. */
-.hero h1 .eyebrow {
-  display: block;
-  font-family: "Manrope", sans-serif;
-  line-height: 1.4;
-}
-
 .hero-text,
-.hero-subtext,
 .section-heading p,
 .feature-copy p,
 .faq-item p,
@@ -553,8 +544,70 @@ a {
   color: var(--muted);
 }
 
-.hero-subtext {
+/* Hero copy: a lead line, three short promises as chips, and a quiet
+   "who makes it" line, instead of three equal paragraphs. */
+.hero-copy .hero-text {
   max-width: 34rem;
+  margin: 1.4rem 0 0;
+  color: var(--ink);
+  font-size: clamp(1.08rem, 1.6vw, 1.22rem);
+  line-height: 1.65;
+}
+
+/* Accented words in the hero text: bolder, in the headline's gradient. The
+   script sizes and shifts the gradient so it runs across the whole column;
+   beyond its end the background colour keeps the words blue. */
+.hero-copy .hero-accent {
+  font-weight: 800;
+  color: var(--orbi-text-gradient-end);
+  background-color: var(--orbi-text-gradient-end);
+  background-image: var(--orbi-text-gradient);
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1.3rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-points li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.95rem 0.45rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  box-shadow: 0 6px 18px rgba(47, 40, 36, 0.06);
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero-points li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--brand-orange);
+  box-shadow: 0 0 0 0.2rem rgba(244, 161, 101, 0.16);
+}
+
+.hero-copy .hero-maker {
+  max-width: 30rem;
+  margin: 1.3rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
 }
 
 .store-downloads {
@@ -563,7 +616,7 @@ a {
   align-items: center;
   gap: 1rem;
   max-width: 40rem;
-  margin-top: 2rem;
+  margin-top: 2.75rem;
 }
 
 .store-actions {
@@ -2232,6 +2285,79 @@ a {
   }
 }
 
+/* The menu button takes over below 920, before the links run out of room:
+   the Danish labels need about 875 px on one line. */
+@media (max-width: 919px) {
+  .site-header {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .nav-shell {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    margin-right: auto;
+  }
+
+  .brand img {
+    width: 5.45rem;
+  }
+
+  .desktop-nav,
+  .desktop-web,
+  .desktop-cta,
+  .desktop-language {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-shell.menu-open {
+    border-radius: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .nav-shell.menu-open .mobile-menu {
+    display: block;
+  }
+}
+
+/* On a small laptop window only the page links move into the menu: the
+   language switch, "Join Orbi" and "Log in" (the menu has no login link) stay
+   in the header beside the menu button. */
+@media (min-width: 761px) and (max-width: 919px) {
+  .brand {
+    margin-right: 0;
+  }
+
+  .desktop-language {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .desktop-cta,
+  .desktop-web {
+    display: inline-flex;
+  }
+
+  .mobile-language,
+  .mobile-cta {
+    display: none;
+  }
+
+  .menu-toggle {
+    margin-left: 0.5rem;
+  }
+}
+
 @media (max-width: 760px) {
   .store-downloads {
     grid-template-columns: 1fr;
@@ -2283,47 +2409,6 @@ a {
   .support-report-card h2 {
     margin-top: 1.2rem;
     font-size: clamp(1.35rem, 7vw, 1.55rem);
-  }
-
-  .site-header {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-
-  .nav-shell {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .brand {
-    margin-right: auto;
-  }
-
-  .brand img {
-    width: 5.45rem;
-  }
-
-  .desktop-nav,
-  .desktop-web,
-  .desktop-cta,
-  .desktop-language {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .nav-shell.menu-open {
-    border-radius: 2rem;
-    padding-bottom: 1rem;
-  }
-
-  .nav-shell.menu-open .mobile-menu {
-    display: block;
   }
 
   .hero-visual {
@@ -2536,7 +2621,7 @@ a {
   }
 
   .store-downloads {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
   }
 }
 
