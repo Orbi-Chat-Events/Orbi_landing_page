@@ -598,8 +598,13 @@ a {
   gap: 0.5rem;
   padding: 0.45rem 0.95rem 0.45rem 0.8rem;
   border-radius: var(--radius-pill);
-  background: var(--surface);
-  box-shadow: 0 6px 18px rgba(47, 40, 36, 0.06);
+  /* The menu bar's frosted glass (.nav-shell), with a smaller shadow. */
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.14)),
+    rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(22px) saturate(145%);
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+  box-shadow: 0 8px 22px rgba(47, 40, 36, 0.1);
   color: var(--ink);
   font-size: 0.9rem;
   font-weight: 700;
