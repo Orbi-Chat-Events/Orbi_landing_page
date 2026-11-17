@@ -93,7 +93,7 @@ const translations = {
     hero: {
       title: 'All the practical parts of Facebook <span class="hero-gradient">– redesigned</span>',
       text:
-        'A calmer, <span class="hero-accent">European alternative</span> – you get the familiar chat experience with the <span class="hero-accent">practical parts</span> of social media such as <span class="hero-accent">events</span>, <span class="hero-accent">birthdays</span> and <span class="hero-accent">calls</span> – with more on the way.',
+        'A calmer, <span class="hero-accent">European alternative</span> – you get the familiar chat experience, but also the <span class="hero-accent">practical parts</span> of social media, like <span class="hero-accent">events</span> and <span class="hero-accent">birthdays</span> – with more on the way.',
       pointsLabel: "All the practical stuff",
       pointFeeds: "No feeds",
       pointAds: "No ads",
@@ -280,7 +280,7 @@ const translations = {
     hero: {
       title: 'Alle de praktiske dele af Facebook <span class="hero-gradient">– genopfundet</span>',
       text:
-        'Et roligere, <span class="hero-accent">europæisk alternativ</span> – du får den velkendte chatoplevelse med de <span class="hero-accent">praktiske dele</span> af sociale medier som <span class="hero-accent">events</span>, <span class="hero-accent">fødselsdage</span> og <span class="hero-accent">opkald</span> – med mere på vej.',
+        'Et roligere, <span class="hero-accent">europæisk alternativ</span> – du får den velkendte chatoplevelse, men også de <span class="hero-accent">praktiske dele</span> fra sociale medier, som <span class="hero-accent">events</span> og <span class="hero-accent">fødselsdage</span> – med mere på vej.',
       pointsLabel: "Alt det praktiske",
       pointFeeds: "Uden feeds",
       pointAds: "Uden reklamer",
