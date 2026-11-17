@@ -280,7 +280,7 @@ const translations = {
     hero: {
       title: 'Alle de praktiske dele af Facebook <span class="hero-gradient">– genopfundet</span>',
       text:
-        'Et roligere, <span class="hero-accent">dansk alternativ</span> – du får den velkendte chatoplevelse, men også de <span class="hero-accent">praktiske dele</span> fra sociale medier, som <span class="hero-accent">events</span> og <span class="hero-accent">fødselsdage</span> – mere er på vej.',
+        'Et roligere, <span class="hero-accent">dansk alternativ</span> – du får den velkendte chatoplevelse, men også de <span class="hero-accent">praktiske dele</span> fra sociale medier, som <span class="hero-accent">events</span> og <span class="hero-accent">fødselsdage</span> – med mere på vej.',
       pointsLabel: "Alt det praktiske",
       pointFeeds: "Uden feeds",
       pointAds: "Uden reklamer",
