@@ -106,6 +106,15 @@ a {
   padding: calc(0.65rem + 6px) 0.85rem 0;
 }
 
+/* On the front page the bar floats over the hero from the start, as it does
+   once the page scrolls, so the first view is the same as the logo link's
+   (#top). The hero's own top padding keeps the headline clear of the bar. */
+.site-header-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
 .nav-shell {
   position: relative;
   max-width: var(--content-width);
@@ -441,8 +450,15 @@ a {
   grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
   align-items: center;
   gap: clamp(2rem, 5vw, 4rem);
-  min-height: calc(100vh - 7rem);
+  /* With the bar floating over it, this centres the hero where the logo
+     link used to land it. */
+  min-height: calc(100vh - 9.5rem);
   isolation: isolate;
+}
+
+/* The bar (about 85px) floats over the top of the hero. */
+.hero.section {
+  padding-top: max(var(--section-padding), 6.5rem);
 }
 
 .hero::before,
@@ -582,7 +598,6 @@ a {
   align-items: center;
   gap: 0.5rem;
   padding: 0.45rem 0.95rem 0.45rem 0.8rem;
-  border: 1px solid var(--line);
   border-radius: var(--radius-pill);
   background: var(--surface);
   box-shadow: 0 6px 18px rgba(47, 40, 36, 0.06);
@@ -2612,12 +2627,12 @@ a {
 
 @media (max-height: 860px) and (min-width: 1025px) {
   .hero.section {
-    padding-top: 2rem;
+    padding-top: 6.5rem;
     padding-bottom: 2rem;
   }
 
   .hero {
-    min-height: calc(100vh - 5.5rem);
+    min-height: calc(100vh - 10rem);
   }
 
   .store-downloads {
