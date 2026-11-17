@@ -673,15 +673,17 @@ a {
   transition: transform 180ms ease, filter 180ms ease;
 }
 
+/* The official badges, unaltered, at about 45px tall (Apple asks for at
+   least 40px; Google for a badge no smaller than the others), without a
+   shadow so they sit lightly next to the text. */
 .official-store-badge {
-  width: 13rem;
+  width: 9.75rem;
 }
 
 .official-store-badge img {
   display: block;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 14px 22px rgba(17, 17, 17, 0.14));
 }
 
 .app-store-badge,
@@ -2507,7 +2509,7 @@ a {
   }
 
   .official-store-badge {
-    width: 13rem;
+    width: 9.75rem;
   }
 
   .official-store-badge img {
