@@ -458,7 +458,7 @@ a {
 
 /* The bar (about 85px) floats over the top of the hero. */
 .hero.section {
-  padding-top: max(var(--section-padding), 6.5rem);
+  padding-top: max(var(--section-padding), 7.5rem);
 }
 
 .hero::before,
@@ -563,7 +563,7 @@ a {
 /* Hero copy: a lead line and three short promises as chips. */
 .hero-copy .hero-text {
   max-width: 34rem;
-  margin: 1.4rem 0 0;
+  margin: 1.9rem 0 0;
   color: var(--ink);
   font-size: clamp(1.08rem, 1.6vw, 1.22rem);
   line-height: 1.65;
@@ -586,8 +586,8 @@ a {
 .hero-points {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem;
-  margin: 1.3rem 0 0;
+  gap: 0.7rem;
+  margin: 1.9rem 0 0;
   padding: 0;
   list-style: none;
 }
@@ -621,9 +621,9 @@ a {
   display: grid;
   grid-template-columns: 1fr;
   justify-items: start;
-  gap: 0.85rem;
+  gap: 1.1rem;
   max-width: 40rem;
-  margin-top: 2.75rem;
+  margin-top: 3.25rem;
 }
 
 .store-actions {
@@ -2615,7 +2615,7 @@ a {
 
 @media (max-height: 860px) and (min-width: 1025px) {
   .hero.section {
-    padding-top: 6.5rem;
+    padding-top: 7.25rem;
     padding-bottom: 2rem;
   }
 
@@ -2624,7 +2624,7 @@ a {
   }
 
   .store-downloads {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
   }
 }
 
