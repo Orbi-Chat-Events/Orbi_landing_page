@@ -2135,6 +2135,7 @@
             report.chat
               ? `About: Chat “${chatText(report.chat)}”`
               : `About: ${REPORT_CONTEXTS[report.context] || readable(report.context)}`,
+            report.chat?.id ? `Chat ID: ${report.chat.id}` : "",
             report.reportedUser ? `Reported: ${personText(report.reportedUser, "")}` : "",
             deviceText(report),
             report.attachments > 0 && !report.images
@@ -2461,7 +2462,7 @@
             reports: [
               { id: "s1", kind: "support", status: "open", issue: "Can't send photos", description: "When I pick a photo it spins forever.\nTried twice on wifi.", context: "chat", platform: "ios", appVersion: "1.1.3+175", device: "iPhone 11", attachments: 2, images: 2, createdAt: hoursAgo(3), reporter: { name: "Maria", handle: "maria" }, reportedUser: null },
               { id: "s2", kind: "ugc", status: "open", issue: "Spam", description: "", context: "message", platform: "android", appVersion: "1.1.3+174", device: "SM-A226B", attachments: 0, createdAt: hoursAgo(26), reporter: { name: "Jonas", handle: "jonas" }, reportedUser: { name: "Deal Bot", handle: "deals" } },
-              { id: "s4", kind: "ugc", status: "open", issue: "Harassment", description: "Keeps posting insults in our group.", context: "chat", chat: { name: "Friday crew", direct: false, members: 7, deleted: false }, platform: "ios", appVersion: "1.2.4+230", device: "", attachments: 0, createdAt: hoursAgo(8), reporter: { name: "Freja", handle: "freja" }, reportedUser: null },
+              { id: "s4", kind: "ugc", status: "open", issue: "Harassment", description: "Keeps posting insults in our group.", context: "chat", chat: { id: "0b6f2c1e-4d3a-4e8b-9c71-2f5a8d9e1b44", name: "Friday crew", direct: false, members: 7, deleted: false }, platform: "ios", appVersion: "1.2.4+230", device: "", attachments: 0, createdAt: hoursAgo(8), reporter: { name: "Freja", handle: "freja" }, reportedUser: null },
               { id: "s3", kind: "recovery", status: "closed", issue: "Lost my phone", description: "New number, need my chats back.", context: "account_recovery", platform: "ios", appVersion: "1.1.3+173", device: "", attachments: 0, createdAt: hoursAgo(96), reporter: null, reportedUser: null },
             ],
             feedback: [
