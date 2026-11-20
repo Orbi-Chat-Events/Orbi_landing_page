@@ -1,0 +1,18 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["7NRY8MVVHX.com.mycompany.orbinhost"],
+        "appID": "7NRY8MVVHX.com.mycompany.orbinhost",
+        "components": [
+          { "/": "/j", "comment": "A group's invite link" },
+          { "/": "/j/*", "comment": "A group's invite link" },
+          { "/": "/e", "comment": "An open event's invite link" },
+          { "/": "/e/*", "comment": "An open event's invite link" }
+        ],
+        "paths": ["/j", "/j/*", "/e", "/e/*"]
+      }
+    ]
+  }
+}

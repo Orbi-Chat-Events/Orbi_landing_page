@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mycompany.orbinhost",
+      "sha256_cert_fingerprints": [
+        "09:C3:F1:F4:1A:C6:10:86:63:73:73:D9:31:1C:E4:0B:70:49:D4:5D:E2:C7:AA:7F:18:8A:08:4A:E5:D8:1C:DE"
+      ]
+    }
+  }
+]
