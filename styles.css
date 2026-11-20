@@ -964,6 +964,26 @@ html:not([lang="da"]) .hero-marquee[data-marquee-lang="da"] {
   font-size: 0.9rem;
 }
 
+/* Orbi Web runs on a computer and is linked from the phone app, so a phone
+   gets no button to it, only how to use it; a computer gets the quiet pill,
+   leaving "Join Orbi" the one strong call to action. */
+.roadmap-phone-note {
+  display: none;
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .roadmap-web-link {
+    display: none;
+  }
+
+  .roadmap-phone-note {
+    display: block;
+  }
+}
+
 .roadmap-note {
   margin: 1.6rem 0 0;
   color: var(--muted);
