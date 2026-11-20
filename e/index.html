@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join an event | Orbi</title>
+    <meta name="description" content="You have been invited to an event on Orbi." />
+    <!-- An invite page, one per group: nothing for search engines. The code
+         stays after the # and never reaches the server. -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="icon" type="image/png" href="../assets/favicon.png" />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      .join-steps { padding-left: 1.2em; line-height: 1.7; }
+      .join-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 18px 0 8px; }
+      .join-copy { cursor: pointer; border: 0; font: inherit; }
+      .join-copied { min-height: 1.4em; font-size: 0.9em; opacity: 0.75; }
+      .join-stores { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+      .join-stores img { height: 48px; width: auto; }
+    </style>
+  </head>
+  <body class="legal-body">
+    <div class="page-shell">
+      <header class="site-header legal-header">
+        <div class="nav-shell">
+          <a class="brand" href="../" aria-label="Orbi home">
+            <img src="../assets/orbi-logo-color.png" alt="Orbi" />
+          </a>
+        </div>
+      </header>
+
+      <main class="legal-main">
+        <article class="legal-sheet">
+          <p class="eyebrow" data-da="Invitation">Invitation</p>
+          <h1 data-da="Du er inviteret til en begivenhed på Orbi">You're invited to an event on Orbi</h1>
+          <p class="legal-lead" data-da="Kom med fra Orbi-appen, og svar, om du kommer.">
+            Join from the Orbi app and answer whether you're going.
+          </p>
+
+          <section>
+            <h2 data-da="Ny på Orbi?">New to Orbi?</h2>
+            <p data-da="Hent appen og opret dig. Kom så tilbage til dette link, eller scan koden igen inde i Orbi.">
+              Get the app and sign up. Then come back to this link, or scan the
+              code again from inside Orbi.
+            </p>
+            <div class="join-stores">
+              <a href="https://apps.apple.com/dk/app/orbi-chat-events/id6766225409" target="_blank" rel="noreferrer">
+                <img src="../assets/app-store-badge.png" alt="Download on the App Store" />
+              </a>
+              <a href="https://play.google.com/store/apps/details?id=com.mycompany.orbinhost" target="_blank" rel="noreferrer">
+                <img src="../assets/google-play-badge.png" alt="Get it on Google Play" />
+              </a>
+            </div>
+          </section>
+          <section>
+            <h2 data-da="Har du allerede Orbi?">Already have Orbi?</h2>
+            <ol class="join-steps">
+              <li data-da="Kopiér linket herunder.">Copy the link below.</li>
+              <li data-da="Åbn Orbi, gå til Chats, og tryk på ✚.">Open Orbi, go to Chats and tap ✚.</li>
+              <li data-da="Vælg &quot;Kom med i en gruppe eller begivenhed med QR-kode&quot;, og tryk på Indsæt link. Står koden på en anden skærm eller en plakat, kan du også scanne den.">
+                Choose "Join a group or event with a QR code" and tap Paste
+                link. If the code is on another screen or a poster, you can
+                scan it instead.
+              </li>
+            </ol>
+            <div class="join-actions">
+              <button class="cta-pill join-copy" type="button" id="copy-link" data-da="Kopiér link">Copy link</button>
+              <span class="join-copied" id="copied" aria-live="polite"></span>
+            </div>
+          </section>
+
+        </article>
+      </main>
+    </div>
+
+    <script>
+      (() => {
+        const danish = (navigator.language || "").toLowerCase().startsWith("da");
+        if (danish) {
+          document.documentElement.lang = "da";
+          for (const element of document.querySelectorAll("[data-da]")) {
+            element.textContent = element.getAttribute("data-da");
+          }
+        }
+        const copied = document.getElementById("copied");
+        document.getElementById("copy-link").addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            copied.textContent = danish ? "Linket er kopieret." : "Link copied.";
+          } catch {
+            copied.textContent = window.location.href;
+          }
+        });
+      })();
+    </script>
+    <script src="../script.js"></script>
+  </body>
+</html>
