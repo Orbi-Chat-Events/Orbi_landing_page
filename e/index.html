@@ -19,6 +19,15 @@
       .join-copied { min-height: 1.4em; font-size: 0.9em; opacity: 0.75; }
       .join-stores { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
       .join-stores img { height: 48px; width: auto; }
+      /* Fits a phone: the site's legal-page size took four lines there. */
+      .legal-sheet h1 {
+        font-size: clamp(1.9rem, 8.5vw, 3rem);
+        line-height: 1.1;
+        letter-spacing: -0.035em;
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
+      .invite-when { margin: 14px 0 0; font-size: 1.1rem; font-weight: 600; }
     </style>
   </head>
   <body class="legal-body">
@@ -33,8 +42,9 @@
 
       <main class="legal-main">
         <article class="legal-sheet">
-          <p class="eyebrow" data-da="Invitation">Invitation</p>
-          <h1 data-da="Du er inviteret til en begivenhed på Orbi">You're invited to an event on Orbi</h1>
+          <p class="eyebrow" id="invite-eyebrow" data-da="Invitation">Invitation</p>
+          <h1 id="invite-title" data-da="Du er inviteret til en begivenhed på Orbi">You're invited to an event on Orbi</h1>
+          <p class="invite-when" id="invite-when" hidden></p>
           <p class="legal-lead" data-da="Kom med fra Orbi-appen, og svar, om du kommer.">
             Join from the Orbi app and answer whether you're going.
           </p>
@@ -83,6 +93,51 @@
             element.textContent = element.getAttribute("data-da");
           }
         }
+        // The event's title, time and host (NEW_event-invite-page). The code
+        // after the # goes in the request body only; without an answer the
+        // page keeps its general text.
+        const code = (() => {
+          try {
+            return decodeURIComponent(window.location.hash.slice(1)).trim();
+          } catch {
+            return "";
+          }
+        })();
+        const showInvite = (invite) => {
+          const title = typeof invite?.title === "string" ? invite.title.trim() : "";
+          if (!title) return;
+          const host = typeof invite.host === "string" ? invite.host.trim() : "";
+          document.getElementById("invite-eyebrow").textContent = host
+            ? (danish ? `${host} inviterer dig` : `${host} invites you`)
+            : (danish ? "Du er inviteret" : "You're invited");
+          document.getElementById("invite-title").textContent = title;
+          document.title = `${title} | Orbi`;
+          const startsAt = new Date(invite.startsAt ?? "");
+          if (!Number.isNaN(startsAt.getTime())) {
+            const when = document.getElementById("invite-when");
+            when.textContent = new Intl.DateTimeFormat(danish ? "da-DK" : "en-GB", {
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+              hour: "2-digit",
+              minute: "2-digit",
+            }).format(startsAt);
+            when.hidden = false;
+          }
+        };
+        if (code) {
+          fetch("https://kgsysdwkclmquduxxifd.functions.eu-central-1.nhost.run/v1/NEW_event-invite-page", {
+            method: "POST",
+            credentials: "omit",
+            referrerPolicy: "no-referrer",
+            headers: { "Content-Type": "text/plain" },
+            body: JSON.stringify({ code }),
+          })
+            .then((response) => (response.ok ? response.json() : null))
+            .then((invite) => invite && showInvite(invite))
+            .catch(() => {});
+        }
+
         const copied = document.getElementById("copied");
         document.getElementById("copy-link").addEventListener("click", async () => {
           try {

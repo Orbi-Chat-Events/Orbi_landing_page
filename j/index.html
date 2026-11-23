@@ -19,6 +19,14 @@
       .join-copied { min-height: 1.4em; font-size: 0.9em; opacity: 0.75; }
       .join-stores { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
       .join-stores img { height: 48px; width: auto; }
+      /* Fits a phone: the site's legal-page size took four lines there. */
+      .legal-sheet h1 {
+        font-size: clamp(1.9rem, 8.5vw, 3rem);
+        line-height: 1.1;
+        letter-spacing: -0.035em;
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
     </style>
   </head>
   <body class="legal-body">
