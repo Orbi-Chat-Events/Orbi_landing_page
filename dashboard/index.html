@@ -1680,8 +1680,8 @@
           const retentionRate = pct(data.retention.activeLast7d, data.retention.cohortSize);
           $("kpis").replaceChildren(
             kpi("Users", fmt(users.total), subText([el("span", { class: "delta-up", text: `+${fmt(users.new7d)}` }), " this week"])),
-            kpi("Active today", fmt(active.day), subText([`${fmt(active.week)} this week · ${fmt(active.month)} this month`])),
-            kpi("Stickiness", `${pct(active.day, active.month)}%`, subText(["Daily ÷ monthly active"])),
+            kpi("DAU", fmt(active.day), subText([`Active today · ${fmt(active.week)} this week`])),
+            kpi("MAU", fmt(active.month), subText(["Active in the last 30 days"])),
             kpi("Messages", fmt(data.messages.last7d), subText([`last 7 days · ${fmt(data.chats.active7d)} active chats`])),
             kpi(
               "Retention",
