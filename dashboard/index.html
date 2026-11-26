@@ -491,6 +491,71 @@
         white-space: nowrap;
       }
 
+      button.bar-more {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--accent);
+        font: inherit;
+        text-align: left;
+        text-decoration: underline;
+        text-decoration-color: var(--line);
+        text-underline-offset: 3px;
+        cursor: pointer;
+      }
+
+      button.bar-more:hover {
+        text-decoration-color: currentColor;
+      }
+
+      button.bar-more:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+
+      .full-list {
+        position: fixed;
+        inset: auto;
+        width: min(340px, calc(100vw - 32px));
+        max-height: min(60vh, 440px);
+        margin: 0;
+        padding: 14px 16px 16px;
+        overflow: auto;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface);
+        color: var(--ink);
+        box-shadow: var(--shadow);
+      }
+
+      .full-list-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .full-list-head h3 {
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      .full-list-head span {
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .full-list .bar-row {
+        grid-template-columns: minmax(96px, 44%) 1fr auto;
+      }
+
+      .full-list .panel-note {
+        margin: 12px 0 0;
+      }
+
       .bar-track {
         display: block;
         height: 10px;
@@ -1318,6 +1383,15 @@
       </section>
     </div>
 
+    <div class="full-list" id="full-list" popover role="dialog" aria-labelledby="full-list-title">
+      <div class="full-list-head">
+        <h3 id="full-list-title"></h3>
+        <span class="num" id="full-list-total"></span>
+      </div>
+      <ul class="bars" id="full-list-bars"></ul>
+      <p class="panel-note" id="full-list-note" hidden></p>
+    </div>
+
     <dialog class="lightbox" id="lightbox" aria-label="Screenshot">
       <div class="lightbox-bar">
         <span class="num" id="lightbox-count"></span>
@@ -1517,7 +1591,9 @@
           container.append(svg, tooltip);
         }
 
-        function barList(container, items, { labelFor = (item) => item.key, chipFor = () => null } = {}) {
+        // A row that groups others (Other, with items from the backend) opens
+        // the full list in a popover. fullTitle names that list.
+        function barList(container, items, { labelFor = (item) => item.key, chipFor = () => null, fullTitle = "" } = {}) {
           container.replaceChildren();
           if (!items.length) {
             container.append(el("li", { class: "empty", text: "No data yet" }));
@@ -1526,12 +1602,36 @@
           const max = Math.max(...items.map((item) => item.count));
           for (const item of items) {
             const width = max > 0 ? Math.max(1.5, (item.count / max) * 100) : 0;
+            const grouped = fullTitle && Array.isArray(item.items) && item.items.length ? item.items : null;
+            const labelChildren = [document.createTextNode(labelFor(item)), chipFor(item)];
+            let label;
+            if (grouped) {
+              label = el(
+                "button",
+                {
+                  class: "bar-label bar-more",
+                  type: "button",
+                  title: `Show all ${fullTitle.toLowerCase()}`,
+                  "aria-haspopup": "dialog",
+                  "aria-expanded": "false",
+                  "aria-controls": "full-list",
+                },
+                labelChildren,
+              );
+              label.addEventListener("click", () =>
+                openFullList(label, {
+                  title: fullTitle,
+                  items: [...items.filter((other) => other !== item), ...grouped],
+                  hiddenCount: item.count - grouped.reduce((sum, entry) => sum + entry.count, 0),
+                  labelFor,
+                }),
+              );
+            } else {
+              label = el("span", { class: "bar-label", title: labelFor(item) }, labelChildren);
+            }
             container.append(
               el("li", { class: "bar-row" }, [
-                el("span", { class: "bar-label", title: labelFor(item) }, [
-                  document.createTextNode(labelFor(item)),
-                  chipFor(item),
-                ]),
+                label,
                 el("span", { class: "bar-track", "aria-hidden": "true" }, [
                   el("span", { class: "bar-fill", style: `width:${width}%` }),
                 ]),
@@ -1540,6 +1640,52 @@
             );
           }
         }
+
+        let fullListOpener = null;
+
+        function closeFullList() {
+          const popover = $("full-list");
+          if (popover.matches(":popover-open")) popover.hidePopover();
+        }
+
+        function openFullList(opener, { title, items, hiddenCount, labelFor }) {
+          const popover = $("full-list");
+          if (fullListOpener === opener && popover.matches(":popover-open")) {
+            popover.hidePopover();
+            return;
+          }
+          closeFullList();
+          $("full-list-title").textContent = title;
+          $("full-list-total").textContent = `${fmt(items.length)} ${items.length === 1 ? "entry" : "entries"}`;
+          barList($("full-list-bars"), items, { labelFor });
+          const note = $("full-list-note");
+          note.hidden = hiddenCount <= 0;
+          note.textContent = hiddenCount > 0 ? `Plus ${fmt(hiddenCount)} visits from smaller entries not listed.` : "";
+          fullListOpener = opener;
+          popover.showPopover();
+          popover.scrollTop = 0;
+          const anchor = opener.getBoundingClientRect();
+          const box = popover.getBoundingClientRect();
+          const gutter = 16;
+          const left = Math.min(Math.max(gutter, anchor.left), window.innerWidth - box.width - gutter);
+          const below = anchor.bottom + 6;
+          const top =
+            below + box.height <= window.innerHeight - gutter
+              ? below
+              : Math.max(gutter, anchor.top - 6 - box.height);
+          popover.style.left = `${left}px`;
+          popover.style.top = `${top}px`;
+        }
+
+        $("full-list").addEventListener("toggle", (event) => {
+          const open = event.newState === "open";
+          if (fullListOpener) fullListOpener.setAttribute("aria-expanded", String(open));
+          if (!open) fullListOpener = null;
+        });
+        // The popover is placed next to its row once; close it rather than
+        // leave it behind when the page moves under it.
+        window.addEventListener("scroll", closeFullList, { passive: true });
+        window.addEventListener("resize", closeFullList);
 
         function stats(container, rows) {
           container.replaceChildren(
@@ -1643,6 +1789,7 @@
           $("total-website").textContent = `${fmt(website.visits30d)} visits in 30 days`;
           barList($("website-sources"), website.sources, {
             labelFor: (item) => SOURCE_LABELS[item.key] || item.key,
+            fullTitle: "Visitor sources",
           });
           barList($("website-pages"), website.pages, {
             labelFor: (item) => PAGE_LABELS[item.key] || item.key,
@@ -2499,7 +2646,7 @@
             website: {
               daily: daily.map((day, index) => ({ date: day.date, visitors: Math.round(45 + 30 * Math.sin(index / 2.5) + index), views: Math.round(110 + 60 * Math.sin(index / 2.5)) })),
               visits30d: 1920, visits7d: 498, views30d: 4310,
-              sources: [{ key: "direct", count: 690 }, { key: "google", count: 610 }, { key: "instagram", count: 280 }, { key: "linkedin", count: 150 }, { key: "facebook", count: 90 }, { key: "Other", count: 100 }],
+              sources: [{ key: "direct", count: 690 }, { key: "google", count: 610 }, { key: "instagram", count: 280 }, { key: "linkedin", count: 150 }, { key: "facebook", count: 90 }, { key: "Other", count: 100, items: [{ key: "ig", count: 38 }, { key: "fb", count: 22 }, { key: "reddit", count: 17 }, { key: "duckduckgo", count: 12 }, { key: "bing", count: 7 }, { key: "orbi web", count: 4 }] }],
               pages: [{ key: "/", count: 1700 }, { key: "/about/", count: 240 }, { key: "/support/", count: 120 }, { key: "/privacy/", count: 80 }, { key: "/about/da/", count: 40 }],
               devices: [{ key: "ios", count: 980 }, { key: "desktop", count: 560 }, { key: "android", count: 380 }],
               countries: [{ key: "DK", count: 1610 }, { key: "SE", count: 90 }, { key: "Other", count: 220 }],
